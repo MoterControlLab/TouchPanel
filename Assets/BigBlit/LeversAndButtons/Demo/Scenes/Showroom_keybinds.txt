@@ -1,0 +1,6 @@
+WSAD - Control position
+Space - Turn camera movement and orientation on/off and toggle cursor visibility.
+Mouse - Control camera orientation.
+SHIFT - Faster movement and orientation changes.
+Q - Shuffle buttons materials.
+E - Change skybox
