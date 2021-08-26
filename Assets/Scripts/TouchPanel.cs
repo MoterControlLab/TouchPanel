@@ -9,9 +9,12 @@ public class TouchPanel : MonoBehaviour
     public TextMeshProUGUI NoticeText;
 
     public int TestNum;
-
+    public GameObject LeftHand;
+    public GameObject RightHand;
     static TouchPanel instance;
     public static TouchPanel Instance
+
+    
     {
         get
         {
@@ -32,7 +35,8 @@ public class TouchPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LeftHand.SetActive(true);
+        RightHand.SetActive(true);
     }
 
     // Update is called once per frame
