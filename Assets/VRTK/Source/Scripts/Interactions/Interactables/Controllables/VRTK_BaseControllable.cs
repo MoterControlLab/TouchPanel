@@ -54,6 +54,8 @@ namespace VRTK.Controllables
             zAxis
         }
 
+        public bool isReset;
+
         [Header("Controllable Settings")]
 
         [Tooltip("The local axis in which the Controllable will operate through.")]
@@ -290,6 +292,8 @@ namespace VRTK.Controllables
         {
             interactingCollider = null;
             interactingTouchScript = null;
+           
+
         }
 
         protected virtual void SetupCollider()

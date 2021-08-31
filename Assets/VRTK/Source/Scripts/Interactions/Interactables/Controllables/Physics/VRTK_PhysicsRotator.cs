@@ -265,6 +265,7 @@ namespace VRTK.Controllables.PhysicsBased
             ForceSnapToStep();
             SetJointLimits();
             EmitEvents();
+            ForceToOriginalAngle();
         }
 
         protected override void EmitEvents()
@@ -522,6 +523,21 @@ namespace VRTK.Controllables.PhysicsBased
                 ManageSpring(true, restingAngle);
             }
         }
+
+        protected virtual void ForceToOriginalAngle()
+        {
+ 
+            bool validReset = !IsGrabbed();
+
+            float currentValue = GetValue();
+
+            if (validReset && currentValue != restingAngle)
+            {
+         
+                ManageSpring(true, restingAngle);
+            }
+        }
+
 
         protected virtual void ForceAngleTarget()
         {
