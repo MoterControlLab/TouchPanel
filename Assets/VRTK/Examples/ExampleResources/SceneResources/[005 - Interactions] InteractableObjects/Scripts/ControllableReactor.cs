@@ -31,7 +31,14 @@
         {
             if (outputOnMax != "")
             {
-                Debug.Log(outputOnMax);
+                // Debug.Log(outputOnMax);
+                if (outputOnMax == TouchPanel.Instance.NoticeText.text)
+                {
+                    TouchPanel.Instance.OperateRight();
+                }
+                else TouchPanel.Instance.OperateWrong();
+
+                TouchPanel.Instance.GenerateNewCommond();
             }
         }
 

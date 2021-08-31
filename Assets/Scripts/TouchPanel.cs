@@ -8,7 +8,8 @@ public class TouchPanel : MonoBehaviour
 
     public TextMeshProUGUI NoticeText;
 
-    public int TestNum;
+    public Task CurrentTask;
+    private int currentOperationIndex;
     public GameObject LeftHand;
     public GameObject RightHand;
     static TouchPanel instance;
@@ -37,6 +38,9 @@ public class TouchPanel : MonoBehaviour
     {
         LeftHand.SetActive(true);
         RightHand.SetActive(true);
+        //initialize operation sequence
+        CurrentTask.GenerateOperationSequence();
+        StartTestButtonClick();
     }
 
     // Update is called once per frame
@@ -63,35 +67,24 @@ public class TouchPanel : MonoBehaviour
 
     public void GenerateNewCommond()
     {
-        TestNum--;
-        int randomindex = Random.Range(0, 5);
-        switch (randomindex)
+        if (currentOperationIndex < CurrentTask.CurrentCodeList.Count)
         {
-            case 0:
-                NoticeText.text = "L1";
-                break;
-            case 1:
-                NoticeText.text = "L2";
-                break;
-            case 2:
-                NoticeText.text = "L3";
-                break;
-            case 3:
-                NoticeText.text = "R1";
-                break;
-            case 4:
-                NoticeText.text = "R2";
-                break;
-            case 5:
-                NoticeText.text = "R3";
-                break;
-
-            default:
-                break;
+            NoticeText.color = Color.white;
+            CurrentTask.ShowOperationCode(CurrentTask.CurrentCodeList[currentOperationIndex]);
+            currentOperationIndex++;
         }
-
-
     }
 
 
+    public void OperateRight()
+    {
+        NoticeText.color = Color.green;
+        NoticeText.text = "Correct!";
+    }
+
+    public void OperateWrong()
+    {
+        NoticeText.color = Color.red;
+        NoticeText.text = "Wrong!";
+    }
 }
