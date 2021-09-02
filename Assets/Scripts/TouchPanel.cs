@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using VRTK;
+
 public class TouchPanel : MonoBehaviour
 {
 
@@ -13,9 +15,17 @@ public class TouchPanel : MonoBehaviour
     public GameObject LeftHand;
     public GameObject RightHand;
     static TouchPanel instance;
+    public AudioController AudioController;
+    //whether current clicked button is reset
+    [HideInInspector]
+    public bool IsResetForCurrentButton;
+
+    public List<VRTK_InteractHaptics> HapticsList;
+    [HideInInspector]
+    public bool FinishTask;
+
     public static TouchPanel Instance
 
-    
     {
         get
         {
@@ -57,22 +67,39 @@ public class TouchPanel : MonoBehaviour
     private IEnumerator BeginTesting()
     {
         NoticeText.text = "3";
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         NoticeText.text = "2";
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
         NoticeText.text = "1";
-        yield return new WaitForSeconds(1);
-        GenerateNewCommond();
+        yield return new WaitForSeconds(1f);
+
+        IsResetForCurrentButton = true;
+
+       StartCoroutine( GenerateNewCommond());
     }
 
-    public void GenerateNewCommond()
+
+    
+
+    public IEnumerator GenerateNewCommond()
     {
+        yield return new WaitUntil(()=>IsResetForCurrentButton);
         if (currentOperationIndex < CurrentTask.CurrentCodeList.Count)
         {
             NoticeText.color = Color.white;
+            AudioController.PlayEventSFX(AudioController.SpawnSFX);
             CurrentTask.ShowOperationCode(CurrentTask.CurrentCodeList[currentOperationIndex]);
             currentOperationIndex++;
         }
+
+        else
+        {
+            NoticeText.color = Color.white;
+            NoticeText.text = "Done!";
+            FinishTask = true;
+        }
+
+        yield break;
     }
 
 
@@ -80,11 +107,13 @@ public class TouchPanel : MonoBehaviour
     {
         NoticeText.color = Color.green;
         NoticeText.text = "Correct!";
+        AudioController.PlayOperationSFX(AudioController.RightSFX);
     }
 
     public void OperateWrong()
     {
         NoticeText.color = Color.red;
         NoticeText.text = "Wrong!";
+        AudioController.PlayOperationSFX(AudioController.WrongSFX);
     }
 }

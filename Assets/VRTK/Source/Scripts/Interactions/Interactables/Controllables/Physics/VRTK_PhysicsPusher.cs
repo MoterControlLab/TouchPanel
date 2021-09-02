@@ -173,6 +173,8 @@ namespace VRTK.Controllables.PhysicsBased
                 positionChanged = true;
             }
 
+  
+
             if (positionChanged)
             {
                 float currentPosition = GetNormalizedValue();
@@ -181,6 +183,7 @@ namespace VRTK.Controllables.PhysicsBased
                 float minThreshold = minMaxLimitThreshold;
                 float maxThreshold = 1f - minMaxLimitThreshold;
 
+ 
                 if (currentPosition >= maxThreshold && !AtMaxLimit())
                 {
                     atMaxLimit = true;
@@ -189,6 +192,7 @@ namespace VRTK.Controllables.PhysicsBased
                 }
                 else if (currentPosition <= minThreshold && !AtMinLimit())
                 {
+         
                     atMinLimit = true;
                     OnMinLimitReached(payload);
                 }

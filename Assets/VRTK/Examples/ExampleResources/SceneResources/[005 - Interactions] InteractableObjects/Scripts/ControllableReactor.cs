@@ -29,25 +29,76 @@
 
         protected virtual void MaxLimitReached(object sender, ControllableEventArgs e)
         {
+
+           // if (TouchPanel.Instance.FinishTask)
+           // {
+           //     return;
+           // }
+
             if (outputOnMax != "")
             {
-                // Debug.Log(outputOnMax);
+                if (!TouchPanel.Instance.IsResetForCurrentButton)
+                {
+                    return;
+                }
+     
                 if (outputOnMax == TouchPanel.Instance.NoticeText.text)
                 {
                     TouchPanel.Instance.OperateRight();
                 }
                 else TouchPanel.Instance.OperateWrong();
 
-                TouchPanel.Instance.GenerateNewCommond();
+                TouchPanel.Instance.IsResetForCurrentButton = false;
+
+               StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
+            }
+
+            else
+            {
+                if (!TouchPanel.Instance.IsResetForCurrentButton)
+                {
+                    TouchPanel.Instance.IsResetForCurrentButton = true;
+                }
             }
         }
 
+   
+
         protected virtual void MinLimitReached(object sender, ControllableEventArgs e)
         {
+
+            if (TouchPanel.Instance.FinishTask)
+            {
+                return;
+            }
+
+
             if (outputOnMin != "")
             {
-                Debug.Log(outputOnMin);
+                if (!TouchPanel.Instance.IsResetForCurrentButton)
+                {
+                    return;
+                }
+
+                if (outputOnMin == TouchPanel.Instance.NoticeText.text)
+                {
+                    TouchPanel.Instance.OperateRight();
+                }
+                else TouchPanel.Instance.OperateWrong();
+
+                TouchPanel.Instance.IsResetForCurrentButton = false;
+
+                StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
+            }
+
+            else
+            {
+                if (!TouchPanel.Instance.IsResetForCurrentButton)
+                {
+                    TouchPanel.Instance.IsResetForCurrentButton = true;
+                }
             }
         }
     }
+  
 }

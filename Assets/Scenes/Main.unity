@@ -1148,6 +1148,133 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282889755}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &298456709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 298456711}
+  - component: {fileID: 298456710}
+  m_Layer: 0
+  m_Name: OperationSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &298456710
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298456709}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &298456711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298456709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1039608758}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323383497
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,10 +2959,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.001
       objectReference: {fileID: 0}
+    - target: {fileID: 5762346700425094773, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_Name
+      value: Notice
+      objectReference: {fileID: 0}
     - target: {fileID: 5762346700713361442, guid: 77f61a01867630345abe555a0e79a451,
         type: 3}
       propertyPath: m_text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762346700713361442, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 8.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762346700713361442, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 8.6
       objectReference: {fileID: 0}
     - target: {fileID: 5762346700713361445, guid: 77f61a01867630345abe555a0e79a451,
         type: 3}
@@ -2925,7 +3067,7 @@ PrefabInstance:
     - target: {fileID: 5762346700745634672, guid: 77f61a01867630345abe555a0e79a451,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5762346700745634672, guid: 77f61a01867630345abe555a0e79a451,
         type: 3}
@@ -2959,6 +3101,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
         type: 3}
+      propertyPath: HapticsList.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
       propertyPath: LeftHand
       value: 
       objectReference: {fileID: 1360386612}
@@ -2972,6 +3119,46 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: CurrentTask
+      value: 
+      objectReference: {fileID: 910214919}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: AudioController
+      value: 
+      objectReference: {fileID: 1039608757}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: HapticsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 1056328223}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: HapticsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 2000022360}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: HapticsList.Array.data[2]
+      value: 
+      objectReference: {fileID: 2145627614}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: HapticsList.Array.data[3]
+      value: 
+      objectReference: {fileID: 1107836862}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: HapticsList.Array.data[4]
+      value: 
+      objectReference: {fileID: 1735711099}
+    - target: {fileID: 5762346700745634673, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: HapticsList.Array.data[5]
+      value: 
+      objectReference: {fileID: 1972243216}
     - target: {fileID: 5762346700745634675, guid: 77f61a01867630345abe555a0e79a451,
         type: 3}
       propertyPath: m_Name
@@ -2986,6 +3173,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939775920076229, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939776527421378, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.4835026
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939776527421378, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5123767
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939776527421378, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5198657
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939776527421378, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48315117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939776527421378, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.393005
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939776527421378, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -139.56601
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582939776527421378, guid: 77f61a01867630345abe555a0e79a451,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 45.808002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77f61a01867630345abe555a0e79a451, type: 3}
@@ -3907,8 +4134,12 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 135000011948786534, guid: 33a096ef14a38e543af97bd67de0db31, type: 3}
+    - target: {fileID: 135000011948786534, guid: 33a096ef14a38e543af97bd67de0db31,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.71
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33a096ef14a38e543af97bd67de0db31, type: 3}
 --- !u!1 &817112868
 GameObject:
@@ -4257,8 +4488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81da7c494c196464da7cbb75df6c4d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OperationNum: 0
+  OperationNum: 100
   CurrentCodeList: 
+  Vibrate: 0
+  Audio: 0
 --- !u!4 &910214920
 Transform:
   m_ObjectHideFlags: 0
@@ -4271,7 +4504,134 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &936323715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 936323717}
+  - component: {fileID: 936323716}
+  m_Layer: 0
+  m_Name: EventSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &936323716
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936323715}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &936323717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936323715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1039608758}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958020453
 GameObject:
@@ -5083,6 +5443,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1038419217}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1039608756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039608758}
+  - component: {fileID: 1039608757}
+  m_Layer: 0
+  m_Name: AudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1039608757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039608756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9751e8e698e8604a98498ccf7bdeb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventSource: {fileID: 936323716}
+  OperationSource: {fileID: 298456710}
+  SpawnSFX: {fileID: 8300000, guid: f074645c19f1ef440ac25bcbec8461bb, type: 3}
+  WrongSFX: {fileID: 8300000, guid: d1db95c40bc1bf145bf00460462a9966, type: 3}
+  RightSFX: {fileID: 8300000, guid: b74367a4058bb514eb1053e64f8ad66d, type: 3}
+  CurrentTask: {fileID: 910214919}
+--- !u!4 &1039608758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039608756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.142015, y: 1.1526091, z: 0.4470157}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 298456711}
+  - {fileID: 936323717}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1043674905
 GameObject:
   m_ObjectHideFlags: 0
@@ -5169,6 +5580,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Height
       value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 136032359288340650, guid: afec65f27dcd2c74cba31fc61eea61e6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136032359288340650, guid: afec65f27dcd2c74cba31fc61eea61e6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afec65f27dcd2c74cba31fc61eea61e6, type: 3}
@@ -5311,6 +5732,8 @@ GameObject:
   - component: {fileID: 1056328221}
   - component: {fileID: 1056328220}
   - component: {fileID: 1056328219}
+  - component: {fileID: 1056328223}
+  - component: {fileID: 1056328224}
   m_Layer: 0
   m_Name: PhysicsPusher
   m_TagString: Untagged
@@ -5424,6 +5847,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056328217}
   m_Mesh: {fileID: 4300006, guid: b6f0223823367ff41a5f9576a53f8097, type: 3}
+--- !u!114 &1056328223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056328217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 1
+  durationOnTouch: 1
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 0}
+  strengthOnGrab: 0
+  durationOnGrab: 0
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
+--- !u!114 &1056328224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056328217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 0
+  holdButtonToGrab: 0
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 0
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
 --- !u!1 &1103128336
 GameObject:
   m_ObjectHideFlags: 0
@@ -5513,6 +6002,7 @@ GameObject:
   - component: {fileID: 1107836859}
   - component: {fileID: 1107836861}
   - component: {fileID: 1107836860}
+  - component: {fileID: 1107836862}
   m_Layer: 0
   m_Name: LeverControl
   m_TagString: Untagged
@@ -5550,8 +6040,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllable: {fileID: 1107836861}
   displayText: {fileID: 1103128338}
-  outputOnMax: Lever Maximum Reached
-  outputOnMin: Lever Minimum Reached
+  outputOnMax: 
+  outputOnMin: R2
 --- !u!114 &1107836861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5574,7 +6064,7 @@ MonoBehaviour:
   angleLimits:
     minimum: -45
     maximum: 0
-  minMaxThresholdAngle: 1
+  minMaxThresholdAngle: 2
   restingAngle: 0
   forceRestingAngleThreshold: 46
   angleTarget: 0
@@ -5592,6 +6082,39 @@ MonoBehaviour:
   grabbedFriction: 1
   releasedFriction: 1
   onlyInteractWith: []
+--- !u!114 &1107836862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107836858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 0
+  durationOnTouch: 0
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 0}
+  strengthOnGrab: 1
+  durationOnGrab: 1
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
 --- !u!1 &1112400041
 GameObject:
   m_ObjectHideFlags: 0
@@ -6394,6 +6917,16 @@ PrefabInstance:
       propertyPath: m_Height
       value: 0.21
       objectReference: {fileID: 0}
+    - target: {fileID: 136032359288340650, guid: afec65f27dcd2c74cba31fc61eea61e6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 136032359288340650, guid: afec65f27dcd2c74cba31fc61eea61e6,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afec65f27dcd2c74cba31fc61eea61e6, type: 3}
 --- !u!1 &1236687868
@@ -6530,8 +7063,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238139681}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
+  m_IsTrigger: 0
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.1, y: 0.5, z: 1.1}
   m_Center: {x: 0, y: 0.18, z: 0}
@@ -9163,6 +9696,7 @@ GameObject:
   - component: {fileID: 1735711096}
   - component: {fileID: 1735711098}
   - component: {fileID: 1735711097}
+  - component: {fileID: 1735711099}
   m_Layer: 0
   m_Name: DialControl
   m_TagString: Untagged
@@ -9177,7 +9711,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735711095}
-  m_LocalRotation: {x: -0, y: 0.000000029802315, z: 0.000000007450579, w: 1}
+  m_LocalRotation: {x: 0.000000029802315, y: -0.00000011920926, z: -0.000000141561,
+    w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9203,7 +9738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllable: {fileID: 1735711098}
   displayText: {fileID: 1997049964}
-  outputOnMax: 
+  outputOnMax: L3
   outputOnMin: 
 --- !u!114 &1735711098
 MonoBehaviour:
@@ -9228,7 +9763,7 @@ MonoBehaviour:
   angleLimits:
     minimum: 0
     maximum: 30
-  minMaxThresholdAngle: 30
+  minMaxThresholdAngle: 2
   restingAngle: 1
   forceRestingAngleThreshold: 1
   angleTarget: 0
@@ -9247,6 +9782,39 @@ MonoBehaviour:
   grabbedFriction: 15
   releasedFriction: 15
   onlyInteractWith: []
+--- !u!114 &1735711099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735711095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 0
+  durationOnTouch: 0
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 0}
+  strengthOnGrab: 1
+  durationOnGrab: 1
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
 --- !u!1 &1776156535
 GameObject:
   m_ObjectHideFlags: 0
@@ -9959,6 +10527,8 @@ GameObject:
   - component: {fileID: 1972243214}
   - component: {fileID: 1972243213}
   - component: {fileID: 1972243212}
+  - component: {fileID: 1972243216}
+  - component: {fileID: 1972243217}
   m_Layer: 0
   m_Name: PhysicsPusher
   m_TagString: Untagged
@@ -10072,6 +10642,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1972243210}
   m_Mesh: {fileID: 4300006, guid: b6f0223823367ff41a5f9576a53f8097, type: 3}
+--- !u!114 &1972243216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972243210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 1
+  durationOnTouch: 1
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 0}
+  strengthOnGrab: 0
+  durationOnGrab: 0
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
+--- !u!114 &1972243217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972243210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3abaf4521bf2344ea21ed3020b98eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWhenIdle: 1
+  allowedNearTouchControllers: 0
+  allowedTouchControllers: 0
+  ignoredColliders: []
+  isGrabbable: 0
+  holdButtonToGrab: 0
+  stayGrabbedOnTeleport: 0
+  validDrop: 1
+  grabOverrideButton: 0
+  allowedGrabControllers: 0
+  grabAttachMechanicScript: {fileID: 0}
+  secondaryGrabActionScript: {fileID: 0}
+  isUsable: 0
+  holdButtonToUse: 0
+  useOnlyIfGrabbed: 0
+  pointerActivatesUseAction: 0
+  useOverrideButton: 0
+  allowedUseControllers: 0
+  objectHighlighter: {fileID: 0}
+  touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
+  usingState: 0
 --- !u!1 &1976496353
 GameObject:
   m_ObjectHideFlags: 0
@@ -10336,6 +10972,7 @@ GameObject:
   - component: {fileID: 2000022357}
   - component: {fileID: 2000022359}
   - component: {fileID: 2000022358}
+  - component: {fileID: 2000022360}
   m_Layer: 0
   m_Name: LeverControl
   m_TagString: Untagged
@@ -10373,8 +11010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllable: {fileID: 2000022359}
   displayText: {fileID: 958020455}
-  outputOnMax: Lever Maximum Reached
-  outputOnMin: Lever Minimum Reached
+  outputOnMax: 
+  outputOnMin: L1
 --- !u!114 &2000022359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10397,7 +11034,7 @@ MonoBehaviour:
   angleLimits:
     minimum: -45
     maximum: 0
-  minMaxThresholdAngle: 1
+  minMaxThresholdAngle: 2
   restingAngle: 0
   forceRestingAngleThreshold: 46
   angleTarget: 0
@@ -10415,6 +11052,39 @@ MonoBehaviour:
   grabbedFriction: 1
   releasedFriction: 1
   onlyInteractWith: []
+--- !u!114 &2000022360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000022356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 0
+  durationOnTouch: 0
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 0}
+  strengthOnGrab: 1
+  durationOnGrab: 1
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
 --- !u!1 &2031679467
 GameObject:
   m_ObjectHideFlags: 0
@@ -11003,6 +11673,7 @@ GameObject:
   - component: {fileID: 2145627611}
   - component: {fileID: 2145627613}
   - component: {fileID: 2145627612}
+  - component: {fileID: 2145627614}
   m_Layer: 0
   m_Name: DialControl
   m_TagString: Untagged
@@ -11043,7 +11714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controllable: {fileID: 2145627613}
   displayText: {fileID: 1199610135}
-  outputOnMax: 
+  outputOnMax: R1
   outputOnMin: 
 --- !u!114 &2145627613
 MonoBehaviour:
@@ -11068,7 +11739,7 @@ MonoBehaviour:
   angleLimits:
     minimum: 0
     maximum: 30
-  minMaxThresholdAngle: 30
+  minMaxThresholdAngle: 2
   restingAngle: 0
   forceRestingAngleThreshold: 1
   angleTarget: 0
@@ -11087,3 +11758,36 @@ MonoBehaviour:
   grabbedFriction: 15
   releasedFriction: 15
   onlyInteractWith: []
+--- !u!114 &2145627614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145627610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2315305343a584e8758755b54117c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOnNearTouch: {fileID: 0}
+  strengthOnNearTouch: 0
+  durationOnNearTouch: 0
+  intervalOnNearTouch: 0.05
+  cancelOnNearUntouch: 1
+  clipOnTouch: {fileID: 0}
+  strengthOnTouch: 0
+  durationOnTouch: 0
+  intervalOnTouch: 0.05
+  cancelOnUntouch: 1
+  clipOnGrab: {fileID: 0}
+  strengthOnGrab: 1
+  durationOnGrab: 1
+  intervalOnGrab: 0.05
+  cancelOnUngrab: 1
+  clipOnUse: {fileID: 0}
+  strengthOnUse: 0
+  durationOnUse: 0
+  intervalOnUse: 0.05
+  cancelOnUnuse: 1
+  objectToAffect: {fileID: 0}
