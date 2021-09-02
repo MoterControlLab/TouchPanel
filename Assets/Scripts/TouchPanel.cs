@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using VRTK;
+using System;
 
 public class TouchPanel : MonoBehaviour
 {
@@ -97,6 +98,7 @@ public class TouchPanel : MonoBehaviour
             NoticeText.color = Color.white;
             NoticeText.text = "Done!";
             FinishTask = true;
+            DataHandler.Instance.SaveTaskDataToCSV();
         }
 
         yield break;
@@ -108,6 +110,7 @@ public class TouchPanel : MonoBehaviour
         NoticeText.color = Color.green;
         NoticeText.text = "Correct!";
         AudioController.PlayOperationSFX(AudioController.RightSFX);
+
     }
 
     public void OperateWrong()

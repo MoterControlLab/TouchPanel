@@ -1,5 +1,6 @@
 ﻿namespace VRTK.Examples
 {
+    using System;
     using UnityEngine;
     using UnityEngine.UI;
     using VRTK.Controllables;
@@ -30,10 +31,10 @@
         protected virtual void MaxLimitReached(object sender, ControllableEventArgs e)
         {
 
-           // if (TouchPanel.Instance.FinishTask)
-           // {
-           //     return;
-           // }
+            if (TouchPanel.Instance.FinishTask)
+            {
+                return;
+            }
 
             if (outputOnMax != "")
             {
@@ -41,12 +42,23 @@
                 {
                     return;
                 }
-     
+
+                Record newRecord;
+                TimeSpan differenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentOperationTime;
+
                 if (outputOnMax == TouchPanel.Instance.NoticeText.text)
                 {
                     TouchPanel.Instance.OperateRight();
+           
+                    newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(),"Success", outputOnMax, TouchPanel.Instance.NoticeText.text);
                 }
-                else TouchPanel.Instance.OperateWrong();
+                else
+                {
+                    TouchPanel.Instance.OperateWrong();
+                    newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Fail", outputOnMax, TouchPanel.Instance.NoticeText.text);
+                }
+
+                DataHandler.Instance.AddOneRecord(newRecord);
 
                 TouchPanel.Instance.IsResetForCurrentButton = false;
 
@@ -79,12 +91,23 @@
                 {
                     return;
                 }
+                Record newRecord;
+                TimeSpan differenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentOperationTime;
 
                 if (outputOnMin == TouchPanel.Instance.NoticeText.text)
                 {
                     TouchPanel.Instance.OperateRight();
+                     newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Success", outputOnMin, TouchPanel.Instance.NoticeText.text);
                 }
-                else TouchPanel.Instance.OperateWrong();
+                else
+                {
+                    TouchPanel.Instance.OperateWrong();
+                     newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Fail", outputOnMin, TouchPanel.Instance.NoticeText.text);
+                } 
+
+            
+                DataHandler.Instance.AddOneRecord(newRecord);
+
 
                 TouchPanel.Instance.IsResetForCurrentButton = false;
 

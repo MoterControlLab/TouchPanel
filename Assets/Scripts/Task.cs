@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,17 @@ public class Task : MonoBehaviour
 
     public bool Vibrate;
     public bool Audio;
+    public bool RightHand;
+
+    [HideInInspector]
+    public string CurrentOperationShowTime;
+    [HideInInspector]
+    public DateTime CurrentOperationTime;
+
+    [HideInInspector]
+    public string TargetButtonName;
+    [HideInInspector]
+    public string TriggeredButtonName;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,14 +47,16 @@ public class Task : MonoBehaviour
         CurrentCodeList.Clear();
         for (int i = 0; i < OperationNum; i++)
         {
-            int randomIndex = Random.Range(0, 6);
+            int randomIndex = UnityEngine.Random.Range(0, 6);
             CurrentCodeList.Add(randomIndex);
         }
     }
 
     public void ShowOperationCode(int codeIndex)
     {
-       
+        CurrentOperationShowTime = DateTime.Now.ToLongTimeString();
+        CurrentOperationTime = DateTime.Now;
+
         switch (codeIndex)
         {
             case 0:
