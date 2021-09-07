@@ -19,7 +19,7 @@ public class Record : MonoBehaviour
     {
         OperationShowTime = operationshotime;
         OperationTriggerTime = eventTime;
-        MovementTime = movementTime;
+        MovementTime = movementTime;     
         OperationResult = result;
         TriggeredButtonName = buttonName;
         TargetButtonName = targetButtonName;

@@ -69,29 +69,31 @@ public class DataHandler : MonoBehaviour
     public void InitializeRecordFirstRow()
     {
         // Creating First row of titles manually..
-        string[] rowDataTemp = new string[8];
+        string[] rowDataTemp = new string[9];
         rowDataTemp[0] = "ID";
         rowDataTemp[1] = "OperationShowTime";
         rowDataTemp[2] = "OperationTriggerTime";
-        rowDataTemp[3] = "OperationResult";
-        rowDataTemp[4] = "TriggeredButtonName";
-        rowDataTemp[5] = "TargetButtonName";
-        rowDataTemp[6] = "AudioOn";
-        rowDataTemp[7] = "VibrateOn";
+        rowDataTemp[3] = "MovementTime";
+        rowDataTemp[4] = "OperationResult";
+        rowDataTemp[5] = "TriggeredButtonName";
+        rowDataTemp[6] = "TargetButtonName";
+        rowDataTemp[7] = "AudioOn";
+        rowDataTemp[8] = "VibrateOn";
         RecordData.Add(rowDataTemp);
     }
 
     public void AddOneRecord(Record record )
     {
-        string[] rowDataTemp = new string[8];
+        string[] rowDataTemp = new string[9];
         rowDataTemp[0] = RecordData.Count.ToString();
         rowDataTemp[1] =  record.OperationShowTime;
         rowDataTemp[2] =  record.OperationTriggerTime;
-        rowDataTemp[3] =  record.OperationResult;
-        rowDataTemp[4] =  record.TriggeredButtonName;
-        rowDataTemp[5] =  record.TargetButtonName;
-        rowDataTemp[6] =  record.AudioOn;
-        rowDataTemp[7] =  record.VibrateOn;
+        rowDataTemp[3] =  record.MovementTime;
+        rowDataTemp[4] =  record.OperationResult;
+        rowDataTemp[5] =  record.TriggeredButtonName;
+        rowDataTemp[6] =  record.TargetButtonName;
+        rowDataTemp[7] =  record.AudioOn;
+        rowDataTemp[8] = record.VibrateOn;
         RecordData.Add(rowDataTemp);
     }
 
@@ -106,7 +108,7 @@ public class DataHandler : MonoBehaviour
             handDetails = "RightHand";
         } else
             handDetails = "LeftHand";
-        return Application.dataPath + "/CSV/" +  DateTime.Now.ToLongDateString() + "_" +    TouchPanel.Instance.CurrentTask.OperationNum + "_" + handDetails + "_SavedData.csv";
+        return Application.dataPath + "/CSV/" +  DateTime.Now.ToLongTimeString().Replace(':','_') + "_" +  DateTime.Now.ToLongDateString()+ "_" +    TouchPanel.Instance.CurrentTask.OperationNum + "_" + handDetails + "_SavedData.csv";
 #elif UNITY_ANDROID
         return Application.persistentDataPath+"Saved_data.csv";
 #elif UNITY_IPHONE

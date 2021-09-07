@@ -178,6 +178,7 @@ namespace VRTK.Controllables.PhysicsBased
             if (positionChanged)
             {
                 float currentPosition = GetNormalizedValue();
+                Debug.Log(currentPosition);
                 ControllableEventArgs payload = EventPayload();
                 OnValueChanged(payload);
                 float minThreshold = minMaxLimitThreshold;
