@@ -1,11 +1,17 @@
-﻿using System;
+﻿using ScriptableObjectDropdown;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Task : MonoBehaviour
 {
     public int OperationNum;
+
+    [ScriptableObjectDropdown(typeof(Configuration))]
+    public ScriptableObjectReference Config;
+
 
     [HideInInspector]
     public List<int> CurrentCodeList = new List<int>();
@@ -25,6 +31,8 @@ public class Task : MonoBehaviour
     [HideInInspector]
     public string TriggeredButtonName;
     // Start is called before the first frame update
+
+
     void Start()
     {
         if (!Vibrate)
@@ -34,6 +42,7 @@ public class Task : MonoBehaviour
                 TouchPanel.Instance.HapticsList[i].enabled = false;
             }
         }
+
     }
 
     // Update is called once per frame
@@ -41,6 +50,7 @@ public class Task : MonoBehaviour
     {
         
     }
+
 
 
     public void GenerateOperationSequence()

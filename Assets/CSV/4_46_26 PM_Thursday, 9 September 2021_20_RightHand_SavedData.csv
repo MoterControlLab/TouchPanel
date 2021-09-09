@@ -1,0 +1,22 @@
+ID,OperationShowTime,OperationTriggerTime,MovementTime,OperationResult,TriggeredButtonName,TargetButtonName,AudioOn,VibrateOn
+1,,4:46:16 PM,63766802776.8149,Fail,L2,3,True,True
+2,4:46:17 PM,4:46:18 PM,0.9032015,Fail,L2,2,True,True
+3,4:46:18 PM,4:46:18 PM,0.28807,Fail,L2,1,True,True
+4,4:46:18 PM,4:46:19 PM,0.4004988,Fail,L2,R3,True,True
+5,4:46:19 PM,4:46:20 PM,0.6220689,Fail,L2,R1,True,True
+6,4:46:20 PM,4:46:21 PM,1.3676376,Fail,L2,R3,True,True
+7,4:46:22 PM,4:46:22 PM,0.1785612,Fail,L2,L3,True,True
+8,4:46:22 PM,4:46:22 PM,0.1775929,Fail,L2,R3,True,True
+9,4:46:22 PM,4:46:22 PM,0.1770955,Success,L2,L2,True,True
+10,4:46:23 PM,4:46:23 PM,0.1777437,Fail,L2,L3,True,True
+11,4:46:23 PM,4:46:23 PM,0.1000576,Success,L2,L2,True,True
+12,4:46:23 PM,4:46:23 PM,0.1874738,Success,L2,L2,True,True
+13,4:46:23 PM,4:46:23 PM,0.1769151,Fail,L2,L3,True,True
+14,4:46:24 PM,4:46:24 PM,0.1776202,Fail,L2,L1,True,True
+15,4:46:24 PM,4:46:24 PM,0.0877918,Success,L2,L2,True,True
+16,4:46:24 PM,4:46:24 PM,0.1881413,Fail,L2,L3,True,True
+17,4:46:24 PM,4:46:24 PM,0.1775268,Fail,L2,L1,True,True
+18,4:46:25 PM,4:46:25 PM,0.3343696,Fail,L2,R3,True,True
+19,4:46:25 PM,4:46:25 PM,0.177246,Success,L2,L2,True,True
+20,4:46:26 PM,4:46:26 PM,0.3343397,Success,L2,L2,True,True
+

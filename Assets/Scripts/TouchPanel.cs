@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using VRTK;
 using System;
+using Newtonsoft.Json;
 
 public class TouchPanel : MonoBehaviour
 {
@@ -24,6 +25,37 @@ public class TouchPanel : MonoBehaviour
     public List<VRTK_InteractHaptics> HapticsList;
     [HideInInspector]
     public bool FinishTask;
+
+
+    [Header("Buttons")]
+    public GameObject Toggle;
+    public GameObject Rotatory;
+    public GameObject Pusher;
+
+    [Header("TopPositions")]
+    public Transform L3TopTransform;
+    public Transform L2TopTransform;
+    public Transform L1TopTransform;
+    public Transform R1TopTransform;
+    public Transform R2TopTransform;
+    public Transform R3TopTransform;
+
+    [Header("MiddlePositions")]
+    public Transform L3MiddleTransform;
+    public Transform L2MiddleTransform;
+    public Transform L1MiddleTransform;
+    public Transform R1MiddleTransform;
+    public Transform R2MiddleTransform;
+    public Transform R3MiddleTransform;
+
+
+    [Header("BottomPositions")]
+    public Transform L3BottomTransform;
+    public Transform L2BottomTransform;
+    public Transform L1BottomTransform;
+    public Transform R1BottomTransform;
+    public Transform R2BottomTransform;
+    public Transform R3BottomTransform;
 
     public static TouchPanel Instance
 
@@ -47,6 +79,8 @@ public class TouchPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitializeLayout();
+
         LeftHand.SetActive(true);
         RightHand.SetActive(true);
         //initialize operation sequence
@@ -118,5 +152,64 @@ public class TouchPanel : MonoBehaviour
         NoticeText.color = Color.red;
         NoticeText.text = "Wrong!";
         AudioController.PlayOperationSFX(AudioController.WrongSFX);
+    }
+
+    public void InitializeLayout()
+    {
+
+        var serialized = JsonConvert.SerializeObject(CurrentTask.Config.value);
+        var currentConfig = JsonConvert.DeserializeObject<Configuration>(serialized);
+        currentConfig.GetDetails();
+
+       GenerateButton(currentConfig.L1ButtonStr, "L1", currentConfig.L1PositionStr);
+       GenerateButton(currentConfig.L2ButtonStr, "L2", currentConfig.L1PositionStr);
+       GenerateButton(currentConfig.L3ButtonStr, "L3", currentConfig.L3PositionStr);
+       GenerateButton(currentConfig.R1ButtonStr, "R1", currentConfig.R1PositionStr);
+       GenerateButton(currentConfig.R2ButtonStr, "R2", currentConfig.R1PositionStr);
+       GenerateButton(currentConfig.R3ButtonStr, "R3", currentConfig.R3PositionStr);
+
+    }
+
+    public void GenerateButton(string buttonName, string index, string transform)
+    {
+
+
+        if (buttonName == "Toggle" )   Instantiate(Toggle, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+
+        if (buttonName == "Rotatory")  Instantiate(Rotatory, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+
+        if (buttonName == "Pusher")    Instantiate(Pusher, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+
+    }
+
+
+    public Transform GetTransform(string index, string transform)
+    {
+        if (index == "L1" && transform == "Top")    return L1TopTransform;
+        if (index == "L1" && transform == "Middle") return L1MiddleTransform;
+        if (index == "L1" && transform == "Bottom") return L1BottomTransform;
+
+        if (index == "L2" && transform == "Top")    return L2TopTransform;
+        if (index == "L2" && transform == "Middle") return L2MiddleTransform;
+        if (index == "L2" && transform == "Bottom") return L2BottomTransform;
+
+        if (index == "L3" && transform == "Top")    return L3TopTransform;
+        if (index == "L3" && transform == "Middle") return L3MiddleTransform;
+        if (index == "L3" && transform == "Bottom") return L3BottomTransform;
+
+
+        if (index == "R1" && transform == "Top")    return R1TopTransform;
+        if (index == "R1" && transform == "Middle") return R1MiddleTransform;
+        if (index == "R1" && transform == "Bottom") return R1BottomTransform;
+
+        if (index == "R2" && transform == "Top")    return R2TopTransform;
+        if (index == "R2" && transform == "Middle") return R2MiddleTransform;
+        if (index == "R2" && transform == "Bottom") return R2BottomTransform;
+
+        if (index == "R3" && transform == "Top")    return R3TopTransform;
+        if (index == "R3" && transform == "Middle") return R3MiddleTransform;
+        if (index == "R3" && transform == "Bottom") return R3BottomTransform;
+
+        else return null;
     }
 }

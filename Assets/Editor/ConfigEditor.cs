@@ -10,10 +10,11 @@ public class ConfigEditor : Editor
 
     public override void OnInspectorGUI()
     {
-       Configuration config = (Configuration)target;
+        Configuration config = (Configuration)target;
 
-      //  config.ConfigurationName = EditorGUILayout.TextField("ConfigurationName", config.ConfigurationName);
 
+        EditorGUILayout.LabelField("Position Setting", EditorStyles.boldLabel);
+        //  config.ConfigurationName = EditorGUILayout.TextField("ConfigurationName", config.ConfigurationName);
         config.L3Position = EditorGUILayout.Popup("L3Position", config.L3Position, config.positions);
         config.L2Position = EditorGUILayout.Popup("L2Position", config.L2Position, config.positions);
         config.L1Position = EditorGUILayout.Popup("L1Position", config.L1Position, config.positions);
@@ -24,6 +25,7 @@ public class ConfigEditor : Editor
         config.R3Position = EditorGUILayout.Popup("R3Position", config.R3Position, config.positions);
 
 
+        EditorGUILayout.LabelField("Button Setting", EditorStyles.boldLabel);
         config.L3Button = EditorGUILayout.Popup("L3Button", config.L3Button, config.buttons);
         config.L2Button = EditorGUILayout.Popup("L2Button", config.L2Button, config.buttons);
         config.L1Button = EditorGUILayout.Popup("L1Button", config.L1Button, config.buttons);
