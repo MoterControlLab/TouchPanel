@@ -22,8 +22,8 @@ namespace VRTK.Controllables.ArtificialBased
         [Tooltip("The distance along the `Operate Axis` until the pusher reaches the pressed position.")]
         public float pressedDistance = 0.1f;
         [Tooltip("If this is checked then the pusher will stay in the pressed position when it reaches the pressed position.")]
-        [SerializeField]
-        protected bool stayPressed = false;
+ 
+        public bool stayPressed = false;
         [Tooltip("The threshold in which the pusher's current normalized position along the `Operate Axis` has to be within the minimum and maximum limits of the pusher.")]
         [Range(0f, 1f)]
         public float minMaxLimitThreshold = 0.01f;
@@ -294,7 +294,7 @@ namespace VRTK.Controllables.ArtificialBased
             interactingTouchScript = null;
         }
 
-        protected virtual void SetToRestingPosition()
+        public void SetToRestingPosition()
         {
             positionLerpRoutine = StartCoroutine(PositionLerp(Vector3.Lerp(originalLocalPosition, PressedPosition(), restingPosition), returnSpeed));
         }

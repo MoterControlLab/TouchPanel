@@ -5,6 +5,7 @@ using TMPro;
 using VRTK;
 using System;
 using Newtonsoft.Json;
+using VRTK.Examples;
 
 public class TouchPanel : MonoBehaviour
 {
@@ -172,14 +173,28 @@ public class TouchPanel : MonoBehaviour
 
     public void GenerateButton(string buttonName, string index, string transform)
     {
+        GameObject newButton;
+
+        if (buttonName == "Toggle")
+        {
+            newButton = Instantiate(Toggle, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+            newButton.GetComponentInChildren<ControllableReactor>().outputOnMin = index;
+        }
 
 
-        if (buttonName == "Toggle" )   Instantiate(Toggle, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+        if (buttonName == "Rotatory")
+        {
+            newButton = Instantiate(Rotatory, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+            newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
+        }
 
-        if (buttonName == "Rotatory")  Instantiate(Rotatory, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
 
-        if (buttonName == "Pusher")    Instantiate(Pusher, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
-
+        if (buttonName == "Pusher")
+        {
+            newButton = Instantiate(Pusher, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+            newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
+        }
+         
     }
 
 

@@ -4,6 +4,7 @@
     using UnityEngine;
     using UnityEngine.UI;
     using VRTK.Controllables;
+    using VRTK.Controllables.ArtificialBased;
 
     public class ControllableReactor : MonoBehaviour
     {
@@ -65,6 +66,12 @@
                 DataHandler.Instance.AddOneRecord(newRecord);
 
                 TouchPanel.Instance.IsResetForCurrentButton = false;
+
+                if (controllable.gameObject.GetComponent<VRTK_ArtificialPusher>())
+                {
+                    controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = true;
+                }
+
 
                StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
             }
@@ -131,6 +138,18 @@
                 }
             }
         }
+
+
+        private void OnCollisionEnter(Collision collider)
+        {
+
+        }
+
+        private void OnCollisionExit(Collision collider)
+        {
+
+        }
     }
   
+
 }

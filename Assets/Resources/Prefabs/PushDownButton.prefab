@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8823218902433917916}
   - component: {fileID: 5198197389515275226}
   - component: {fileID: 6159889475914832572}
+  - component: {fileID: 2933052354106194088}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -209,6 +210,18 @@ MonoBehaviour:
   objectHighlighter: {fileID: 0}
   touchHighlightColor: {r: 0, g: 0, b: 0, a: 0}
   usingState: 0
+--- !u!114 &2933052354106194088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128416279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96ff0f4ae331e845b104e0ff5015c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2083093343
 GameObject:
   m_ObjectHideFlags: 0
