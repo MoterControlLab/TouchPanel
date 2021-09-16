@@ -13,6 +13,7 @@ public class Record : MonoBehaviour
     public string TargetButtonName;
     public string AudioOn;
     public string VibrateOn;
+    public string ColorChangeOn;
     
 
     public Record(string operationshotime, string eventTime, string movementTime,string result, string buttonName, string targetButtonName)
@@ -25,6 +26,7 @@ public class Record : MonoBehaviour
         TargetButtonName = targetButtonName;
         AudioOn = TouchPanel.Instance.CurrentTask.Audio.ToString();
         VibrateOn = TouchPanel.Instance.CurrentTask.Vibrate.ToString();
+        ColorChangeOn = TouchPanel.Instance.CurrentTask.ColorChange.ToString();
     }
 
 }

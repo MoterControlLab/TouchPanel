@@ -13,6 +13,7 @@
         public string outputOnMax = "Maximum Reached";
         public string outputOnMin = "Minimum Reached";
 
+
         protected virtual void OnEnable()
         {
             controllable = (controllable == null ? GetComponent<VRTK_BaseControllable>() : controllable);
@@ -31,14 +32,12 @@
 
         protected virtual void MaxLimitReached(object sender, ControllableEventArgs e)
         {
-           
 
-            if (TouchPanel.Instance.FinishTask)
+
+            if (TouchPanel.Instance.FinishTask || !TouchPanel.Instance.BeginStoreData)
             {
                 return;
             }
-
-          //  Debug.Log(transform.parent.name + "  1");
 
             if (outputOnMax != "")
             {
@@ -52,13 +51,11 @@
 
                 if (outputOnMax == TouchPanel.Instance.NoticeText.text)
                 {
-                        
                     newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(),"Success", outputOnMax, TouchPanel.Instance.NoticeText.text);
                     TouchPanel.Instance.OperateRight();
                 }
                 else
                 {
-
                     newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Fail", outputOnMax, TouchPanel.Instance.NoticeText.text);
                     TouchPanel.Instance.OperateWrong();
                 }
@@ -80,7 +77,7 @@
             {
                 if (!TouchPanel.Instance.IsResetForCurrentButton)
                 {
-                  //  Debug.Log(gameObject.name + " 1");
+
                     TouchPanel.Instance.IsResetForCurrentButton = true;
                 }
             }
@@ -90,9 +87,8 @@
 
         protected virtual void MinLimitReached(object sender, ControllableEventArgs e)
         {
-           // Debug.Log(transform.parent.name + "  2");
 
-            if (TouchPanel.Instance.FinishTask)
+            if (TouchPanel.Instance.FinishTask || !TouchPanel.Instance.BeginStoreData)
             {
                 return;
             }
@@ -110,12 +106,13 @@
                 if (outputOnMin == TouchPanel.Instance.NoticeText.text)
                 {
 
+
                     newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Success", outputOnMin, TouchPanel.Instance.NoticeText.text);
                     TouchPanel.Instance.OperateRight();
                 }
                 else
                 {
-
+  
                     newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Fail", outputOnMin, TouchPanel.Instance.NoticeText.text);
                     TouchPanel.Instance.OperateWrong();
                 } 
@@ -139,16 +136,6 @@
             }
         }
 
-
-        private void OnCollisionEnter(Collision collider)
-        {
-
-        }
-
-        private void OnCollisionExit(Collision collider)
-        {
-
-        }
     }
   
 

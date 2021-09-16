@@ -17,12 +17,15 @@ public class TouchPanel : MonoBehaviour
     private int currentOperationIndex;
     public GameObject LeftHand;
     public GameObject RightHand;
+    public Material OutlineMaterial;
+    public Material HandInitialMaterial;
     static TouchPanel instance;
+    public bool BeginStoreData;
     public AudioController AudioController;
     //whether current clicked button is reset
     [HideInInspector]
     public bool IsResetForCurrentButton;
-
+    [HideInInspector]
     public List<VRTK_InteractHaptics> HapticsList;
     [HideInInspector]
     public bool FinishTask;
@@ -120,6 +123,7 @@ public class TouchPanel : MonoBehaviour
     public IEnumerator GenerateNewCommond()
     {
         yield return new WaitUntil(()=>IsResetForCurrentButton);
+        BeginStoreData = true;
         if (currentOperationIndex < CurrentTask.CurrentCodeList.Count)
         {
             NoticeText.color = Color.white;
@@ -179,6 +183,7 @@ public class TouchPanel : MonoBehaviour
         {
             newButton = Instantiate(Toggle, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
             newButton.GetComponentInChildren<ControllableReactor>().outputOnMin = index;
+            HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
         }
 
 
@@ -186,6 +191,7 @@ public class TouchPanel : MonoBehaviour
         {
             newButton = Instantiate(Rotatory, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
             newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
+            HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
         }
 
 
@@ -193,6 +199,7 @@ public class TouchPanel : MonoBehaviour
         {
             newButton = Instantiate(Pusher, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
             newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
+            HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
         }
          
     }

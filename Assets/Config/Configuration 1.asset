@@ -16,14 +16,14 @@ MonoBehaviour:
   L3Position: 1
   L2Position: 1
   L1Position: 2
-  R3Position: 1
+  R3Position: 2
   R2Position: 0
   R1Position: 1
-  L3Button: 2
+  L3Button: 0
   L2Button: 2
-  L1Button: 2
-  R3Button: 2
-  R2Button: 2
+  L1Button: 1
+  R3Button: 0
+  R2Button: 1
   R1Button: 2
   L3PositionStr: 
   L2PositionStr: 

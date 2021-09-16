@@ -18,6 +18,7 @@ public class Task : MonoBehaviour
 
     public bool Vibrate;
     public bool Audio;
+    public bool ColorChange;
     public bool RightHand;
 
     [HideInInspector]

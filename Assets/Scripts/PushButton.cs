@@ -25,6 +25,7 @@ public class PushButton : MonoBehaviour
             distacetohand = Vector3.Distance(this.gameObject.transform.position, currentHand.transform.position);
         }
 
+
         if (!isOncollision && controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed && distacetohand >0.065f)
         {
             controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = false;
