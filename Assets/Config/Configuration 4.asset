@@ -20,11 +20,11 @@ MonoBehaviour:
   R2Position: 0
   R1Position: 0
   L3Button: 0
-  L2Button: 0
+  L2Button: 2
   L1Button: 0
-  R3Button: 0
+  R3Button: 1
   R2Button: 0
-  R1Button: 0
+  R1Button: 1
   L3PositionStr: 
   L2PositionStr: 
   L1PositionStr: 

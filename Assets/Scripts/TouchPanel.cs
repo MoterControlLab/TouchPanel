@@ -61,6 +61,21 @@ public class TouchPanel : MonoBehaviour
     public Transform R2BottomTransform;
     public Transform R3BottomTransform;
 
+
+    private string currentConfigL1PositionStr;
+    private string currentConfigL2PositionStr;
+    private string currentConfigL3PositionStr;
+    private string currentConfigR1PositionStr;
+    private string currentConfigR2PositionStr;
+    private string currentConfigR3PositionStr;
+
+    private string currentConfigL1ButtonTypeStr;
+    private string currentConfigL2ButtonTypeStr;
+    private string currentConfigL3ButtonTypeStr;
+    private string currentConfigR1ButtonTypeStr;
+    private string currentConfigR2ButtonTypeStr;
+    private string currentConfigR3ButtonTypeStr;
+
     public static TouchPanel Instance
 
     {
@@ -128,6 +143,8 @@ public class TouchPanel : MonoBehaviour
         {
             NoticeText.color = Color.white;
             AudioController.PlayEventSFX(AudioController.SpawnSFX);
+            //reset
+            CurrentTask.MutipleTouchTime = 0;
             CurrentTask.ShowOperationCode(CurrentTask.CurrentCodeList[currentOperationIndex]);
             currentOperationIndex++;
         }
@@ -167,11 +184,27 @@ public class TouchPanel : MonoBehaviour
         currentConfig.GetDetails();
 
        GenerateButton(currentConfig.L1ButtonStr, "L1", currentConfig.L1PositionStr);
-       GenerateButton(currentConfig.L2ButtonStr, "L2", currentConfig.L1PositionStr);
+       GenerateButton(currentConfig.L2ButtonStr, "L2", currentConfig.L2PositionStr);
        GenerateButton(currentConfig.L3ButtonStr, "L3", currentConfig.L3PositionStr);
        GenerateButton(currentConfig.R1ButtonStr, "R1", currentConfig.R1PositionStr);
-       GenerateButton(currentConfig.R2ButtonStr, "R2", currentConfig.R1PositionStr);
+       GenerateButton(currentConfig.R2ButtonStr, "R2", currentConfig.R2PositionStr);
        GenerateButton(currentConfig.R3ButtonStr, "R3", currentConfig.R3PositionStr);
+
+
+        currentConfigL1PositionStr = currentConfig.L1PositionStr;
+        currentConfigL2PositionStr = currentConfig.L2PositionStr;
+        currentConfigL3PositionStr = currentConfig.L3PositionStr;
+        currentConfigR1PositionStr = currentConfig.R1PositionStr;
+        currentConfigR2PositionStr = currentConfig.R2PositionStr;
+        currentConfigR3PositionStr = currentConfig.R3PositionStr;
+
+
+        currentConfigL1ButtonTypeStr = currentConfig.L1ButtonStr;
+        currentConfigL2ButtonTypeStr = currentConfig.L2ButtonStr;
+        currentConfigL3ButtonTypeStr = currentConfig.L3ButtonStr;
+        currentConfigR1ButtonTypeStr = currentConfig.R1ButtonStr;
+        currentConfigR2ButtonTypeStr = currentConfig.R2ButtonStr;
+        currentConfigR3ButtonTypeStr = currentConfig.R3ButtonStr;
 
     }
 
@@ -207,6 +240,7 @@ public class TouchPanel : MonoBehaviour
 
     public Transform GetTransform(string index, string transform)
     {
+
         if (index == "L1" && transform == "Top")    return L1TopTransform;
         if (index == "L1" && transform == "Middle") return L1MiddleTransform;
         if (index == "L1" && transform == "Bottom") return L1BottomTransform;
@@ -232,6 +266,47 @@ public class TouchPanel : MonoBehaviour
         if (index == "R3" && transform == "Middle") return R3MiddleTransform;
         if (index == "R3" && transform == "Bottom") return R3BottomTransform;
 
+        
         else return null;
+    }
+
+    public string GetButtonPosition(string positionStr)
+    {
+        if (positionStr == "L1")
+            return positionStr + "_" + currentConfigL1PositionStr;
+
+        if (positionStr == "L2")
+            return positionStr + "_" + currentConfigL2PositionStr;
+        if (positionStr == "L3")
+            return positionStr + "_" + currentConfigL3PositionStr;
+        if (positionStr == "R1")
+            return positionStr + "_" + currentConfigR1PositionStr;
+
+        if (positionStr == "R2")
+            return positionStr + "_" + currentConfigR2PositionStr;
+        if (positionStr == "R3")
+            return positionStr + "_" + currentConfigR3PositionStr;
+
+        return null;
+    }
+
+    public string GetButtonType(string positionStr)
+    {
+        if (positionStr == "L1")
+            return currentConfigL1ButtonTypeStr;
+
+        if (positionStr == "L2")
+            return currentConfigL2ButtonTypeStr;
+        if (positionStr == "L3")
+            return currentConfigL3ButtonTypeStr;
+        if (positionStr == "R1")
+            return currentConfigR1ButtonTypeStr;
+
+        if (positionStr == "R2")
+            return currentConfigR2ButtonTypeStr;
+        if (positionStr == "R3")
+            return currentConfigR3ButtonTypeStr;
+
+        return null;
     }
 }

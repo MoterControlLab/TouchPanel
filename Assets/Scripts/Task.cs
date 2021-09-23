@@ -8,7 +8,7 @@ using UnityEngine;
 public class Task : MonoBehaviour
 {
     public int OperationNum;
-
+    public string SubjectID = "Default User";
     [ScriptableObjectDropdown(typeof(Configuration))]
     public ScriptableObjectReference Config;
 
@@ -25,8 +25,12 @@ public class Task : MonoBehaviour
     public string CurrentOperationShowTime;
     [HideInInspector]
     public DateTime CurrentOperationTime;
-
-
+    [HideInInspector]
+    public string TouchTime;
+    [HideInInspector]
+    public DateTime CurrentTouchTime;
+    [HideInInspector]
+    public int MutipleTouchTime;
     [HideInInspector]
     public string TargetButtonName;
     [HideInInspector]
@@ -66,7 +70,7 @@ public class Task : MonoBehaviour
 
     public void ShowOperationCode(int codeIndex)
     {
-        CurrentOperationShowTime = DateTime.Now.ToLongTimeString();
+        CurrentOperationShowTime = DateTime.Now.ToString("hh:mm:ss:ff");
         CurrentOperationTime = DateTime.Now;
 
         switch (codeIndex)

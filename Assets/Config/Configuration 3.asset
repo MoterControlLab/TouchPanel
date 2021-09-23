@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ConfigurationName: Config2
   L3Position: 0
-  L2Position: 1
+  L2Position: 0
   L1Position: 2
   R3Position: 0
   R2Position: 0
@@ -25,6 +25,18 @@ MonoBehaviour:
   R3Button: 0
   R2Button: 0
   R1Button: 0
+  L3PositionStr: 
+  L2PositionStr: 
+  L1PositionStr: 
+  R3PositionStr: 
+  R2PositionStr: 
+  R1PositionStr: 
+  L3ButtonStr: 
+  L2ButtonStr: 
+  L1ButtonStr: 
+  R3ButtonStr: 
+  R2ButtonStr: 
+  R1ButtonStr: 
   positions:
   - Top
   - Middle

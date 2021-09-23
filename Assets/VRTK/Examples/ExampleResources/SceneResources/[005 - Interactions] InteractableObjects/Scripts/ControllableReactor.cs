@@ -47,16 +47,41 @@
                 }
 
                 Record newRecord;
-                TimeSpan differenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentOperationTime;
+                TimeSpan finishtriggerdifferenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentOperationTime;
+                TimeSpan touchtotriggerdifferenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentTouchTime;
 
                 if (outputOnMax == TouchPanel.Instance.NoticeText.text)
                 {
-                    newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(),"Success", outputOnMax, TouchPanel.Instance.NoticeText.text);
+                    newRecord = new Record(TouchPanel.Instance.CurrentTask.SubjectID,
+                                           TouchPanel.Instance.CurrentTask.CurrentOperationShowTime,
+                                           TouchPanel.Instance.CurrentTask.TouchTime,
+                                           DateTime.Now.ToString("hh:mm:ss:ff"),
+                                           finishtriggerdifferenceTime.TotalSeconds.ToString(),
+                                           touchtotriggerdifferenceTime.TotalSeconds.ToString(),
+                                           "Success",  //result
+                                           TouchPanel.Instance.GetButtonPosition(outputOnMax), //
+                                           TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text) , //target pos
+                                           TouchPanel.Instance.GetButtonType(outputOnMax),
+                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                                           TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                           );
                     TouchPanel.Instance.OperateRight();
                 }
                 else
                 {
-                    newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Fail", outputOnMax, TouchPanel.Instance.NoticeText.text);
+                    newRecord = new Record(TouchPanel.Instance.CurrentTask.SubjectID,
+                         TouchPanel.Instance.CurrentTask.CurrentOperationShowTime,
+                         TouchPanel.Instance.CurrentTask.TouchTime,
+                         DateTime.Now.ToString("hh:mm:ss:ff"),
+                         finishtriggerdifferenceTime.TotalSeconds.ToString(),
+                         touchtotriggerdifferenceTime.TotalSeconds.ToString(),
+                         "Fail",  //result
+                         TouchPanel.Instance.GetButtonPosition(outputOnMax), //
+                         TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
+                         TouchPanel.Instance.GetButtonType(outputOnMax),
+                         TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                         TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                         );
                     TouchPanel.Instance.OperateWrong();
                 }
 
@@ -66,6 +91,7 @@
 
                 if (controllable.gameObject.GetComponent<VRTK_ArtificialPusher>())
                 {
+                    Debug.Log("controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed!!!!!!!!!");
                     controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = true;
                 }
 
@@ -101,19 +127,44 @@
                     return;
                 }
                 Record newRecord;
-                TimeSpan differenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentOperationTime;
+                TimeSpan finishtriggerdifferenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentOperationTime;
+                TimeSpan touchtotriggerdifferenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentTouchTime;
 
                 if (outputOnMin == TouchPanel.Instance.NoticeText.text)
                 {
 
 
-                    newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Success", outputOnMin, TouchPanel.Instance.NoticeText.text);
+                    newRecord = new Record(TouchPanel.Instance.CurrentTask.SubjectID,
+                                TouchPanel.Instance.CurrentTask.CurrentOperationShowTime,
+                                TouchPanel.Instance.CurrentTask.TouchTime,
+                                DateTime.Now.ToString("hh:mm:ss:ff"),
+                                finishtriggerdifferenceTime.TotalSeconds.ToString(),
+                                touchtotriggerdifferenceTime.TotalSeconds.ToString(),
+                                "Success",  //result
+                                TouchPanel.Instance.GetButtonPosition(outputOnMin), //
+                                TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
+                                TouchPanel.Instance.GetButtonType(outputOnMin),
+                                TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                                TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                );
                     TouchPanel.Instance.OperateRight();
                 }
                 else
                 {
-  
-                    newRecord = new Record(TouchPanel.Instance.CurrentTask.CurrentOperationShowTime, DateTime.Now.ToLongTimeString(), differenceTime.TotalSeconds.ToString(), "Fail", outputOnMin, TouchPanel.Instance.NoticeText.text);
+
+                    newRecord = new Record(TouchPanel.Instance.CurrentTask.SubjectID,
+                                           TouchPanel.Instance.CurrentTask.CurrentOperationShowTime,
+                                           TouchPanel.Instance.CurrentTask.TouchTime,
+                                           DateTime.Now.ToString("hh:mm:ss:ff"),
+                                           finishtriggerdifferenceTime.TotalSeconds.ToString(),
+                                           touchtotriggerdifferenceTime.TotalSeconds.ToString(),
+                                           "Fail",  //result
+                                           TouchPanel.Instance.GetButtonPosition(outputOnMin), //
+                                           TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
+                                           TouchPanel.Instance.GetButtonType(outputOnMin),
+                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                                           TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                           );
                     TouchPanel.Instance.OperateWrong();
                 } 
 

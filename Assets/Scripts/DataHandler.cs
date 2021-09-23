@@ -69,33 +69,47 @@ public class DataHandler : MonoBehaviour
     public void InitializeRecordFirstRow()
     {
         // Creating First row of titles manually..
-        string[] rowDataTemp = new string[10];
+        string[] rowDataTemp = new string[17];
         rowDataTemp[0] = "ID";
-        rowDataTemp[1] = "OperationShowTime";
-        rowDataTemp[2] = "OperationTriggerTime";
-        rowDataTemp[3] = "MovementTime";
-        rowDataTemp[4] = "OperationResult";
-        rowDataTemp[5] = "TriggeredButtonName";
-        rowDataTemp[6] = "TargetButtonName";
-        rowDataTemp[7] = "AudioOn";
-        rowDataTemp[8] = "VibrateOn";
-        rowDataTemp[9] = "ColorChangeOn";
+        rowDataTemp[1] = "SubectID";
+        rowDataTemp[2] = "OperationShowTime";
+        rowDataTemp[3] = "HandContactTime";
+        rowDataTemp[4] = "OperationTriggerTime";
+        rowDataTemp[5] = "OperationFinishTimeSpan";
+        rowDataTemp[6] = "FirstTouchTimeSpan";
+        rowDataTemp[7] = "TouchToTriggerTimeSpan";
+        rowDataTemp[8] = "OperationResult";
+        rowDataTemp[9] = "TargetButtonPosition";
+        rowDataTemp[10] = "TriggeredButtonPosition";
+        rowDataTemp[11] = "TargetButtonType";
+        rowDataTemp[12] = "TriggeredButtonType";
+        rowDataTemp[13] = "TouchMultipleTimes";
+        rowDataTemp[14] = "AudioOn";
+        rowDataTemp[15] = "VibrateOn";
+        rowDataTemp[16] = "ColorChangeOn";
         RecordData.Add(rowDataTemp);
     }
 
     public void AddOneRecord(Record record )
     {
-        string[] rowDataTemp = new string[10];
-        rowDataTemp[0] = RecordData.Count.ToString();
-        rowDataTemp[1] =  record.OperationShowTime;
-        rowDataTemp[2] =  record.OperationTriggerTime;
-        rowDataTemp[3] =  record.MovementTime;
-        rowDataTemp[4] =  record.OperationResult;
-        rowDataTemp[5] =  record.TriggeredButtonName;
-        rowDataTemp[6] =  record.TargetButtonName;
-        rowDataTemp[7] =  record.AudioOn;
-        rowDataTemp[8] = record.VibrateOn;
-        rowDataTemp[9] = record.ColorChangeOn;
+        string[] rowDataTemp = new string[17];
+         rowDataTemp[0] = RecordData.Count.ToString();
+         rowDataTemp[1] =  record.SubjectID;
+         rowDataTemp[2] =  record.OperationShowTime;
+         rowDataTemp[3] =  record.HandContactTime;
+         rowDataTemp[4] =  record.OperationTriggerTime;
+         rowDataTemp[5] =  record.OperationFinishTimeSpan;
+         rowDataTemp[6] =  record.FirstTouchTimeSpan;
+         rowDataTemp[7] =  record.TouchToTriggerTimeSpan;
+         rowDataTemp[8] =  record.OperationResult;
+         rowDataTemp[9] =  record.TargetButtonPosition;
+         rowDataTemp[10]=  record.TriggeredButtonPosition;
+         rowDataTemp[11]=  record.TargetButtonType;
+         rowDataTemp[12]=  record.TriggeredButtonType;
+         rowDataTemp[13]=  record.TouchMultipleTimes.ToString();
+         rowDataTemp[14]=  record.AudioOn;
+         rowDataTemp[15]=  record.VibrateOn;
+         rowDataTemp[16] = record.ColorChangeOn;
         RecordData.Add(rowDataTemp);
     }
 

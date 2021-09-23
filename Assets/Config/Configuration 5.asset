@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7f61005857ae84f914b1d95dc0b2be, type: 3}
-  m_Name: Configuration 1
+  m_Name: Configuration 5
   m_EditorClassIdentifier: 
-  ConfigurationName: Config1
+  ConfigurationName: Config2
   L3Position: 0
-  L2Position: 2
-  L1Position: 0
-  R3Position: 2
-  R2Position: 2
-  R1Position: 1
+  L2Position: 1
+  L1Position: 2
+  R3Position: 0
+  R2Position: 0
+  R1Position: 0
   L3Button: 0
-  L2Button: 1
-  L1Button: 2
-  R3Button: 2
-  R2Button: 2
-  R1Button: 1
+  L2Button: 0
+  L1Button: 0
+  R3Button: 0
+  R2Button: 0
+  R1Button: 0
   L3PositionStr: 
   L2PositionStr: 
   L1PositionStr: 

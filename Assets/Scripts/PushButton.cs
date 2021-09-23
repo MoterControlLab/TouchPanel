@@ -9,7 +9,7 @@ public class PushButton : MonoBehaviour
     private ControllableReactor controllableReactor;
     private bool isOncollision;
     private GameObject currentHand;
-    private float distacetohand;
+    private float distancetohand;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,15 +22,22 @@ public class PushButton : MonoBehaviour
     {
         if (currentHand)
         {
-            distacetohand = Vector3.Distance(this.gameObject.transform.position, currentHand.transform.position);
-        }
+            distancetohand = Vector3.Distance(this.gameObject.transform.position, currentHand.transform.position);
 
 
-        if (!isOncollision && controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed && distacetohand >0.065f)
-        {
-            controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = false;
-            controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().SetToRestingPosition();
+            if (!isOncollision && controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed && distancetohand > 0.075f)
+            {
+
+                controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = false;
+                controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().SetToRestingPosition();
+                currentHand.transform.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+            }
+
         }
+
+     
+
+
 
     }
 
