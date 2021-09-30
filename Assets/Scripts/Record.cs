@@ -10,14 +10,13 @@ public class Record : MonoBehaviour
     public string HandContactTime;
     public string OperationTriggerTime;
     public string OperationFinishTimeSpan;
-    public string FirstTouchTimeSpan;
     public string TouchToTriggerTimeSpan;
     public string OperationResult;
     public string TriggeredButtonPosition;
     public string TargetButtonPosition;
     public string TriggeredButtonType;
     public string TargetButtonType;
-    public int TouchMultipleTimes;
+ //   public int TouchMultipleTimes;
     public string AudioOn;
     public string VibrateOn;
     public string ColorChangeOn;
@@ -33,8 +32,9 @@ public class Record : MonoBehaviour
                   string buttonPos, 
                   string targetButtonPos, 
                   string buttonType, 
-                  string targetButtonType,
-                  int touchmultipleTime)
+                  string targetButtonType
+                 // int touchmultipleTime
+        )
     {
         SubjectID = subjectid;
         OperationShowTime = operationshotime;
@@ -47,7 +47,7 @@ public class Record : MonoBehaviour
         TriggeredButtonPosition = buttonPos;
         TargetButtonType = targetButtonType;
         TriggeredButtonType = buttonType;
-        TouchMultipleTimes = touchmultipleTime;
+       // TouchMultipleTimes = touchmultipleTime;
         AudioOn = TouchPanel.Instance.CurrentTask.Audio.ToString();
         VibrateOn = TouchPanel.Instance.CurrentTask.Vibrate.ToString();
         ColorChangeOn = TouchPanel.Instance.CurrentTask.ColorChange.ToString();

@@ -160,6 +160,8 @@ namespace VRTK
         [Tooltip("An array of colliders on the GameObject to ignore when being touched.")]
         public Collider[] ignoredColliders;
 
+        public bool DonotNeedGrab;
+
         [Header("Grab Settings")]
 
         [Tooltip("Determines if the Interactable Object can be grabbed.")]
@@ -1113,7 +1115,12 @@ namespace VRTK
             AttemptSetGrabMechanic();
             AttemptSetSecondaryGrabAction();
 
-            if (trackPoint != null && grabAttachMechanicScript != null)
+            if (trackPoint != null && grabAttachMechanicScript != null && !DonotNeedGrab)
+            {
+                grabAttachMechanicScript.ProcessUpdate();
+            }
+
+            if (DonotNeedGrab && grabAttachMechanicScript != null )
             {
                 grabAttachMechanicScript.ProcessUpdate();
             }
@@ -1290,6 +1297,7 @@ namespace VRTK
         {
             AddTrackPoint(currentGrabbingObject);
             primaryControllerAttachPoint = CreateAttachPoint(GetGrabbingObject().name, "Original", trackPoint);
+   
 
             if (grabAttachMechanicScript != null)
             {

@@ -56,6 +56,8 @@ namespace VRTK.GrabAttachMechanics
         [Tooltip("The speed in which the Interactable Object returns to it's origin position when released. If the `Reset To Orign On Release Speed` is `0f` then the position will not be reset.")]
         public float resetToOrignOnReleaseSpeed = 0f;
 
+
+
         [Header("Position Limit Settings")]
 
         [Tooltip("The minimum and maximum limits the Interactable Object can be moved along the x axis.")]
@@ -264,6 +266,8 @@ namespace VRTK.GrabAttachMechanics
             return grabResult;
         }
 
+
+
         /// <summary>
         /// The StopGrab method ends the grab of the current Interactable Object and cleans up the state.
         /// </summary>
@@ -285,6 +289,8 @@ namespace VRTK.GrabAttachMechanics
                 deceleratePositionRoutine = StartCoroutine(DeceleratePosition());
             }
         }
+
+        
 
         /// <summary>
         /// The CreateTrackPoint method sets up the point of grab to track on the grabbed object.

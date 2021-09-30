@@ -62,8 +62,8 @@
                                            TouchPanel.Instance.GetButtonPosition(outputOnMax), //
                                            TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text) , //target pos
                                            TouchPanel.Instance.GetButtonType(outputOnMax),
-                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
-                                           TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
+                                           //TouchPanel.Instance.CurrentTask.MutipleTouchTime
                                            );
                     TouchPanel.Instance.OperateRight();
                 }
@@ -79,8 +79,8 @@
                          TouchPanel.Instance.GetButtonPosition(outputOnMax), //
                          TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                          TouchPanel.Instance.GetButtonType(outputOnMax),
-                         TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
-                         TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                         TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
+                         //TouchPanel.Instance.CurrentTask.MutipleTouchTime
                          );
                     TouchPanel.Instance.OperateWrong();
                 }
@@ -91,7 +91,6 @@
 
                 if (controllable.gameObject.GetComponent<VRTK_ArtificialPusher>())
                 {
-                    Debug.Log("controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed!!!!!!!!!");
                     controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = true;
                 }
 
@@ -144,8 +143,8 @@
                                 TouchPanel.Instance.GetButtonPosition(outputOnMin), //
                                 TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                                 TouchPanel.Instance.GetButtonType(outputOnMin),
-                                TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
-                                TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
+                              //  TouchPanel.Instance.CurrentTask.MutipleTouchTime
                                 );
                     TouchPanel.Instance.OperateRight();
                 }
@@ -162,8 +161,8 @@
                                            TouchPanel.Instance.GetButtonPosition(outputOnMin), //
                                            TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                                            TouchPanel.Instance.GetButtonType(outputOnMin),
-                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
-                                           TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
+                                         //  TouchPanel.Instance.CurrentTask.MutipleTouchTime
                                            );
                     TouchPanel.Instance.OperateWrong();
                 } 

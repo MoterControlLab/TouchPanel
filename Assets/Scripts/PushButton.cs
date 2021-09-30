@@ -46,6 +46,8 @@ public class PushButton : MonoBehaviour
         currentHand = other.gameObject;
         isOncollision = true;
 
+        TouchPanel.Instance.TouchedToggle = false;
+
     }
 
     private void OnCollisionExit(Collision other)

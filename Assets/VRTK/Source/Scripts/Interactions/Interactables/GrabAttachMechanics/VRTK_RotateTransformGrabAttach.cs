@@ -3,6 +3,7 @@ namespace VRTK.GrabAttachMechanics
 {
     using UnityEngine;
     using System.Collections;
+    using ConvertPoint;
 
     /// <summary>
     /// Event Payload
@@ -113,6 +114,8 @@ namespace VRTK.GrabAttachMechanics
         [Range(0f, 0.99f)]
         public float minMaxNormalizedThreshold = 0.01f;
 
+        public bool DonotNeedGrab;
+        private bool InitializeTouchGrab;
         /// <summary>
         /// The default local rotation of the Interactable Object.
         /// </summary>
@@ -198,17 +201,43 @@ namespace VRTK.GrabAttachMechanics
         /// <returns>Returns `true` if the grab is successful, `false` if the grab is unsuccessful.</returns>
         public override bool StartGrab(GameObject grabbingObject, GameObject givenGrabbedObject, Rigidbody givenControllerAttachPoint)
         {
+
             CancelUpdateRotation();
             CancelDecelerateRotation();
             bool grabResult = base.StartGrab(grabbingObject, givenGrabbedObject, givenControllerAttachPoint);
-            previousAttachPointPosition = controllerAttachPoint.transform.position;
+            //controllerAttachPoint is RightControllerAnchor
+            previousAttachPointPosition = controllerAttachPoint.GetComponent<NewConvertPoint>().TransferPoint.position;
+
             grabbedObjectBounds = VRTK_SharedMethods.GetBounds(givenGrabbedObject.transform);
             limitsReached = new bool[2];
             CheckAngleLimits();
             grabbingObjectReference = VRTK_ControllerReference.GetControllerReference(grabbingObject);
+
+            // grabbingObject is RightControllerScriptAlias
+           // return false;
             return grabResult;
         }
 
+        //the function is the same with StartGrab, but do not need to grab
+        public void InitializeStartGrabParameterByTouch()
+          {
+            if (!InitializeTouchGrab)
+            {
+                InitializeTouchGrab = true;
+                CancelUpdateRotation();
+                CancelDecelerateRotation();
+                
+                base.StartGrab(TouchPanel.Instance.ControllerAlias, gameObject, TouchPanel.Instance.ControllerAnchor.GetComponent<Rigidbody>());
+           
+                previousAttachPointPosition = TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position;
+               // grabbedObjectBounds = VRTK_SharedMethods.GetBounds(gameObject.transform);
+                limitsReached = new bool[2];
+                CheckAngleLimits();
+                grabbingObjectReference = VRTK_ControllerReference.GetControllerReference(TouchPanel.Instance.ControllerAlias);
+            }
+
+            //  grabbingObjectReference = VRTK_ControllerReference.GetControllerReference(grabbingObject);
+          }
         /// <summary>
         /// The StopGrab method ends the grab of the current Interactable Object and cleans up the state.
         /// </summary>
@@ -231,22 +260,66 @@ namespace VRTK.GrabAttachMechanics
         /// The ProcessUpdate method is run in every Update method on the Interactable Object.
         /// </summary>
         public override void ProcessUpdate()
-        {
-            if (trackPoint != null)
+        {//trackPoint != null  &&
+
+            if ( TouchPanel.Instance.TouchToggle)
+           
             {
-                float distance = Vector3.Distance(transform.position, controllerAttachPoint.transform.position);
-                if (StillTouching() && distance >= originDeadzone)
+
+
+                if (!DonotNeedGrab)
                 {
-                    Vector3 newRotation = GetNewRotation();
-                    previousAttachPointPosition = controllerAttachPoint.transform.position;
-                    currentRotationSpeed = newRotation;
-                    UpdateRotation(newRotation, true, true);
+                    float distance = Vector3.Distance(transform.position, controllerAttachPoint.transform.position);
+                    if (StillTouching() && distance >= originDeadzone)
+                    {
+
+                        Vector3 newRotation = GetNewRotation();
+                        previousAttachPointPosition = controllerAttachPoint.GetComponent<NewConvertPoint>().TransferPoint.position;
+                        currentRotationSpeed = newRotation;
+                        UpdateRotation(newRotation, true, true);
+
+                    }
+                    else if (grabbedObjectScript.IsDroppable())
+                    {
+
+                        ForceReleaseGrab();
+                    }
                 }
-                else if (grabbedObjectScript.IsDroppable())
+                else 
                 {
+                    if (TouchPanel.Instance.CurrentToggleHashCode == transform.GetChild(0).Find("Lever").gameObject.GetHashCode())
+                    {
+                        InitializeStartGrabParameterByTouch();
+                        Vector3 newRotation = GetNewRotation();
+
+                        previousAttachPointPosition = TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position;
+
+                        currentRotationSpeed = newRotation;
+                        UpdateRotation(newRotation, true, true);
+                    }
+
+
+
+                }
+
+
+            }
+
+            else
+            {
+                if (!DonotNeedGrab)
                     ForceReleaseGrab();
+                else
+                {
+                    if (TouchPanel.Instance.TouchedToggle)
+                    {
+                        ResetRotation();
+                    }
+           
                 }
             }
+
+
         }
 
         /// <summary>
@@ -289,17 +362,21 @@ namespace VRTK.GrabAttachMechanics
         /// <param name="ignoreTransition">If this is `true` then the `Reset To Origin On Release Speed` will be ignored and the reset will occur instantly.</param>
         public virtual void ResetRotation(bool ignoreTransition = false)
         {
+
             CancelDecelerateRotation();
             if (resetToOrignOnReleaseSpeed > 0 && !ignoreTransition)
             {
                 CancelUpdateRotation();
                 updateRotationRoutine = StartCoroutine(RotateToAngle(Vector3.zero, resetToOrignOnReleaseSpeed));
+
             }
             else
             {
+
                 UpdateRotation(originRotation.eulerAngles, false, false);
                 currentRotation = Vector3.zero;
                 currentRotationSpeed = Vector3.zero;
+                TouchPanel.Instance.IsResetForCurrentButton = true;
             }
         }
 
@@ -366,7 +443,11 @@ namespace VRTK.GrabAttachMechanics
             switch (rotationAction)
             {
                 case RotationType.FollowAttachPoint:
-                    return CalculateAngle(transform.position, previousAttachPointPosition, controllerAttachPoint.transform.position);
+
+                    return CalculateAngle(transform.position, previousAttachPointPosition, TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position);
+
+                
+
                 case RotationType.FollowLongitudinalAxis:
                     return BuildFollowAxisVector(grabbingObjectAngularVelocity.x);
                 case RotationType.FollowPerpendicularAxis:
@@ -392,7 +473,6 @@ namespace VRTK.GrabAttachMechanics
             float xRotated = (rotateAround == RotationAxis.xAxis ? CalculateAngle(originPoint, originalGrabPoint, currentGrabPoint, transform.right) : 0f);
             float yRotated = (rotateAround == RotationAxis.yAxis ? CalculateAngle(originPoint, originalGrabPoint, currentGrabPoint, transform.up) : 0f);
             float zRotated = (rotateAround == RotationAxis.zAxis ? CalculateAngle(originPoint, originalGrabPoint, currentGrabPoint, transform.forward) : 0f);
-
             float frictionMultiplier = VRTK_SharedMethods.DividerToMultiplier(rotationFriction);
             return new Vector3(xRotated * frictionMultiplier, yRotated * frictionMultiplier, zRotated * frictionMultiplier);
         }
@@ -460,6 +540,7 @@ namespace VRTK.GrabAttachMechanics
 
         protected virtual IEnumerator RotateToAngle(Vector3 targetAngle, float rotationSpeed)
         {
+
             Vector3 previousRotation = currentRotation;
             currentRotationSpeed = Vector3.zero;
             while (currentRotation != targetAngle)
@@ -467,10 +548,13 @@ namespace VRTK.GrabAttachMechanics
                 currentRotation = Vector3.Lerp(currentRotation, targetAngle, rotationSpeed * Time.deltaTime);
                 UpdateRotation(currentRotation - previousRotation, true, false);
                 previousRotation = currentRotation;
+
                 yield return null;
             }
             UpdateRotation(targetAngle, false, false);
             currentRotation = targetAngle;
+
+            TouchPanel.Instance.IsResetForCurrentButton = true;
         }
 
         protected virtual IEnumerator DecelerateRotation()

@@ -41,6 +41,8 @@ namespace VRTK.Controllables.ArtificialBased
         protected float angleTarget = 0f;
         [Tooltip("If this is checked then the rotator Rigidbody will have all rotations frozen.")]
         public bool isLocked = false;
+        [Tooltip("If this is checked then all operation do not need grab")]
+        public bool DonotNeedGrab;
 
         [Header("Value Step Settings")]
 
@@ -306,6 +308,8 @@ namespace VRTK.Controllables.ArtificialBased
                 transform.localPosition = -hingePoint.localPosition;
                 transform.localScale = storedScale;
                 hingePoint.transform.SetParent(transform);
+              //  Debug.Log(rotatorContainer.name + "  dddddd" );
+
             }
         }
 
@@ -336,6 +340,11 @@ namespace VRTK.Controllables.ArtificialBased
                 controlInteractableObject.ignoredColliders = (onlyInteractWith.Length > 0 ? VRTK_SharedMethods.ColliderExclude(GetComponentsInChildren<Collider>(true), VRTK_SharedMethods.GetCollidersInGameObjects(onlyInteractWith, true, true)) : new Collider[0]);
                 SetupGrabMechanic();
                 SetupSecondaryAction();
+
+                if (DonotNeedGrab)
+                {
+                    controlInteractableObject.DonotNeedGrab = true;
+                }
             }
             ManageInteractableListeners(true);
         }
@@ -348,6 +357,10 @@ namespace VRTK.Controllables.ArtificialBased
                 SetGrabMechanicParameters();
                 controlInteractableObject.grabAttachMechanicScript = controlGrabAttach;
                 ManageGrabbableListeners(true);
+                if (DonotNeedGrab)
+                {
+                    controlGrabAttach.DonotNeedGrab = true;
+                }
             }
         }
 

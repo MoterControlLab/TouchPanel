@@ -21,6 +21,18 @@ public class TouchPanel : MonoBehaviour
     public Material HandInitialMaterial;
     static TouchPanel instance;
     public bool BeginStoreData;
+    [HideInInspector]
+    public bool TouchToggle;
+    public bool TouchedToggle;
+    [HideInInspector]
+    public bool GripButtonClicked;
+    [HideInInspector]
+    public int CurrentToggleHashCode;
+
+    [HideInInspector]
+    //will be used in VRTK_RotateTransformGrabAttach controllerAttachPoint
+    public GameObject ControllerAnchor;
+    public GameObject ControllerAlias;
     public AudioController AudioController;
     //whether current clicked button is reset
     [HideInInspector]
@@ -137,6 +149,7 @@ public class TouchPanel : MonoBehaviour
 
     public IEnumerator GenerateNewCommond()
     {
+      //  yield return new WaitForSeconds(1f);
         yield return new WaitUntil(()=>IsResetForCurrentButton);
         BeginStoreData = true;
         if (currentOperationIndex < CurrentTask.CurrentCodeList.Count)

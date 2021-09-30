@@ -91,6 +91,7 @@ namespace VRTK.GrabAttachMechanics
         public virtual void SetInitialAttachPoint(Transform givenInitialAttachPoint)
         {
             initialAttachPoint = givenInitialAttachPoint;
+
         }
 
         /// <summary>
@@ -103,6 +104,7 @@ namespace VRTK.GrabAttachMechanics
         public virtual bool StartGrab(GameObject grabbingObject, GameObject givenGrabbedObject, Rigidbody givenControllerAttachPoint)
         {
             grabbedObject = givenGrabbedObject;
+
             if (grabbedObject == null)
             {
                 return false;
@@ -111,6 +113,8 @@ namespace VRTK.GrabAttachMechanics
             grabbedObjectScript = grabbedObject.GetComponent<VRTK_InteractableObject>();
             grabbedObjectRigidBody = grabbedObject.GetComponent<Rigidbody>();
             controllerAttachPoint = givenControllerAttachPoint;
+            //reightcontroller anchor
+           
             grabbedSnapHandle = GetSnapHandle(grabbingObject);
             ProcessSDKTransformModify(VRTK_ControllerReference.GetControllerReference(grabbingObject));
 

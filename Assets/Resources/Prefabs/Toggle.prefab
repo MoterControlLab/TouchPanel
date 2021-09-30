@@ -395,6 +395,7 @@ MonoBehaviour:
   forceRestingAngleThreshold: 46
   angleTarget: 0
   isLocked: 0
+  DonotNeedGrab: 1
   stepValueRange:
     minimum: 0
     maximum: 1
@@ -579,8 +580,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.018763065, y: 0.018763157, z: 0.054648485}
-  m_Center: {x: 0.00000035763688, y: -0.00030280033, z: 0.027324302}
+  m_Size: {x: 0.018763077, y: 0.018763155, z: 0.05464847}
+  m_Center: {x: 0.0000002558107, y: -0.0003027725, z: 0.027324233}
 --- !u!114 &938083309632997366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,3 +594,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 902aa2609a3dda341947fd6df747a45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IndexChangeColor: 1

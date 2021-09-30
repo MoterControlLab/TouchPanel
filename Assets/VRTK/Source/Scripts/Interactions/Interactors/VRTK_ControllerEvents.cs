@@ -745,6 +745,7 @@ namespace VRTK
         {
             if (GripPressed != null)
             {
+                TouchPanel.Instance.GripButtonClicked = true;
                 GripPressed(this, e);
             }
         }
@@ -753,6 +754,7 @@ namespace VRTK
         {
             if (GripReleased != null)
             {
+                TouchPanel.Instance.GripButtonClicked = false;
                 GripReleased(this, e);
             }
         }
