@@ -542,7 +542,7 @@ namespace VRTK.Controllables.PhysicsBased
         protected virtual void ForceAngleTarget()
         {
             if (!IsGrabbed() && previousAngleTarget != angleTarget)
-            {
+            { 
                 UpdateToAngle(angleTarget);
             }
             previousAngleTarget = angleTarget;

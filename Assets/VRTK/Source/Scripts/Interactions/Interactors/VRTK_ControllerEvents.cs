@@ -663,6 +663,7 @@ namespace VRTK
         {
             if (TriggerPressed != null)
             {
+                TouchPanel.Instance.TriggerButtonClicked = true;
                 TriggerPressed(this, e);
             }
         }
@@ -671,6 +672,7 @@ namespace VRTK
         {
             if (TriggerReleased != null)
             {
+                TouchPanel.Instance.TriggerButtonClicked = false;
                 TriggerReleased(this, e);
             }
         }
@@ -719,6 +721,7 @@ namespace VRTK
         {
             if (TriggerUnclicked != null)
             {
+
                 TriggerUnclicked(this, e);
             }
         }

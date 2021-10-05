@@ -443,12 +443,12 @@ MonoBehaviour:
   intervalOnNearTouch: 0.05
   cancelOnNearUntouch: 1
   clipOnTouch: {fileID: 0}
-  strengthOnTouch: 0
-  durationOnTouch: 0
+  strengthOnTouch: 1
+  durationOnTouch: 1
   intervalOnTouch: 0.05
   cancelOnUntouch: 1
   clipOnGrab: {fileID: 0}
-  strengthOnGrab: 1
+  strengthOnGrab: 0
   durationOnGrab: 1
   intervalOnGrab: 0.05
   cancelOnUngrab: 1

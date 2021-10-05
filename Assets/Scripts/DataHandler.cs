@@ -73,7 +73,7 @@ public class DataHandler : MonoBehaviour
         rowDataTemp[0] = "ID";
         rowDataTemp[1] = "SubectID";
         rowDataTemp[2] = "OperationShowTime";
-        rowDataTemp[3] = "HandContactTime";
+        rowDataTemp[3] = "HandTouchTime";
         rowDataTemp[4] = "OperationTriggerTime";
         rowDataTemp[5] = "OperationFinishTimeSpan";
         rowDataTemp[6] = "TouchToTriggerTimeSpan";
@@ -94,7 +94,7 @@ public class DataHandler : MonoBehaviour
          rowDataTemp[0] = RecordData.Count.ToString();
          rowDataTemp[1] =  record.SubjectID;
          rowDataTemp[2] =  record.OperationShowTime;
-         rowDataTemp[3] =  record.HandContactTime;
+         rowDataTemp[3] =  record.HandTouchTime;
          rowDataTemp[4] =  record.OperationTriggerTime;
          rowDataTemp[5] =  record.OperationFinishTimeSpan;
          rowDataTemp[6] =  record.TouchToTriggerTimeSpan;

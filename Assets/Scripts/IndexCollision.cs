@@ -20,7 +20,7 @@ public class IndexCollision : MonoBehaviour
      private void OnTriggerEnter(Collider collider)
     {
      //   Debug.Log(collider.gameObject.name + "dddddd");
-        if (collider.gameObject.name == "Lever" && TouchPanel.Instance.GripButtonClicked)
+        if (collider.gameObject.name == "Lever" && TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
         {
             TouchPanel.Instance.TouchToggle = true;
             TouchPanel.Instance.TouchedToggle = true;

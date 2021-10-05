@@ -188,6 +188,14 @@ namespace VRTK
             }
             else if (strengthOnTouch > 0 && durationOnTouch > 0f)
             {
+                if (gameObject.name == "LeverControl")
+                {
+                    if (TouchPanel.Instance.GripButtonClicked)
+                    {
+                        TriggerHapticPulse(controllerReference, strengthOnTouch, durationOnTouch, intervalOnTouch);
+                    }
+                }
+                else
                 TriggerHapticPulse(controllerReference, strengthOnTouch, durationOnTouch, intervalOnTouch);
             }
             else
@@ -209,7 +217,15 @@ namespace VRTK
             }
             else if (strengthOnGrab > 0 && durationOnGrab > 0f)
             {
-                TriggerHapticPulse(controllerReference, strengthOnGrab, durationOnGrab, intervalOnGrab);
+                if (gameObject.name == "DialControl")
+                {
+                    if (TouchPanel.Instance.TriggerButtonClicked)
+                    {
+                        TriggerHapticPulse(controllerReference, strengthOnGrab, durationOnGrab, intervalOnGrab);
+                    }
+                }
+                else
+                    TriggerHapticPulse(controllerReference, strengthOnGrab, durationOnGrab, intervalOnGrab);
             }
             else
             {

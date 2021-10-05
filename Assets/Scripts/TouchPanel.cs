@@ -27,6 +27,8 @@ public class TouchPanel : MonoBehaviour
     [HideInInspector]
     public bool GripButtonClicked;
     [HideInInspector]
+    public bool TriggerButtonClicked;
+    [HideInInspector]
     public int CurrentToggleHashCode;
 
     [HideInInspector]
@@ -38,7 +40,7 @@ public class TouchPanel : MonoBehaviour
     [HideInInspector]
     public bool IsResetForCurrentButton;
     [HideInInspector]
-    public List<VRTK_InteractHaptics> HapticsList;
+    public List<VRTK_InteractHaptics> HapticsList = new List<VRTK_InteractHaptics>();
     [HideInInspector]
     public bool FinishTask;
 
@@ -219,17 +221,27 @@ public class TouchPanel : MonoBehaviour
         currentConfigR2ButtonTypeStr = currentConfig.R2ButtonStr;
         currentConfigR3ButtonTypeStr = currentConfig.R3ButtonStr;
 
+        if (!CurrentTask.Vibrate)
+        {
+
+            for (int i = 0; i <HapticsList.Count; i++)
+            {
+                HapticsList[i].enabled = false;
+            }
+        }
+
     }
 
     public void GenerateButton(string buttonName, string index, string transform)
     {
         GameObject newButton;
-
         if (buttonName == "Toggle")
         {
+
             newButton = Instantiate(Toggle, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
             newButton.GetComponentInChildren<ControllableReactor>().outputOnMin = index;
             HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+
         }
 
 
@@ -245,7 +257,7 @@ public class TouchPanel : MonoBehaviour
         {
             newButton = Instantiate(Pusher, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
             newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
-            HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+           HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
         }
          
     }

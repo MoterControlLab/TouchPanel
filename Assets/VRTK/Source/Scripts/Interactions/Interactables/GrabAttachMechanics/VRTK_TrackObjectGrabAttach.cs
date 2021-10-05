@@ -96,6 +96,14 @@ namespace VRTK.GrabAttachMechanics
                 return;
             }
 
+            if (gameObject.name == "DialControl")
+            {
+                if (!TouchPanel.Instance.TriggerButtonClicked)
+                {
+                    return;
+                }
+            }
+
             Vector3 positionDelta = trackPoint.position - (grabbedSnapHandle != null ? grabbedSnapHandle.position : grabbedObject.transform.position);
             Quaternion rotationDelta = trackPoint.rotation * Quaternion.Inverse((grabbedSnapHandle != null ? grabbedSnapHandle.rotation : grabbedObject.transform.rotation));
 

@@ -102,7 +102,8 @@ namespace VRTK
             /// <summary>
             /// The unuse interaction stopped affecting the object
             /// </summary>
-            Unuse
+            Unuse,
+
         }
 
         /// <summary>

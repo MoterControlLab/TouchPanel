@@ -7,7 +7,7 @@ public class Record : MonoBehaviour
 {
     public string SubjectID;
     public string OperationShowTime;
-    public string HandContactTime;
+    public string HandTouchTime;
     public string OperationTriggerTime;
     public string OperationFinishTimeSpan;
     public string TouchToTriggerTimeSpan;
@@ -38,7 +38,7 @@ public class Record : MonoBehaviour
     {
         SubjectID = subjectid;
         OperationShowTime = operationshotime;
-        HandContactTime = touchtime;
+        HandTouchTime = touchtime;
         OperationTriggerTime = triggerTime;
         OperationFinishTimeSpan = movementTime;
         TouchToTriggerTimeSpan = touchtoTriggerTime;

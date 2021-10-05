@@ -40,13 +40,7 @@ public class Task : MonoBehaviour
 
     void Start()
     {
-        if (!Vibrate)
-        {
-            for (int i = 0; i < TouchPanel.Instance.HapticsList.Count; i++)
-            {
-                TouchPanel.Instance.HapticsList[i].enabled = false;
-            }
-        }
+ 
 
     }
 
