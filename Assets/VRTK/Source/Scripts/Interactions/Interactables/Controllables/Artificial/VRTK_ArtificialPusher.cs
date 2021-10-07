@@ -176,6 +176,12 @@ namespace VRTK.Controllables.ArtificialBased
 
         protected override void OnTouched(Collider collider)
         {
+            //only in plam gesture works
+            if (TouchPanel.Instance.TriggerButtonClicked || TouchPanel.Instance.GripButtonClicked)
+            {
+                return;
+            }
+
             if ((!VRTK_PlayerObject.IsPlayerObject(collider.gameObject) || VRTK_PlayerObject.IsPlayerObject(collider.gameObject, VRTK_PlayerObject.ObjectTypes.Controller)) && collider.GetComponent<VRTK_InteractNearTouchCollider>() == false)
             {
                 base.OnTouched(collider);

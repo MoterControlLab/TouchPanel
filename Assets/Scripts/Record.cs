@@ -20,7 +20,7 @@ public class Record : MonoBehaviour
     public string AudioOn;
     public string VibrateOn;
     public string ColorChangeOn;
-    
+    public string Sequence;
 
     public Record(string subjectid,
                   string operationshotime,
@@ -32,7 +32,8 @@ public class Record : MonoBehaviour
                   string buttonPos, 
                   string targetButtonPos, 
                   string buttonType, 
-                  string targetButtonType
+                  string targetButtonType,
+                  string sequence
                  // int touchmultipleTime
         )
     {
@@ -51,6 +52,7 @@ public class Record : MonoBehaviour
         AudioOn = TouchPanel.Instance.CurrentTask.Audio.ToString();
         VibrateOn = TouchPanel.Instance.CurrentTask.Vibrate.ToString();
         ColorChangeOn = TouchPanel.Instance.CurrentTask.ColorChange.ToString();
+        Sequence = TouchPanel.Instance.CurrentTask.Sequence;
     }
 
 }

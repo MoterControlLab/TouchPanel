@@ -25,101 +25,110 @@ public class ColorChange : MonoBehaviour
 
     }
 
+    
     private void OnCollisionEnter(Collision collider)
     {
- 
-        if ( collider.gameObject.CompareTag("Hand") && !IndexChangeColor)
+
+        if (collider.gameObject.CompareTag("Hand"))
         {
-            if (gameObject.name == "DialControl")
+
+            CheckWrongGesture();
+
+
+            if (TouchPanel.Instance.CurrentTask.ColorChange &&!TouchPanel.Instance.CurrentTask.WrongGesture && !IndexChangeColor)
             {
-                //only two buttons clicked will change color
-                if (!TouchPanel.Instance.TriggerButtonClicked || !TouchPanel.Instance.GripButtonClicked)
-                {
-                    return;
-                }
+                collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
+                TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
             }
 
-            if (TouchPanel.Instance.CurrentTask.ColorChange)
-            {
-                collider.transform.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
-            }
-  
-            TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
-            TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
-            TouchPanel.Instance.CurrentTask.MutipleTouchTime++;
-        
+
+
         }
-
-        if ( collider.gameObject.name == "Index" && IndexChangeColor)
+;
+        if (collider.gameObject.name == "Index" && IndexChangeColor)
         {
-            if (!TouchPanel.Instance.GripButtonClicked || TouchPanel.Instance.TriggerButtonClicked)
+
+            if (TouchPanel.Instance.CurrentTask.ColorChange && !TouchPanel.Instance.CurrentTask.WrongGesture)
             {
-                return;
+                collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
+
+                TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
+                TouchPanel.Instance.CurrentTask.MutipleTouchTime++;
             }
-            if (TouchPanel.Instance.CurrentTask.ColorChange)
-            {
-                collider.transform.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
-            }
-         
-            TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
-            TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
-            TouchPanel.Instance.CurrentTask.MutipleTouchTime++;
+
 
         }
 
 
     }
+  
+   private void OnCollisionExit(Collision collider)
+   {
+        if ( collider.gameObject.CompareTag("Hand") )
+        {
 
-  // private void OnCollisionExit(Collision collider)
-  // {
-  //     if (TouchPanel.Instance.CurrentTask.ColorChange && collider.gameObject.CompareTag("Hand"))
-  //     {
-  //
-  //         if (!GetComponent<PushButton>())
-  //         {
-  //             collider.transform.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
-  //         }
-  //     }
-  //         
-  // }
+            if (!GetComponent<PushButton>() && TouchPanel.Instance.CurrentTask.ColorChange)
+            {
+                collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+            }
+            TouchPanel.Instance.CurrentTask.WrongGesture = false;
+            Debug.Log(222222);
+        }
+        if (collider.gameObject.name == "Index" && IndexChangeColor)
+        {
+            if (TouchPanel.Instance.CurrentTask.ColorChange )
+            {
+                if (!GetComponent<PushButton>())
+                {
+                    if (IndexChangeColor)
+                    {
+                        collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+                    }
+
+                }
+
+            }
+
+        }
+        
+    }
 
 
     private void OnTriggerEnter(Collider collider)
     {
-        if ( collider.gameObject.CompareTag("Hand") && !IndexChangeColor)
+        if ( collider.gameObject.CompareTag("Hand"))
         {
-            if (gameObject.name == "DialControl")
-            {
-                //only two buttons clicked will change color
-                if (!TouchPanel.Instance.TriggerButtonClicked || !TouchPanel.Instance.GripButtonClicked)
-                {
-                    return;
-                }
-            }
 
-            if (TouchPanel.Instance.CurrentTask.ColorChange)
+            CheckWrongGesture();
+
+
+
+            if (TouchPanel.Instance.CurrentTask.ColorChange && !TouchPanel.Instance.CurrentTask.WrongGesture && !IndexChangeColor)
             {
                 collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
+                TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
+                TouchPanel.Instance.CurrentTask.MutipleTouchTime++;
             }
           
-            TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
-            TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
-            TouchPanel.Instance.CurrentTask.MutipleTouchTime++;
+
 
         }
 ;
         if ( collider.gameObject.name == "Index" && IndexChangeColor)
         {
-            if (!TouchPanel.Instance.GripButtonClicked || TouchPanel.Instance.TriggerButtonClicked)
+
+            if (TouchPanel.Instance.CurrentTask.ColorChange && !TouchPanel.Instance.CurrentTask.WrongGesture)
             {
-                return;
-            }
-            if (TouchPanel.Instance.CurrentTask.ColorChange)
                 collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
 
-            TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
-            TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
-            TouchPanel.Instance.CurrentTask.MutipleTouchTime++;
+                TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
+                TouchPanel.Instance.CurrentTask.MutipleTouchTime++;
+            }
+ 
 
         }
 
@@ -129,20 +138,86 @@ public class ColorChange : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
 
-        if (TouchPanel.Instance.CurrentTask.ColorChange && collider.gameObject.CompareTag("Hand") && !IndexChangeColor)
+        if ( collider.gameObject.CompareTag("Hand"))
         {
 
-            if (!GetComponent<PushButton>())
+
+            if (!GetComponent<PushButton>() && TouchPanel.Instance.CurrentTask.ColorChange)
             {
                 collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
             }
+            TouchPanel.Instance.CurrentTask.WrongGesture = false;
+            Debug.Log(222222);
         }
-        if (TouchPanel.Instance.CurrentTask.ColorChange && collider.gameObject.name == "Index" && IndexChangeColor)
+        if ( collider.gameObject.name == "Index" && IndexChangeColor)
         {
 
-            if (!GetComponent<PushButton>())
+            if (!GetComponent<PushButton>() && TouchPanel.Instance.CurrentTask.ColorChange)
             {
-                collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+                if (IndexChangeColor)
+                {
+                    collider.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+                }
+              
+            }
+        }
+    }
+
+
+    public void CheckWrongGesture()
+    {
+        if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+        {
+
+            if (gameObject.name == "DialControl")
+            {
+                //only two buttons clicked will change color
+                if (!TouchPanel.Instance.TriggerButtonClicked || !TouchPanel.Instance.GripButtonClicked)
+                {
+                    if (!TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
+                        TouchPanel.Instance.CurrentTask.Sequence += ",Rotatory_IndexFinger";
+                    if (TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
+                        TouchPanel.Instance.CurrentTask.Sequence += ",Rotatory_OK";
+                    if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
+                        TouchPanel.Instance.CurrentTask.Sequence += ",Rotatory_Palm";
+
+                    TouchPanel.Instance.CurrentTask.WrongGesture = true;
+                    return;
+                }
+            }
+
+
+            if (gameObject.name == "Cylinder")
+            {
+                //for push button cannot use any button
+                if (TouchPanel.Instance.TriggerButtonClicked || TouchPanel.Instance.GripButtonClicked)
+                {
+                    if (!TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
+                        TouchPanel.Instance.CurrentTask.Sequence += ",Push_IndexFinger";
+                    if (TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
+                        TouchPanel.Instance.CurrentTask.Sequence += ",Push_OK";
+                    if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
+                        TouchPanel.Instance.CurrentTask.Sequence += ",Push_Grip";
+
+                    Debug.Log(TouchPanel.Instance.CurrentTask.Sequence);
+                    Debug.Log(11111111111111);
+                    TouchPanel.Instance.CurrentTask.WrongGesture = true;
+                    return;
+                }
+            }
+
+
+            if (gameObject.name == "Lever")
+            {
+
+                if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
+                    TouchPanel.Instance.CurrentTask.Sequence += ",Toggle_Plam";
+                if (TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
+                    TouchPanel.Instance.CurrentTask.Sequence += ",Toggle_OK";
+                if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
+                    TouchPanel.Instance.CurrentTask.Sequence += ",Toggle_Grip";
+                TouchPanel.Instance.CurrentTask.WrongGesture = true;
+                return;
             }
         }
     }

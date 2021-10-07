@@ -60,10 +60,10 @@
                                            touchtotriggerdifferenceTime.TotalSeconds.ToString(),
                                            "Success",  //result
                                            TouchPanel.Instance.GetButtonPosition(outputOnMax), //
-                                           TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text) , //target pos
+                                           TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                                            TouchPanel.Instance.GetButtonType(outputOnMax),
-                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
-                                           //TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                                           TouchPanel.Instance.CurrentTask.Sequence
                                            );
                     TouchPanel.Instance.OperateRight();
                 }
@@ -79,8 +79,8 @@
                          TouchPanel.Instance.GetButtonPosition(outputOnMax), //
                          TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                          TouchPanel.Instance.GetButtonType(outputOnMax),
-                         TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
-                         //TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                         TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                          TouchPanel.Instance.CurrentTask.Sequence
                          );
                     TouchPanel.Instance.OperateWrong();
                 }
@@ -143,8 +143,8 @@
                                 TouchPanel.Instance.GetButtonPosition(outputOnMin), //
                                 TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                                 TouchPanel.Instance.GetButtonType(outputOnMin),
-                                TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
-                              //  TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                                TouchPanel.Instance.CurrentTask.Sequence
                                 );
                     TouchPanel.Instance.OperateRight();
                 }
@@ -161,8 +161,8 @@
                                            TouchPanel.Instance.GetButtonPosition(outputOnMin), //
                                            TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                                            TouchPanel.Instance.GetButtonType(outputOnMin),
-                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text)//target buttontype
-                                         //  TouchPanel.Instance.CurrentTask.MutipleTouchTime
+                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                                           TouchPanel.Instance.CurrentTask.Sequence
                                            );
                     TouchPanel.Instance.OperateWrong();
                 } 

@@ -85,12 +85,13 @@ public class DataHandler : MonoBehaviour
         rowDataTemp[12] = "AudioOn";
         rowDataTemp[13] = "VibrateOn";
         rowDataTemp[14] = "ColorChangeOn";
+        rowDataTemp[15] = "Sequence";
         RecordData.Add(rowDataTemp);
     }
 
     public void AddOneRecord(Record record )
     {
-        string[] rowDataTemp = new string[15];
+        string[] rowDataTemp = new string[16];
          rowDataTemp[0] = RecordData.Count.ToString();
          rowDataTemp[1] =  record.SubjectID;
          rowDataTemp[2] =  record.OperationShowTime;
@@ -106,7 +107,8 @@ public class DataHandler : MonoBehaviour
          rowDataTemp[12]=  record.AudioOn;
          rowDataTemp[13]=  record.VibrateOn;
          rowDataTemp[14] = record.ColorChangeOn;
-        RecordData.Add(rowDataTemp);
+         rowDataTemp[15] = record.Sequence;
+         RecordData.Add(rowDataTemp);
     }
 
 

@@ -24,7 +24,6 @@ public class PushButton : MonoBehaviour
         {
             distancetohand = Vector3.Distance(this.gameObject.transform.position, currentHand.transform.position);
 
-
             if (!isOncollision && controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed && distancetohand > 0.075f)
             {
 
@@ -44,8 +43,10 @@ public class PushButton : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         currentHand = other.gameObject;
-        isOncollision = true;
-
+        if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
+        {
+            isOncollision = true;
+        }
         TouchPanel.Instance.TouchedToggle = false;
 
     }

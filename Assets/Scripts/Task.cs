@@ -20,7 +20,9 @@ public class Task : MonoBehaviour
     public bool Audio;
     public bool ColorChange;
     public bool RightHand;
-
+  //  [HideInInspector]
+    public string Sequence = "";
+    public bool WrongGesture;
     [HideInInspector]
     public string CurrentOperationShowTime;
     [HideInInspector]
