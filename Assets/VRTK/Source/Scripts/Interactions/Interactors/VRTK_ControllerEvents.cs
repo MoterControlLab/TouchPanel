@@ -749,6 +749,7 @@ namespace VRTK
             if (GripPressed != null)
             {
                 TouchPanel.Instance.GripButtonClicked = true;
+              //  Debug.Log(gameObject.name + "  llllllllllllll");
                 GripPressed(this, e);
             }
         }

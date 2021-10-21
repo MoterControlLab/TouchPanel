@@ -58,7 +58,8 @@ namespace VRTK
 
             for (int i = 0; i < trackedColliders.Length; i++)
             {
-                trackedColliders[i].isTrigger = !state;
+                Debug.Log(trackedColliders[i].gameObject.name + "  lllllllll");
+               // trackedColliders[i].isTrigger = !state;
             }
         }
 

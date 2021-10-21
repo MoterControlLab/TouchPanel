@@ -41,7 +41,7 @@
 
             if (outputOnMax != "")
             {
-                if (!TouchPanel.Instance.IsResetForCurrentButton)
+                if (!TouchPanel.Instance.IsResetForCurrentButton || !TouchPanel.Instance.isFirstAttachRecorded)
                 {
                     return;
                 }
@@ -49,6 +49,8 @@
                 Record newRecord;
                 TimeSpan finishtriggerdifferenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentOperationTime;
                 TimeSpan touchtotriggerdifferenceTime = DateTime.Now - TouchPanel.Instance.CurrentTask.CurrentTouchTime;
+
+
 
                 if (outputOnMax == TouchPanel.Instance.NoticeText.text)
                 {
@@ -69,6 +71,11 @@
                 }
                 else
                 {
+
+
+
+          
+
                     newRecord = new Record(TouchPanel.Instance.CurrentTask.SubjectID,
                          TouchPanel.Instance.CurrentTask.CurrentOperationShowTime,
                          TouchPanel.Instance.CurrentTask.TouchTime,
@@ -121,7 +128,7 @@
 
             if (outputOnMin != "")
             {
-                if (!TouchPanel.Instance.IsResetForCurrentButton)
+                if (!TouchPanel.Instance.IsResetForCurrentButton || !TouchPanel.Instance.isFirstAttachRecorded)
                 {
                     return;
                 }
@@ -180,7 +187,6 @@
             {
                 if (!TouchPanel.Instance.IsResetForCurrentButton)
                 {
-                   // Debug.Log(gameObject.name + " 2");
                     TouchPanel.Instance.IsResetForCurrentButton = true;
                 }
             }

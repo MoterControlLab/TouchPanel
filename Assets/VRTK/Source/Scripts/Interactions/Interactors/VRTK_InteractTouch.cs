@@ -199,6 +199,7 @@ namespace VRTK
                 Collider[] foundColliders = controllerCollisionDetector.GetComponentsInChildren<Collider>();
                 for (int i = 0; i < foundColliders.Length; i++)
                 {
+                   // Debug.Log(foundColliders[i].gameObject.GetHashCode() + "   lllllll" + foundColliders.Length + Time.frameCount);
                     foundColliders[i].isTrigger = !state;
                 }
                 EmitControllerRigidbodyEvent(state);
@@ -487,6 +488,7 @@ namespace VRTK
         {
             SDK_BaseController.ControllerHand controllerHand = VRTK_DeviceFinder.GetControllerHand(gameObject);
             string colliderPath = VRTK_SDK_Bridge.GetControllerDefaultColliderPath(controllerHand);
+            //Debug.Log(ControllerColliders / Fallback);
             if (colliderPath == "")
             {
                 return;

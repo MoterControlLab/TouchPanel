@@ -43,7 +43,13 @@ public class TouchPanel : MonoBehaviour
     public List<VRTK_InteractHaptics> HapticsList = new List<VRTK_InteractHaptics>();
     [HideInInspector]
     public bool FinishTask;
-
+   
+    public bool isAttachingWithHand;
+ 
+    public bool isRecording;
+        //used in the case that the order hasn't been generated but hand alreay touched the button
+   // [HideInInspector]
+    public bool isFirstAttachRecorded;
 
     [Header("Buttons")]
     public GameObject Toggle;
@@ -158,8 +164,7 @@ public class TouchPanel : MonoBehaviour
         {
             NoticeText.color = Color.white;
             AudioController.PlayEventSFX(AudioController.SpawnSFX);
-            //reset
-            CurrentTask.MutipleTouchTime = 0;
+
             CurrentTask.ShowOperationCode(CurrentTask.CurrentCodeList[currentOperationIndex]);
             currentOperationIndex++;
         }

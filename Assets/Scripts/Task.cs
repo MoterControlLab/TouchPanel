@@ -20,8 +20,11 @@ public class Task : MonoBehaviour
     public bool Audio;
     public bool ColorChange;
     public bool RightHand;
-  //  [HideInInspector]
+    [HideInInspector]
     public string Sequence = "";
+    [HideInInspector]
+    public string LastSequence = "";
+    [HideInInspector]
     public bool WrongGesture;
     [HideInInspector]
     public string CurrentOperationShowTime;
@@ -31,8 +34,7 @@ public class Task : MonoBehaviour
     public string TouchTime;
     [HideInInspector]
     public DateTime CurrentTouchTime;
-    [HideInInspector]
-    public int MutipleTouchTime;
+
     [HideInInspector]
     public string TargetButtonName;
     [HideInInspector]
@@ -57,6 +59,7 @@ public class Task : MonoBehaviour
     public void GenerateOperationSequence()
     {
         CurrentCodeList.Clear();
+        TouchPanel.Instance.isRecording = true;
         for (int i = 0; i < OperationNum; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, 6);
@@ -68,7 +71,11 @@ public class Task : MonoBehaviour
     {
         CurrentOperationShowTime = DateTime.Now.ToString("hh:mm:ss:ff");
         CurrentOperationTime = DateTime.Now;
+        //reset
 
+
+        TouchPanel.Instance.CurrentTask.Sequence = "";
+        TouchPanel.Instance.CurrentTask.LastSequence = "";
         switch (codeIndex)
         {
             case 0:

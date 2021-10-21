@@ -54,7 +54,7 @@ namespace VRTK.Controllables
             zAxis
         }
 
-        public bool isReset;
+
 
         [Header("Controllable Settings")]
 
