@@ -25231,7 +25231,9 @@ MonoBehaviour:
   Audio: 1
   ColorChange: 1
   RightHand: 1
+  Shuffle: 1
   Sequence: 
+  LastSequence: 
   WrongGesture: 0
   CurrentOperationShowTime: 
   TouchTime: 

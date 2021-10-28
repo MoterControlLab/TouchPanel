@@ -69,7 +69,7 @@ public class DataHandler : MonoBehaviour
     public void InitializeRecordFirstRow()
     {
         // Creating First row of titles manually..
-        string[] rowDataTemp = new string[16];
+        string[] rowDataTemp = new string[17];
         rowDataTemp[0] = "ID";
         rowDataTemp[1] = "SubectID";
         rowDataTemp[2] = "OperationShowTime";
@@ -85,13 +85,14 @@ public class DataHandler : MonoBehaviour
         rowDataTemp[12] = "AudioOn";
         rowDataTemp[13] = "VibrateOn";
         rowDataTemp[14] = "ColorChangeOn";
-        rowDataTemp[15] = "Sequence";
+        rowDataTemp[15] = "Shuffle";
+        rowDataTemp[16] = "Sequence";
         RecordData.Add(rowDataTemp);
     }
 
     public void AddOneRecord(Record record )
     {
-        string[] rowDataTemp = new string[16];
+        string[] rowDataTemp = new string[17];
          rowDataTemp[0] = RecordData.Count.ToString();
          rowDataTemp[1] =  record.SubjectID;
          rowDataTemp[2] =  record.OperationShowTime;
@@ -107,7 +108,8 @@ public class DataHandler : MonoBehaviour
          rowDataTemp[12]=  record.AudioOn;
          rowDataTemp[13]=  record.VibrateOn;
          rowDataTemp[14] = record.ColorChangeOn;
-         rowDataTemp[15] = record.Sequence;
+         rowDataTemp[15] = record.Shuffle;
+         rowDataTemp[16] = record.Sequence;
          RecordData.Add(rowDataTemp);
     }
 

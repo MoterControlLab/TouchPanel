@@ -64,7 +64,7 @@
                                            TouchPanel.Instance.GetButtonPosition(outputOnMax), //
                                            TouchPanel.Instance.GetButtonPosition(TouchPanel.Instance.NoticeText.text), //target pos
                                            TouchPanel.Instance.GetButtonType(outputOnMax),
-                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype
+                                           TouchPanel.Instance.GetButtonType(TouchPanel.Instance.NoticeText.text),//target buttontype     
                                            TouchPanel.Instance.CurrentTask.Sequence
                                            );
                     TouchPanel.Instance.OperateRight();
@@ -101,7 +101,7 @@
                     controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = true;
                 }
 
-
+                
                StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
             }
 

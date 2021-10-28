@@ -97,45 +97,78 @@ public class ColorChange : MonoBehaviour
 
    private void OnTriggerStay(Collider collider)
     {
-        if (IndexChangeColor)
-        {
-            return;
-        }
+        CheckWrongGesture(collider.gameObject);
 
-       if (collider.gameObject.name == "DialBase" && TouchPanel.Instance.TriggerButtonClicked &&TouchPanel.Instance.GripButtonClicked)
+        if (collider.gameObject.name == "DialBase" )
        {
-         
-           if ( !IndexChangeColor )
-           {
-               if (TouchPanel.Instance.CurrentTask.ColorChange && !handcolorChanged)
-               {
-                   transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
-                    handcolorChanged = true;
-               }
-
-                if (TouchPanel.Instance.CurrentTask.TouchTime == "")
+            if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+            {
+                if (!IndexChangeColor)
                 {
-                    TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
-                    TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
-                    TouchPanel.Instance.isFirstAttachRecorded = true;
-                }
+                    if (TouchPanel.Instance.CurrentTask.ColorChange && !handcolorChanged)
+                    {
+                        transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
+                        handcolorChanged = true;
+                    }
 
-           }
-       }
-        else if (collider.gameObject.name == "DialBase" && (!TouchPanel.Instance.TriggerButtonClicked || !TouchPanel.Instance.GripButtonClicked))
-        {
-            transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
-            handcolorChanged = false;
+                    if (TouchPanel.Instance.CurrentTask.TouchTime == "")
+                    {
+                        TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                        TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
+                        TouchPanel.Instance.isFirstAttachRecorded = true;
+                    }
+
+                }
+            }
+    
+            else
+            {
+                transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+                handcolorChanged = false;
+            }
         }
-   }
+
+        if (collider.gameObject.name == "Lever" )
+        {
+           
+
+            if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+            {
+                if (IndexChangeColor)
+                {
+                    if (TouchPanel.Instance.CurrentTask.ColorChange && !handcolorChanged)
+                    {
+                        transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
+                        handcolorChanged = true;
+                    }
+
+                    if (TouchPanel.Instance.CurrentTask.TouchTime == "")
+                    {
+                        TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                        TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
+                        TouchPanel.Instance.isFirstAttachRecorded = true;
+                    }
+
+                }
+            }
+
+            else
+            {
+                transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+                handcolorChanged = false;
+            }
+
+
+        }
+
+    }
 
     private void OnTriggerExit(Collider collider)
     {
         //*** for the rotatory button, the wrong gesture identification happens in exit process
         //***and currently  TouchPanel.Instance.isAttachingWithHand is already falso as handarea exit other object first
         if (collider.gameObject.name == "DialBase" && gameObject.name == "HandArea")
-        {
-            CheckWrongGesture(collider.gameObject);
+        {       
 
             if (TouchPanel.Instance.CurrentTask.ColorChange)
             {
@@ -146,17 +179,15 @@ public class ColorChange : MonoBehaviour
             //reset
            TouchPanel.Instance.CurrentTask.WrongGesture = false;
            TouchPanel.Instance.CurrentTask.TouchTime = "";
-        
+
+            Debug.Log("Reset touchtime handarea leave rotatory" );
+
+            return;
         }
 
         if (TouchPanel.Instance.isAttachingWithHand && gameObject.name == "HandArea")
         {
             TouchPanel.Instance.isAttachingWithHand = false;
-
-          //  foundColliders[i].isTrigger = !state;
-
-            TouchPanel.Instance.CurrentTask.WrongGesture = false;
-
         }
        
         if ( collider.gameObject == currentTriggerObj )
@@ -172,7 +203,10 @@ public class ColorChange : MonoBehaviour
                         transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
                         handcolorChanged = false;
                     }
+                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                    TouchPanel.Instance.CurrentTask.TouchTime = "";
 
+                    Debug.Log("Reset touchtime index leave " + currentTriggerObj.name);
                 }
             }
 
@@ -184,6 +218,12 @@ public class ColorChange : MonoBehaviour
                     transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
                     handcolorChanged = false;
                 }
+
+                //reset when hand leave push
+                TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                TouchPanel.Instance.CurrentTask.TouchTime = "";
+
+                Debug.Log("Reset touchtime handarea leave " + currentTriggerObj.name);
             }
 
         }
@@ -195,10 +235,7 @@ public class ColorChange : MonoBehaviour
 
     public void CheckWrongGesture(GameObject touchButton)
     {
-        if (!TouchPanel.Instance.isFirstAttachRecorded)
-        {
-            return;
-        }
+
         if (!TouchPanel.Instance.CurrentTask.WrongGesture)
         {
             if (touchButton.name == "DialBase")

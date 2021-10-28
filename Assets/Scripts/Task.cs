@@ -20,6 +20,7 @@ public class Task : MonoBehaviour
     public bool Audio;
     public bool ColorChange;
     public bool RightHand;
+    public bool Shuffle;
     [HideInInspector]
     public string Sequence = "";
     [HideInInspector]
@@ -60,12 +61,51 @@ public class Task : MonoBehaviour
     {
         CurrentCodeList.Clear();
         TouchPanel.Instance.isRecording = true;
+
+        if (Shuffle)
+        {
+            if (OperationNum %6 != 0)
+            {
+                OperationNum += (6 - OperationNum % 6);
+            }
+        }
+
+        int shuffleNum = OperationNum / 6;
+
         for (int i = 0; i < OperationNum; i++)
         {
+            RandomIndex:
             int randomIndex = UnityEngine.Random.Range(0, 6);
-            CurrentCodeList.Add(randomIndex);
+            if (Shuffle)
+            {
+                if (GetShowTimesInaList(randomIndex, CurrentCodeList) < shuffleNum)
+                {
+                    CurrentCodeList.Add(randomIndex);
+                }
+                else { goto RandomIndex; }
+
+            }
+            else CurrentCodeList.Add(randomIndex);
+
+
         }
     }
+
+
+    public int GetShowTimesInaList(int element, List<int> list)
+    {
+        int showtime = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i] == element)
+            {
+                showtime++;
+            }
+        }
+
+        return showtime;
+    }
+
 
     public void ShowOperationCode(int codeIndex)
     {

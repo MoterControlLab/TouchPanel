@@ -167,6 +167,8 @@ public class TouchPanel : MonoBehaviour
 
             CurrentTask.ShowOperationCode(CurrentTask.CurrentCodeList[currentOperationIndex]);
             currentOperationIndex++;
+
+            Debug.Log("***************************************************************************************");
         }
 
         else

@@ -13,3 +13,5 @@
         rowDataTemp[12] = "AudioOn";
         rowDataTemp[13] = "VibrateOn";
         rowDataTemp[14] = "ColorChangeOn";
+  	rowDataTemp[15] = "Shuffle";
+	rowDataTemp[16] = "Sequence"; //wrong gesture sequence
