@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 using VRTK.Controllables.ArtificialBased;
+using VRTK.Controllables.PhysicsBased;
 using VRTK.Examples;
 
 public class ColorChange : MonoBehaviour
@@ -41,14 +43,17 @@ public class ColorChange : MonoBehaviour
                     TouchPanel.Instance.isAttachingWithHand = true;
                 }
 
-                if (collider.gameObject.name == "Lever")
+                if (collider.gameObject.name == "Lever" && gameObject.name == "Index")
                 {
+                  //  Debug.Log("OnTriggerEnter");
                     //when touch level do not need to use TouchPanel.Instance.isAttachingWithHand as a restriction for multiple ontriggerenter event, as headarea has alreay been used for this retriction
                     CheckWrongGesture(collider.gameObject);
 
+               //     Debug.Log("Enter Lever !" + TouchPanel.Instance.CurrentTask.WrongGesture);
+
                     if (gameObject.name == "Index" && IndexChangeColor)
                     {
-     
+
                         if (!TouchPanel.Instance.CurrentTask.WrongGesture)
                         {
                             if (TouchPanel.Instance.CurrentTask.ColorChange)
@@ -56,7 +61,7 @@ public class ColorChange : MonoBehaviour
                                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
                             }
 
-                  
+
                             TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
                             TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
                             TouchPanel.Instance.isFirstAttachRecorded = true;
@@ -65,30 +70,57 @@ public class ColorChange : MonoBehaviour
 
                     }
                 }
-                else 
- 
-                    if (collider.gameObject.name == "Cylinder")
-                    {
- 
-                         CheckWrongGesture(collider.gameObject);
-                 //   Debug.Log(TouchPanel.Instance.CurrentTask.WrongGesture + "   " + Time.frameCount);
+                else if (collider.gameObject.name == "Cylinder")
+                {
+
+                    CheckWrongGesture(collider.gameObject);
+                    //   Debug.Log(TouchPanel.Instance.CurrentTask.WrongGesture + "   " + Time.frameCount);
 
                     if (!TouchPanel.Instance.CurrentTask.WrongGesture && !IndexChangeColor)
+                    {
+                        if (TouchPanel.Instance.CurrentTask.ColorChange)
                         {
-                            if (TouchPanel.Instance.CurrentTask.ColorChange)
-                            {
-                                transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
-                            }
-
-                            TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
-                            TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
-                       // Debug.Log(TouchPanel.Instance.CurrentTask.TouchTime + "   " + Time.frameCount);
-                        TouchPanel.Instance.isFirstAttachRecorded = true;
+                            transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
                         }
 
-                 
+                        TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                        TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
+                        // Debug.Log(TouchPanel.Instance.CurrentTask.TouchTime + "   " + Time.frameCount);
+                        TouchPanel.Instance.isFirstAttachRecorded = true;
                     }
 
+
+                }
+                else if (collider.gameObject.name == "DialBase")
+                {
+                    CheckWrongGesture(collider.gameObject);
+
+                    if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+                    {
+                        if (!IndexChangeColor)
+                        {
+                            if (TouchPanel.Instance.CurrentTask.ColorChange && !handcolorChanged)
+                            {
+                                transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
+                                handcolorChanged = true;
+                            }
+
+                            if (TouchPanel.Instance.CurrentTask.TouchTime == "")
+                            {
+                                TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
+                                TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
+                                TouchPanel.Instance.isFirstAttachRecorded = true;
+                            }
+
+                            TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+                            TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+                            //    collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>().Grabbed(collider.gameObject);
+
+                        }
+                    }
+
+
+                }
             }
 
         }
@@ -97,10 +129,12 @@ public class ColorChange : MonoBehaviour
 
    private void OnTriggerStay(Collider collider)
     {
+
         CheckWrongGesture(collider.gameObject);
 
         if (collider.gameObject.name == "DialBase" )
        {
+     
             if (!TouchPanel.Instance.CurrentTask.WrongGesture)
             {
                 if (!IndexChangeColor)
@@ -118,19 +152,25 @@ public class ColorChange : MonoBehaviour
                         TouchPanel.Instance.isFirstAttachRecorded = true;
                     }
 
+                   TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+                   TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
                 }
             }
     
             else
             {
+                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+
                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
                 handcolorChanged = false;
             }
+
+          //  Debug.Log(collider.gameObject.transform.parent.GetComponent<VRTK_PhysicsRotator>().IsGrabbedByAttach);
         }
 
-        if (collider.gameObject.name == "Lever" )
+        if (collider.gameObject.name == "Lever"  && gameObject.name == "Index")
         {
-           
+       //     Debug.Log("Stay in Level with gesture" + TouchPanel.Instance.CurrentTask.WrongGesture);
 
             if (!TouchPanel.Instance.CurrentTask.WrongGesture)
             {
@@ -154,6 +194,7 @@ public class ColorChange : MonoBehaviour
 
             else
             {
+         
                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
                 handcolorChanged = false;
             }
@@ -172,13 +213,16 @@ public class ColorChange : MonoBehaviour
 
             if (TouchPanel.Instance.CurrentTask.ColorChange)
             {
-
+                
                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
                 handcolorChanged = false;
             }
             //reset
            TouchPanel.Instance.CurrentTask.WrongGesture = false;
            TouchPanel.Instance.CurrentTask.TouchTime = "";
+
+
+            TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
 
             Debug.Log("Reset touchtime handarea leave rotatory" );
 
@@ -253,10 +297,16 @@ public class ColorChange : MonoBehaviour
                         UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMax + "Rotatory-Palm");
 
 
-                    TouchPanel.Instance.CurrentTask.WrongGesture = true;
+                    if (TouchPanel.Instance.CurrentTask.LastSequence != "")
+                    {
+                        TouchPanel.Instance.CurrentTask.WrongGesture = true;
 
-                    return;
+                    }
+
+
                 }
+
+                
             }
 
 
@@ -275,19 +325,20 @@ public class ColorChange : MonoBehaviour
 
                     // Debug.Log(TouchPanel.Instance.CurrentTask.Sequence);
 
-                    TouchPanel.Instance.CurrentTask.WrongGesture = true;
-                    return;
+                    if (TouchPanel.Instance.CurrentTask.LastSequence != "")
+                    {
+                        TouchPanel.Instance.CurrentTask.WrongGesture = true;
+
+                    }
+
                 }
+
             }
 
 
             if (touchButton.name == "Lever")
             {
                 currentTriggerObj = touchButton;
-                if (TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
-                {
-                    return;
-                }
                 if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
                     UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMin + "Toggle-Plam");
               
@@ -295,11 +346,54 @@ public class ColorChange : MonoBehaviour
                     UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMin + "Toggle-OK");
                 if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
                     UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMin + "Toggle-Grip");
-                TouchPanel.Instance.CurrentTask.WrongGesture = true;
+
+                if (TouchPanel.Instance.CurrentTask.LastSequence!= "")
+                {
+                    TouchPanel.Instance.CurrentTask.WrongGesture = true;
+
+                }
 
 
             }
         }
+
+        else
+        {
+            if (touchButton.name == "DialBase")
+            {
+                currentTriggerObj = touchButton;
+                //only two buttons clicked will change color
+                if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
+                {
+                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+
+                }
+
+            }
+
+
+            if (touchButton.name == "Cylinder")
+            {
+                currentTriggerObj = touchButton;
+                //for push button cannot use any button
+                if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
+                {
+                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                }
+
+            }
+
+
+            if (touchButton.name == "Lever")
+            {
+                if (TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
+                {
+                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                }
+
+            }
+        }
+
     }
 
 

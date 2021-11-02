@@ -17,6 +17,7 @@ namespace VRTK.Controllables
         public VRTK_InteractTouch interactingTouchScript;
         public float value;
         public float normalizedValue;
+
     }
 
     /// <summary>
@@ -54,7 +55,7 @@ namespace VRTK.Controllables
             zAxis
         }
 
-
+        public bool isToggle;
 
         [Header("Controllable Settings")]
 
@@ -314,6 +315,15 @@ namespace VRTK.Controllables
 
         protected virtual IEnumerator ProcessAtEndOfFrame()
         {
+            //*** if it is a toogle button, then only write gesture can trigger the collision and transform change
+            if (isToggle)
+            {
+                if (TouchPanel.Instance.CurrentTask.WrongGesture)
+                {
+                    yield break;
+                }
+            }
+
             yield return new WaitForEndOfFrame();
             ManageCollisions(true);
             EmitEvents();

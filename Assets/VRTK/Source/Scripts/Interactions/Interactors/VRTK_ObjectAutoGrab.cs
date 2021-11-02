@@ -115,7 +115,7 @@ namespace VRTK
 
             if (objectToGrab == null)
             {
-                VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.NOT_DEFINED, "objectToGrab"));
+              //  VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.NOT_DEFINED, "objectToGrab"));
                 yield break;
             }
 
@@ -151,13 +151,14 @@ namespace VRTK
                         grabbableObject = previousClonedObject;
                     }
                 }
-
+    
                 if (grabbableObject.isGrabbable && !grabbableObject.IsGrabbed())
                 {
                     grabbableObject.transform.position = transform.position;
                     interactTouch.ForceStopTouching();
                     interactTouch.ForceTouch(grabbableObject.gameObject);
                     interactGrab.AttemptGrab();
+
                     AttemptSecondaryGrab(grabbableObject);
                     OnObjectAutoGrabCompleted();
                 }

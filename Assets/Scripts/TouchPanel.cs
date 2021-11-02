@@ -157,7 +157,9 @@ public class TouchPanel : MonoBehaviour
 
     public IEnumerator GenerateNewCommond()
     {
-      //  yield return new WaitForSeconds(1f);
+
+       
+        //  yield return new WaitForSeconds(1f);
         yield return new WaitUntil(()=>IsResetForCurrentButton);
         BeginStoreData = true;
         if (currentOperationIndex < CurrentTask.CurrentCodeList.Count)
@@ -166,9 +168,11 @@ public class TouchPanel : MonoBehaviour
             AudioController.PlayEventSFX(AudioController.SpawnSFX);
 
             CurrentTask.ShowOperationCode(CurrentTask.CurrentCodeList[currentOperationIndex]);
+
+            Debug.Log("*************************************************************************************    " + currentOperationIndex);
             currentOperationIndex++;
 
-            Debug.Log("***************************************************************************************");
+         
         }
 
         else

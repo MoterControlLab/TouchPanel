@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isReset: 0
+  isToggle: 1
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 0}
@@ -500,7 +500,6 @@ GameObject:
   - component: {fileID: 2921163098734697550}
   - component: {fileID: 2921163098734697537}
   - component: {fileID: 2921163098734697536}
-  - component: {fileID: 938083309632997366}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Button
@@ -582,16 +581,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.018763077, y: 0.018763155, z: 0.05464847}
   m_Center: {x: 0.0000002558107, y: -0.0003027725, z: 0.027324233}
---- !u!114 &938083309632997366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2921163098734697538}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 902aa2609a3dda341947fd6df747a45f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IndexChangeColor: 1

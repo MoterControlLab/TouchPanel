@@ -32,7 +32,7 @@
 
         protected virtual void MaxLimitReached(object sender, ControllableEventArgs e)
         {
-
+            Debug.Log(gameObject.name + "MaxLimitReached ");
 
             if (TouchPanel.Instance.FinishTask || !TouchPanel.Instance.BeginStoreData)
             {
@@ -101,15 +101,16 @@
                     controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = true;
                 }
 
-                
-               StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
+                Debug.Log(TouchPanel.Instance.IsResetForCurrentButton);
+                //**** for rotatory IsResetForCurrentButton  is reset at VRTK_PhysicsRotator EmitEvents 
+                StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
             }
 
             else
             {
                 if (!TouchPanel.Instance.IsResetForCurrentButton)
                 {
-
+                    Debug.Log("MaxLimitReached  IsResetForCurrentButton = true");
                     TouchPanel.Instance.IsResetForCurrentButton = true;
                 }
             }
@@ -179,7 +180,7 @@
 
 
                 TouchPanel.Instance.IsResetForCurrentButton = false;
-
+                //**** for lever IsResetForCurrentButton  is reset at VRTK_RotateTransformGrabAttach ResetRotation 
                 StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
             }
 
@@ -187,6 +188,7 @@
             {
                 if (!TouchPanel.Instance.IsResetForCurrentButton)
                 {
+                    Debug.Log(" MinLimitReached   IsResetForCurrentButton = true");
                     TouchPanel.Instance.IsResetForCurrentButton = true;
                 }
             }

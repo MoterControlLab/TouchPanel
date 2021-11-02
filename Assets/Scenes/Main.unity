@@ -2252,6 +2252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0ebd99abd5f2547ba8276283f08b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 2036437214}
@@ -2766,6 +2767,7 @@ GameObject:
   - component: {fileID: 109582316}
   - component: {fileID: 109582315}
   - component: {fileID: 109582314}
+  - component: {fileID: 109582320}
   m_Layer: 0
   m_Name: RightControllerScriptAlias
   m_TagString: Hand
@@ -2963,6 +2965,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customColliderContainer: {fileID: 0}
+--- !u!114 &109582320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109582311}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cdac96da703d7488a11cc3bde08cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToGrab: {fileID: 0}
+  objectIsPrefab: 0
+  cloneGrabbedObject: 0
+  alwaysCloneOnEnable: 0
+  attemptSecondaryGrab: 0
+  interactTouch: {fileID: 0}
+  interactGrab: {fileID: 0}
+  secondaryInteractTouch: {fileID: 0}
+  secondaryInteractGrab: {fileID: 0}
 --- !u!1 &110593315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5809,6 +5832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 1574193365}
@@ -6576,12 +6600,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 2036437214}
   excludeColliderCheckOn: []
   equalityFidelity: 0.001
   connectedTo: {fileID: 0}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 790402425}
   angleLimits:
     minimum: 0
@@ -7182,6 +7208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3658a9254a5b8854c86a3556998414d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 1996474805}
@@ -14703,6 +14730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84930d01e26e09142adcad505b6f5bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 1574193365}
@@ -20275,12 +20303,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 2036437214}
   excludeColliderCheckOn: []
   equalityFidelity: 0.001
   connectedTo: {fileID: 0}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 2071490792}
   angleLimits:
     minimum: 0
@@ -21256,6 +21286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith: []
   excludeColliderCheckOn: []
@@ -23174,6 +23205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7114288acce4e2642b8f20624858ec70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 958789581}
@@ -23987,6 +24019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 141088035}
@@ -23995,6 +24028,7 @@ MonoBehaviour:
   - {fileID: 56397127}
   equalityFidelity: 0.001
   connectedTo: {fileID: 0}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 1575771184}
   angleLimits:
     minimum: 0
@@ -28654,6 +28688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 632606080}
@@ -31711,6 +31746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7114288acce4e2642b8f20624858ec70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 1185952417}
@@ -39198,12 +39234,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 2036437214}
   excludeColliderCheckOn: []
   equalityFidelity: 0.001
   connectedTo: {fileID: 0}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 1991486628}
   angleLimits:
     minimum: 0
@@ -39376,6 +39414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 1574193365}
@@ -44877,6 +44916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 1824364725}
@@ -44884,6 +44924,7 @@ MonoBehaviour:
   - {fileID: 1046369890}
   equalityFidelity: 0.0001
   connectedTo: {fileID: 1824364726}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 872083795}
   angleLimits:
     minimum: 0
@@ -47186,6 +47227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3658a9254a5b8854c86a3556998414d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 565526732}
@@ -47610,6 +47652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith: []
   excludeColliderCheckOn: []
@@ -47935,6 +47978,7 @@ GameObject:
   - component: {fileID: 1408711853}
   - component: {fileID: 1408711852}
   - component: {fileID: 1408711851}
+  - component: {fileID: 1408711857}
   m_Layer: 0
   m_Name: LeftControllerScriptAlias
   m_TagString: Hand
@@ -48132,6 +48176,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customColliderContainer: {fileID: 0}
+--- !u!114 &1408711857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408711848}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cdac96da703d7488a11cc3bde08cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToGrab: {fileID: 0}
+  objectIsPrefab: 0
+  cloneGrabbedObject: 0
+  alwaysCloneOnEnable: 0
+  attemptSecondaryGrab: 0
+  interactTouch: {fileID: 0}
+  interactGrab: {fileID: 0}
+  secondaryInteractTouch: {fileID: 0}
+  secondaryInteractGrab: {fileID: 0}
 --- !u!1 &1409900843
 GameObject:
   m_ObjectHideFlags: 0
@@ -53978,6 +54043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7114288acce4e2642b8f20624858ec70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 1160351486}
@@ -54629,6 +54695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 807393838}
@@ -58087,12 +58154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 2036437214}
   excludeColliderCheckOn: []
   equalityFidelity: 0.001
   connectedTo: {fileID: 0}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 1879817719}
   angleLimits:
     minimum: -90
@@ -59445,6 +59514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84930d01e26e09142adcad505b6f5bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 1574193365}
@@ -59853,6 +59923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 849432195}
@@ -62532,6 +62603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 1702836829}
@@ -62540,6 +62612,7 @@ MonoBehaviour:
   - {fileID: 1974105702}
   equalityFidelity: 0.001
   connectedTo: {fileID: 0}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 1640292102}
   angleLimits:
     minimum: -90
@@ -63783,12 +63856,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbb29cbe7e86b842b09702b4ae1b57b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 2036437214}
   excludeColliderCheckOn: []
   equalityFidelity: 0.001
   connectedTo: {fileID: 0}
+  IsGrabbedByAttach: 0
   hingePoint: {fileID: 1080556839}
   angleLimits:
     minimum: -180
@@ -65934,6 +66009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0ebd99abd5f2547ba8276283f08b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 1
   ignoreCollisionsWith:
   - {fileID: 2036437214}
@@ -67351,6 +67427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3658a9254a5b8854c86a3556998414d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 0
   ignoreCollisionsWith:
   - {fileID: 242404353}
@@ -69841,6 +69918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 1574193365}
@@ -70276,6 +70354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 1574193365}
@@ -71475,6 +71554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7530eeaa128faef459301a47f43f38ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isToggle: 0
   operateAxis: 2
   ignoreCollisionsWith:
   - {fileID: 1574193365}

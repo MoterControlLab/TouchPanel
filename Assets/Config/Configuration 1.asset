@@ -22,7 +22,7 @@ MonoBehaviour:
   L3Button: 0
   L2Button: 0
   L1Button: 1
-  R3Button: 1
+  R3Button: 0
   R2Button: 0
   R1Button: 0
   L3PositionStr: 

@@ -105,10 +105,24 @@ public class DataHandler : MonoBehaviour
          rowDataTemp[9]=  record.TriggeredButtonPosition;
          rowDataTemp[10]=  record.TargetButtonType;
          rowDataTemp[11]=  record.TriggeredButtonType;
-         rowDataTemp[12]=  record.AudioOn;
-         rowDataTemp[13]=  record.VibrateOn;
-         rowDataTemp[14] = record.ColorChangeOn;
-         rowDataTemp[15] = record.Shuffle;
+
+        if (TouchPanel.Instance.CurrentTask.Audio)
+            rowDataTemp[12] = "ON";
+        else rowDataTemp[12] = "OFF";
+
+        if (TouchPanel.Instance.CurrentTask.Vibrate)
+            rowDataTemp[13] = "ON";
+        else rowDataTemp[13] = "OFF";
+
+
+        if (TouchPanel.Instance.CurrentTask.ColorChange)
+            rowDataTemp[14] = "ON";
+        else rowDataTemp[14] = "OFF";
+
+        if (TouchPanel.Instance.CurrentTask.Shuffle)
+            rowDataTemp[15] = "ON";
+        else rowDataTemp[15] = "OFF";
+
          rowDataTemp[16] = record.Sequence;
          RecordData.Add(rowDataTemp);
     }

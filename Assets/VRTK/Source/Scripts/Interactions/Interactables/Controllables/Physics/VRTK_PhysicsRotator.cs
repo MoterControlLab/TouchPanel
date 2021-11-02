@@ -42,6 +42,8 @@ namespace VRTK.Controllables.PhysicsBased
             RotatorTrack
         }
 
+
+
         [Header("Hinge Settings")]
 
         [Tooltip("A Transform that denotes the position where the rotator hinge will be created.")]
@@ -68,6 +70,7 @@ namespace VRTK.Controllables.PhysicsBased
         public float stepSize = 0.1f;
         [Tooltip("If this is checked then the value for the rotator will be the step value and not the absolute rotation of the rotator Transform.")]
         public bool useStepAsValue = true;
+
 
         [Header("Snap Settings")]
 
@@ -266,6 +269,8 @@ namespace VRTK.Controllables.PhysicsBased
             SetJointLimits();
             EmitEvents();
             ForceToOriginalAngle();
+
+
         }
 
         protected override void EmitEvents()
@@ -291,6 +296,10 @@ namespace VRTK.Controllables.PhysicsBased
                 {
                     atMinLimit = true;
                     OnMinLimitReached(payload);
+                    //when reach min resetcurrntbutton
+                    Debug.Log("Rotatory reset  IsResetForCurrentButton = true");
+                    TouchPanel.Instance.IsResetForCurrentButton = true;
+
                 }
                 else if (currentAngle > minThreshold && currentAngle < maxThreshold)
                 {
@@ -526,14 +535,14 @@ namespace VRTK.Controllables.PhysicsBased
 
         protected virtual void ForceToOriginalAngle()
         {
- 
+
             bool validReset = !IsGrabbed();
 
             float currentValue = GetValue();
 
             if (validReset && currentValue != restingAngle)
             {
-         
+
                 ManageSpring(true, restingAngle);
             }
         }
@@ -541,7 +550,7 @@ namespace VRTK.Controllables.PhysicsBased
 
         protected virtual void ForceAngleTarget()
         {
-            if (!IsGrabbed() && previousAngleTarget != angleTarget)
+            if (!IsGrabbed()  && previousAngleTarget != angleTarget)
             { 
                 UpdateToAngle(angleTarget);
             }
@@ -550,7 +559,7 @@ namespace VRTK.Controllables.PhysicsBased
 
         protected virtual void ForceSnapToStep()
         {
-            bool validSnap = (snapToStep && controlJoint != null && !IsGrabbed() && !controlJoint.useSpring);
+            bool validSnap = (snapToStep && controlJoint != null && !IsGrabbed()    && !controlJoint.useSpring);
             bool notAtSnapValue = (Mathf.Abs(GetValue() - GetAngleFromStepValue(GetStepValue(GetValue()))) >= equalityFidelity);
             if (validSnap && notAtSnapValue)
             {
@@ -560,6 +569,7 @@ namespace VRTK.Controllables.PhysicsBased
 
         protected virtual bool IsGrabbed()
         {
+
             return (controlInteractableObject != null && controlInteractableObject.IsGrabbed());
         }
     }
