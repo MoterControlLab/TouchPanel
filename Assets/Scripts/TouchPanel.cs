@@ -20,10 +20,13 @@ public class TouchPanel : MonoBehaviour
     public Material OutlineMaterial;
     public Material HandInitialMaterial;
     static TouchPanel instance;
+    [HideInInspector]
     public bool BeginStoreData;
     [HideInInspector]
     public bool TouchToggle;
-    public bool TouchedToggle;
+    [HideInInspector]
+    public string LastTriggerButtonName;
+
     [HideInInspector]
     public bool GripButtonClicked;
     [HideInInspector]
@@ -34,6 +37,7 @@ public class TouchPanel : MonoBehaviour
     [HideInInspector]
     //will be used in VRTK_RotateTransformGrabAttach controllerAttachPoint
     public GameObject ControllerAnchor;
+    [HideInInspector]
     public GameObject ControllerAlias;
     public AudioController AudioController;
     //whether current clicked button is reset
@@ -43,12 +47,12 @@ public class TouchPanel : MonoBehaviour
     public List<VRTK_InteractHaptics> HapticsList = new List<VRTK_InteractHaptics>();
     [HideInInspector]
     public bool FinishTask;
-   
+    [HideInInspector]
     public bool isAttachingWithHand;
- 
+    [HideInInspector]
     public bool isRecording;
-        //used in the case that the order hasn't been generated but hand alreay touched the button
-   // [HideInInspector]
+       //used in the case that the order hasn't been generated but hand alreay touched the button
+    [HideInInspector]
     public bool isFirstAttachRecorded;
 
     [Header("Buttons")]

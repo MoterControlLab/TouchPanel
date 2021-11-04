@@ -254,6 +254,8 @@ namespace VRTK.GrabAttachMechanics
                 CancelDecelerateRotation();
                 decelerateRotationRoutine = StartCoroutine(DecelerateRotation());
             }
+
+            TouchPanel.Instance.IsResetForCurrentButton = true;
         }
 
         /// <summary>
@@ -265,7 +267,6 @@ namespace VRTK.GrabAttachMechanics
             if ( TouchPanel.Instance.TouchToggle)
            
             {
-
 
                 if (!DonotNeedGrab)
                 {
@@ -302,7 +303,6 @@ namespace VRTK.GrabAttachMechanics
 
                 }
 
-
             }
 
             else
@@ -311,13 +311,8 @@ namespace VRTK.GrabAttachMechanics
                     ForceReleaseGrab();
                 else
                 {
-                    if (TouchPanel.Instance.TouchedToggle)
-                    {
-                        ResetRotation();
-                        Debug.Log(22222222222222);
-                        TouchPanel.Instance.IsResetForCurrentButton = true;
-                    }
-           
+                    ResetRotation();
+       
                 }
             }
 
@@ -378,7 +373,12 @@ namespace VRTK.GrabAttachMechanics
                 UpdateRotation(originRotation.eulerAngles, false, false);
                 currentRotation = Vector3.zero;
                 currentRotationSpeed = Vector3.zero;
-            
+
+                if (TouchPanel.Instance.LastTriggerButtonName == "Lever")
+                {
+                    TouchPanel.Instance.IsResetForCurrentButton = true;
+                }
+
             }
         }
 
@@ -585,6 +585,8 @@ namespace VRTK.GrabAttachMechanics
             float angle = GetAngle();
             float minAngle = angleLimits.minimum + minMaxThreshold;
             float maxAngle = angleLimits.maximum - minMaxThreshold;
+
+
             if (angle <= minAngle && !limitsReached[0])
             {
                 limitsReached[0] = true;

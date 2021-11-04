@@ -297,7 +297,7 @@ namespace VRTK.Controllables.PhysicsBased
                     atMinLimit = true;
                     OnMinLimitReached(payload);
                     //when reach min resetcurrntbutton
-                    Debug.Log("Rotatory reset  IsResetForCurrentButton = true");
+                   // Debug.Log("Rotatory reset  IsResetForCurrentButton = true" + "333333333333333333");
                     TouchPanel.Instance.IsResetForCurrentButton = true;
 
                 }

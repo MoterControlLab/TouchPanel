@@ -58,7 +58,7 @@ namespace VRTK
 
             for (int i = 0; i < trackedColliders.Length; i++)
             {
-                Debug.Log(trackedColliders[i].gameObject.name + "  lllllllll");
+              //  Debug.Log(trackedColliders[i].gameObject.name + "  lllllllll");
                // trackedColliders[i].isTrigger = !state;
             }
         }
@@ -180,6 +180,7 @@ namespace VRTK
                 trackedRigidbody.useGravity = false;
                 trackedRigidbody.drag = 0f;
                 trackedRigidbody.angularDrag = 0f;
+
             }
         }
 

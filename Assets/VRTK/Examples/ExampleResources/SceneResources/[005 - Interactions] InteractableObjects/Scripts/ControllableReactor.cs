@@ -32,7 +32,7 @@
 
         protected virtual void MaxLimitReached(object sender, ControllableEventArgs e)
         {
-            Debug.Log(gameObject.name + "MaxLimitReached ");
+           // Debug.Log(gameObject.name + "MaxLimitReached ");
 
             if (TouchPanel.Instance.FinishTask || !TouchPanel.Instance.BeginStoreData)
             {
@@ -92,8 +92,10 @@
                     TouchPanel.Instance.OperateWrong();
                 }
 
+              //  Debug.Log(TouchPanel.Instance.CurrentTask.TouchTime +"Save data");
                 DataHandler.Instance.AddOneRecord(newRecord);
-
+                //reset
+                TouchPanel.Instance.CurrentTask.TouchTime = "";
                 TouchPanel.Instance.IsResetForCurrentButton = false;
 
                 if (controllable.gameObject.GetComponent<VRTK_ArtificialPusher>())
@@ -101,7 +103,7 @@
                     controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = true;
                 }
 
-                Debug.Log(TouchPanel.Instance.IsResetForCurrentButton);
+              
                 //**** for rotatory IsResetForCurrentButton  is reset at VRTK_PhysicsRotator EmitEvents 
                 StartCoroutine(TouchPanel.Instance.GenerateNewCommond());
             }
@@ -110,7 +112,7 @@
             {
                 if (!TouchPanel.Instance.IsResetForCurrentButton)
                 {
-                    Debug.Log("MaxLimitReached  IsResetForCurrentButton = true");
+                  //  Debug.Log("MaxLimitReached  IsResetForCurrentButton = true" + "111111111111111");
                     TouchPanel.Instance.IsResetForCurrentButton = true;
                 }
             }
@@ -188,7 +190,7 @@
             {
                 if (!TouchPanel.Instance.IsResetForCurrentButton)
                 {
-                    Debug.Log(" MinLimitReached   IsResetForCurrentButton = true");
+                    //Debug.Log(" MinLimitReached   IsResetForCurrentButton = true" + "222222222222222222");
                     TouchPanel.Instance.IsResetForCurrentButton = true;
                 }
             }

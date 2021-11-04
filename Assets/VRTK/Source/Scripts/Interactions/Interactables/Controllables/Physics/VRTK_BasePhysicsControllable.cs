@@ -68,6 +68,7 @@ namespace VRTK.Controllables.PhysicsBased
             if (controlRigidbody == null)
             {
                 controlRigidbody = gameObject.AddComponent<Rigidbody>();
+
                 createCustomRigidbody = true;
                 ConfigueRigidbody();
             }

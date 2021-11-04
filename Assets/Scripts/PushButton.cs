@@ -47,7 +47,7 @@ public class PushButton : MonoBehaviour
         {
             isOncollision = true;
         }
-        TouchPanel.Instance.TouchedToggle = false;
+
 
     }
 

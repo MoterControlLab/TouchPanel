@@ -23,7 +23,6 @@ public class IndexCollision : MonoBehaviour
         if (collider.gameObject.name == "Lever" && TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
         {
             TouchPanel.Instance.TouchToggle = true;
-            TouchPanel.Instance.TouchedToggle = true;
            TouchPanel.Instance.CurrentToggleHashCode = collider.gameObject.GetHashCode();
             TouchPanel.Instance.ControllerAnchor = ControllerAnchor;
             TouchPanel.Instance.ControllerAlias = ControllerAlias;

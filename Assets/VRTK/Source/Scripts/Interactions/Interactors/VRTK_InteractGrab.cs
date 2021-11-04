@@ -356,6 +356,7 @@ namespace VRTK
                         Rigidbody autoGenRB = defaultAttachPoint.gameObject.AddComponent<Rigidbody>();
                         autoGenRB.isKinematic = true;
                         controllerAttachPoint = autoGenRB;
+
                     }
                 }
             }
