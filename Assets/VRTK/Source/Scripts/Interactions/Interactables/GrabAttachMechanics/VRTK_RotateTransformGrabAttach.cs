@@ -206,7 +206,10 @@ namespace VRTK.GrabAttachMechanics
             CancelDecelerateRotation();
             bool grabResult = base.StartGrab(grabbingObject, givenGrabbedObject, givenControllerAttachPoint);
             //controllerAttachPoint is RightControllerAnchor
-            previousAttachPointPosition = controllerAttachPoint.GetComponent<NewConvertPoint>().TransferPoint.position;
+            //  previousAttachPointPosition = controllerAttachPoint.GetComponent<NewConvertPoint>().TransferPoint.position;
+            if (TouchPanel.Instance.CurrentIndexContactPoint)
+                previousAttachPointPosition = TouchPanel.Instance.CurrentIndexContactPoint.transform.position;
+
 
             grabbedObjectBounds = VRTK_SharedMethods.GetBounds(givenGrabbedObject.transform);
             limitsReached = new bool[2];
@@ -228,8 +231,9 @@ namespace VRTK.GrabAttachMechanics
                 CancelDecelerateRotation();
                 
                 base.StartGrab(TouchPanel.Instance.ControllerAlias, gameObject, TouchPanel.Instance.ControllerAnchor.GetComponent<Rigidbody>());
-           
-                previousAttachPointPosition = TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position;
+
+                if (TouchPanel.Instance.CurrentIndexContactPoint)
+                previousAttachPointPosition = TouchPanel.Instance.CurrentIndexContactPoint.transform.position;
                // grabbedObjectBounds = VRTK_SharedMethods.GetBounds(gameObject.transform);
                 limitsReached = new bool[2];
                 CheckAngleLimits();
@@ -255,7 +259,7 @@ namespace VRTK.GrabAttachMechanics
                 decelerateRotationRoutine = StartCoroutine(DecelerateRotation());
             }
 
-            TouchPanel.Instance.IsResetForCurrentButton = true;
+            //TouchPanel.Instance.IsResetForCurrentButton = true;
         }
 
         /// <summary>
@@ -275,7 +279,10 @@ namespace VRTK.GrabAttachMechanics
                     {
 
                         Vector3 newRotation = GetNewRotation();
-                        previousAttachPointPosition = controllerAttachPoint.GetComponent<NewConvertPoint>().TransferPoint.position;
+                        // previousAttachPointPosition = controllerAttachPoint.GetComponent<NewConvertPoint>().TransferPoint.position;
+                        if (TouchPanel.Instance.CurrentIndexContactPoint)
+                            previousAttachPointPosition = TouchPanel.Instance.CurrentIndexContactPoint.transform.position;
+
                         currentRotationSpeed = newRotation;
                         UpdateRotation(newRotation, true, true);
 
@@ -293,8 +300,12 @@ namespace VRTK.GrabAttachMechanics
                         InitializeStartGrabParameterByTouch();
                         Vector3 newRotation = GetNewRotation();
 
-                        previousAttachPointPosition = TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position;
-
+                        // previousAttachPointPosition = TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position;
+                        if (TouchPanel.Instance.CurrentIndexContactPoint)
+                        {
+                            previousAttachPointPosition = TouchPanel.Instance.CurrentIndexContactPoint.transform.position;
+                        }
+  
                         currentRotationSpeed = newRotation;
                         UpdateRotation(newRotation, true, true);
                     }
@@ -376,7 +387,7 @@ namespace VRTK.GrabAttachMechanics
 
                 if (TouchPanel.Instance.LastTriggerButtonName == "Lever")
                 {
-                    TouchPanel.Instance.IsResetForCurrentButton = true;
+                   TouchPanel.Instance.IsResetForCurrentButton = true;
                 }
 
             }
@@ -445,10 +456,9 @@ namespace VRTK.GrabAttachMechanics
             switch (rotationAction)
             {
                 case RotationType.FollowAttachPoint:
-
-                    return CalculateAngle(transform.position, previousAttachPointPosition, TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position);
-
-                
+                    if (TouchPanel.Instance.CurrentIndexContactPoint)
+                        return CalculateAngle(transform.position, previousAttachPointPosition, TouchPanel.Instance.CurrentIndexContactPoint.transform.position);
+                    else return Vector3.zero;
 
                 case RotationType.FollowLongitudinalAxis:
                     return BuildFollowAxisVector(grabbingObjectAngularVelocity.x);

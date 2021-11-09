@@ -113,6 +113,7 @@ namespace VRTK.GrabAttachMechanics
             grabbedObjectScript = grabbedObject.GetComponent<VRTK_InteractableObject>();
             grabbedObjectRigidBody = grabbedObject.GetComponent<Rigidbody>();
             controllerAttachPoint = givenControllerAttachPoint;
+
             //reightcontroller anchor
            
             grabbedSnapHandle = GetSnapHandle(grabbingObject);

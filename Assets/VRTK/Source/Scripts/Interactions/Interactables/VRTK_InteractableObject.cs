@@ -429,6 +429,7 @@ namespace VRTK
         {
             InteractableObjectEventArgs e;
             e.interactingObject = interactingObject;
+ 
             return e;
         }
 

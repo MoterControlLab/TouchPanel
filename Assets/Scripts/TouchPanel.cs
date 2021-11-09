@@ -7,58 +7,77 @@ using System;
 using Newtonsoft.Json;
 using VRTK.Examples;
 
+/// <summary>
+/// The Singleton Class of the project
+/// </summary>
 public class TouchPanel : MonoBehaviour
 {
 
-
+    //the text shows in the order board
     public TextMeshProUGUI NoticeText;
-
+    //the Task class current test used
     public Task CurrentTask;
+    //the order index
     private int currentOperationIndex;
+    //used for the model of hand, will be invisible in default VRTK settting
     public GameObject LeftHand;
     public GameObject RightHand;
+    //outline color change shader
     public Material OutlineMaterial;
+    //original shader of hand model
     public Material HandInitialMaterial;
+
     static TouchPanel instance;
+    //begin to record data for button max value or min value reach event data save trigger
     [HideInInspector]
     public bool BeginStoreData;
+    //whether is touching toggle button
     [HideInInspector]
     public bool TouchToggle;
+    //the name of button currently touching
     [HideInInspector]
     public string LastTriggerButtonName;
-
+    //whether grip button is clicked
     [HideInInspector]
     public bool GripButtonClicked;
+    //whether trigger button is clicked
     [HideInInspector]
     public bool TriggerButtonClicked;
+    //the hashcode of current toggle button
     [HideInInspector]
     public int CurrentToggleHashCode;
 
     [HideInInspector]
     //will be used in VRTK_RotateTransformGrabAttach controllerAttachPoint
     public GameObject ControllerAnchor;
+    //used in InitializeStartGrabParameterByTouch, which is used in toggle button lever grabbyattach
     [HideInInspector]
     public GameObject ControllerAlias;
     public AudioController AudioController;
     //whether current clicked button is reset
     [HideInInspector]
     public bool IsResetForCurrentButton;
+    //used in virbate
     [HideInInspector]
     public List<VRTK_InteractHaptics> HapticsList = new List<VRTK_InteractHaptics>();
+    //whether the task is finished
     [HideInInspector]
     public bool FinishTask;
+    //whether the hand model is attaching the button
     [HideInInspector]
-    public bool isAttachingWithHand;
+    public bool IsAttachingWithHand;
     [HideInInspector]
-    public bool isRecording;
-       //used in the case that the order hasn't been generated but hand alreay touched the button
+    public GameObject CurrentIndexContactPoint;
+    //used in the case that the order hasn't been generated but hand alreay touched the button
     [HideInInspector]
     public bool isFirstAttachRecorded;
-
+    //three different button prefabs
     [Header("Buttons")]
     public GameObject Toggle;
     public GameObject Rotatory;
     public GameObject Pusher;
+
+
 
     [Header("TopPositions")]
     public Transform L3TopTransform;
@@ -85,6 +104,7 @@ public class TouchPanel : MonoBehaviour
     public Transform R2BottomTransform;
     public Transform R3BottomTransform;
 
+    //str used in record.csv
 
     private string currentConfigL1PositionStr;
     private string currentConfigL2PositionStr;
@@ -124,8 +144,18 @@ public class TouchPanel : MonoBehaviour
     {
         InitializeLayout();
 
-        LeftHand.SetActive(true);
-        RightHand.SetActive(true);
+        if (!CurrentTask.RightHand)
+        {
+            LeftHand.transform.parent.gameObject.SetActive(true);
+            LeftHand.SetActive(true);
+        }
+         
+        else
+        {
+            RightHand.transform.parent.gameObject.SetActive(true);
+            RightHand.SetActive(true);
+        }
+        
         //initialize operation sequence
         CurrentTask.GenerateOperationSequence();
         StartTestButtonClick();
@@ -205,7 +235,9 @@ public class TouchPanel : MonoBehaviour
         NoticeText.text = "Wrong!";
         AudioController.PlayOperationSFX(AudioController.WrongSFX);
     }
-
+    /// <summary>
+    /// Initialize layout of the panel based on configuration
+    /// </summary>
     public void InitializeLayout()
     {
 

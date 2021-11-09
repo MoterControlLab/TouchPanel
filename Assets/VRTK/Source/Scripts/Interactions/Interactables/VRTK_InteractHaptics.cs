@@ -230,6 +230,7 @@ namespace VRTK
                     if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
                     {
                         TriggerHapticPulse(controllerReference, strengthOnGrab, durationOnGrab, intervalOnGrab);
+
                     }
                 }
                 else
@@ -345,6 +346,7 @@ namespace VRTK
         protected virtual void GrabHaptics(object sender, InteractableObjectEventArgs e)
         {
             VRTK_ControllerReference controllerReference = VRTK_ControllerReference.GetControllerReference(e.interactingObject);
+
             if (VRTK_ControllerReference.IsValid(controllerReference))
             {
                 HapticsOnGrab(controllerReference);

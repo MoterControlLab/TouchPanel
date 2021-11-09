@@ -24,6 +24,7 @@
 
         public static VRTK_ControllerReference GetControllerReference(GameObject controllerObject)
         {
+
             //Try and get the index from either the actual or alias
             uint controllerIndex = VRTK_SDK_Bridge.GetControllerIndex(controllerObject);
 

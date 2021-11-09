@@ -154,7 +154,8 @@ namespace VRTK
     
                 if (grabbableObject.isGrabbable && !grabbableObject.IsGrabbed())
                 {
-                    grabbableObject.transform.position = transform.position;
+                    //*** do not need to change the position of button 
+                 //   grabbableObject.transform.position = transform.position;
                     interactTouch.ForceStopTouching();
                     interactTouch.ForceTouch(grabbableObject.gameObject);
                     interactGrab.AttemptGrab();

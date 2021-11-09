@@ -183,7 +183,7 @@ namespace VRTK.Controllables.PhysicsBased
                 OnValueChanged(payload);
                 float minThreshold = minMaxLimitThreshold;
                 float maxThreshold = 1f - minMaxLimitThreshold;
-                Debug.Log(currentPosition + "  current position");
+               // Debug.Log(currentPosition + "  current position");
                // Debug.Log(minThreshold + " minThreshold");
                // Debug.Log(maxThreshold + " maxThreshold");
                 if (currentPosition >= maxThreshold && !AtMaxLimit())

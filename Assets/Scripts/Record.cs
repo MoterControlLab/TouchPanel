@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Record : MonoBehaviour
+public class Record 
 {
     public string SubjectID;
     public string OperationShowTime;

@@ -7,12 +7,15 @@ using UnityEngine;
 
 public class Task : MonoBehaviour
 {
+    //how many operation tester need to do
     public int OperationNum;
+    //name of subject
     public string SubjectID = "Default User";
+    //configuration file
     [ScriptableObjectDropdown(typeof(Configuration))]
     public ScriptableObjectReference Config;
 
-
+    //the button  order sequnce
     [HideInInspector]
     public List<int> CurrentCodeList = new List<int>();
 
@@ -20,6 +23,7 @@ public class Task : MonoBehaviour
     public bool Audio;
     public bool ColorChange;
     public bool RightHand;
+    //whether the operation generated in a shuffle mode, advertage the number of each kind of button
     public bool Shuffle;
     [HideInInspector]
     public string Sequence = "";
@@ -60,7 +64,7 @@ public class Task : MonoBehaviour
     public void GenerateOperationSequence()
     {
         CurrentCodeList.Clear();
-        TouchPanel.Instance.isRecording = true;
+
 
         if (Shuffle)
         {

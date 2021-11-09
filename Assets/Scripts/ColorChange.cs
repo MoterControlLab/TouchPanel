@@ -36,11 +36,11 @@ public class ColorChange : MonoBehaviour
         if (collider.gameObject.CompareTag("Button"))
         {
 
-            if (TouchPanel.Instance.isRecording)
+            if (TouchPanel.Instance.BeginStoreData)
             {
-                if (!TouchPanel.Instance.isAttachingWithHand && gameObject.name == "HandArea" )
+                if (!TouchPanel.Instance.IsAttachingWithHand && gameObject.name == "HandArea" )
                 {
-                    TouchPanel.Instance.isAttachingWithHand = true;
+                    TouchPanel.Instance.IsAttachingWithHand = true;
                 }
 
                 if (collider.gameObject.name == "Lever" && gameObject.name == "Index")
@@ -50,7 +50,7 @@ public class ColorChange : MonoBehaviour
                     //when touch level do not need to use TouchPanel.Instance.isAttachingWithHand as a restriction for multiple ontriggerenter event, as headarea has alreay been used for this retriction
                     CheckWrongGesture(collider.gameObject);
                     TouchPanel.Instance.LastTriggerButtonName = "Lever";
-                    //     Debug.Log("Enter Lever !" + TouchPanel.Instance.CurrentTask.WrongGesture);
+    
 
                     if (gameObject.name == "Index" && IndexChangeColor)
                     {
@@ -63,6 +63,7 @@ public class ColorChange : MonoBehaviour
                                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
                             }
 
+                            GetCurrentContactPoint(collider);
 
                             TouchPanel.Instance.CurrentTask.CurrentTouchTime = DateTime.Now;
                             TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
@@ -112,7 +113,6 @@ public class ColorChange : MonoBehaviour
                                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
                                 handcolorChanged = true;
 
-                            //    Debug.Log("Change Color !!!!!!!!!!!");
                             }
                           
                             if (TouchPanel.Instance.CurrentTask.TouchTime == "")
@@ -122,8 +122,21 @@ public class ColorChange : MonoBehaviour
                                 TouchPanel.Instance.isFirstAttachRecorded = true;
                             }
 
-                            TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
-                            TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+
+                            if (TouchPanel.Instance.CurrentTask.RightHand)
+                            {
+                                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+                                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+
+                            }
+
+                            else
+                            {
+                                TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+                                TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+
+                            }
+
    
 
                         }
@@ -136,8 +149,69 @@ public class ColorChange : MonoBehaviour
         }
     }
 
+    private void GetCurrentContactPoint(Collider collider)
+    {
 
-   private void OnTriggerStay(Collider collider)
+        GameObject contactPoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+
+        var collisionPoint = GetComponent<CapsuleCollider>().ClosestPoint(collider.gameObject.transform.position);
+
+
+        contactPoint.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        contactPoint.transform.SetParent(transform);
+
+
+        float angle = CalculateAngle180_v3(gameObject.transform.up, (collisionPoint - transform.position));
+
+
+        float distance;
+        if (angle < 90 && angle > 0)
+        {
+            float radians = (angle * Mathf.PI) / 180;
+            distance = Mathf.Cos(radians) * Vector3.Distance(collisionPoint, transform.position);
+        }
+
+        if (angle > -90 && angle < 0)
+        {
+
+            float radians = (-angle * Mathf.PI) / 180;
+            distance = Mathf.Cos(-radians) * Vector3.Distance(collisionPoint, transform.position);
+        }
+        else if (angle < -90)
+        {
+
+            float radians = ((angle + 180) * Mathf.PI) / 180;
+            distance = Mathf.Cos(radians) * Vector3.Distance(collisionPoint, transform.position);
+        }
+        else if (angle > 90)
+        {
+            float radians = ((180 - angle) * Mathf.PI) / 180;
+            distance = Mathf.Cos(radians) * Vector3.Distance(collisionPoint, transform.position);
+        }
+
+        else distance = Vector3.Distance(collisionPoint, transform.position);
+
+
+
+        Vector3 targetPoint;
+
+        if (angle == 90 || angle == -90)
+        {
+            targetPoint = transform.position;
+        }
+        else
+        {
+            targetPoint = transform.position - transform.up * distance;
+        }
+
+
+        contactPoint.transform.position = targetPoint;
+
+        TouchPanel.Instance.CurrentIndexContactPoint = contactPoint;
+    }
+
+    private void OnTriggerStay(Collider collider)
     {
 
         CheckWrongGesture(collider.gameObject);
@@ -153,6 +227,7 @@ public class ColorChange : MonoBehaviour
                     {
                         transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
                         handcolorChanged = true;
+ 
                     }
 
                     if (TouchPanel.Instance.CurrentTask.TouchTime == "")
@@ -161,19 +236,39 @@ public class ColorChange : MonoBehaviour
                         TouchPanel.Instance.CurrentTask.TouchTime = DateTime.Now.ToString("hh:mm:ss:ff");
                         TouchPanel.Instance.isFirstAttachRecorded = true;
                     }
+                    if (TouchPanel.Instance.CurrentTask.RightHand)
+                    {
+                        TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+                        TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+                    }
+                    else
+                    {
+                        TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+                        TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
 
-                   TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
-                   TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+                    }
+                    
                 }
             }
     
             else
             {
-                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
 
+                if (TouchPanel.Instance.CurrentTask.RightHand)
+                {
+                    TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+                }
+                else
+                {
+                    TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+
+                }
+
+             
                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+
                 handcolorChanged = false;
-                Debug.Log(22222222222222222);
+
             }
 
           //  Debug.Log(collider.gameObject.transform.parent.GetComponent<VRTK_PhysicsRotator>().IsGrabbedByAttach);
@@ -187,10 +282,17 @@ public class ColorChange : MonoBehaviour
             {
                 if (IndexChangeColor)
                 {
+
                     if (TouchPanel.Instance.CurrentTask.ColorChange && !handcolorChanged)
                     {
                         transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.OutlineMaterial;
                         handcolorChanged = true;
+
+                    }
+
+                    if (!TouchPanel.Instance.CurrentIndexContactPoint)
+                    {
+                        GetCurrentContactPoint(collider);
                     }
 
                     if (TouchPanel.Instance.CurrentTask.TouchTime == "")
@@ -201,12 +303,16 @@ public class ColorChange : MonoBehaviour
                     }
 
                 }
+
+ 
+
             }
 
             else
             {
          
                 transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+
                 handcolorChanged = false;
             }
 
@@ -215,12 +321,26 @@ public class ColorChange : MonoBehaviour
 
     }
 
+    private static float CalculateAngle180_v3(Vector3 fromDir, Vector3 toDir)
+    {
+        float angle = Quaternion.FromToRotation(fromDir, toDir).eulerAngles.y;
+
+        if (angle > 180) { return 360 - angle; }
+        return angle;
+    }
+
     private void OnTriggerExit(Collider collider)
     {
         //*** for the rotatory button, the wrong gesture identification happens in exit process
         //***and currently  TouchPanel.Instance.isAttachingWithHand is already falso as handarea exit other object first
         if (collider.gameObject.name == "DialBase" && gameObject.name == "HandArea")
-        {       
+        {
+            if (TouchPanel.Instance.CurrentTask.RightHand)
+            {
+                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+            }
+            else TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+
 
             if (TouchPanel.Instance.CurrentTask.ColorChange)
             {
@@ -233,16 +353,19 @@ public class ColorChange : MonoBehaviour
             //reset
            TouchPanel.Instance.CurrentTask.WrongGesture = false;
 
-            TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+            if (TouchPanel.Instance.CurrentTask.RightHand)
+                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
+            else TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
 
-          //  Debug.Log("Reset touchtime handarea leave rotatory" );
+
+            //  Debug.Log("Reset touchtime handarea leave rotatory" );
 
             return;
         }
 
-        if (TouchPanel.Instance.isAttachingWithHand && gameObject.name == "HandArea")
+        if (TouchPanel.Instance.IsAttachingWithHand && gameObject.name == "HandArea")
         {
-            TouchPanel.Instance.isAttachingWithHand = false;
+            TouchPanel.Instance.IsAttachingWithHand = false;
         }
        
         if ( collider.gameObject == currentTriggerObj )
@@ -256,9 +379,11 @@ public class ColorChange : MonoBehaviour
                     if (IndexChangeColor)
                     {
                         transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+
                         handcolorChanged = false;
                     }
                     TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                    Destroy(TouchPanel.Instance.CurrentIndexContactPoint);
                     Debug.Log("Reset touchtime index leave " + currentTriggerObj.name);
                 }
             }
@@ -362,6 +487,7 @@ public class ColorChange : MonoBehaviour
                 }
 
 
+
             }
         }
 
@@ -397,6 +523,7 @@ public class ColorChange : MonoBehaviour
                 if (TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
                 {
                     TouchPanel.Instance.CurrentTask.WrongGesture = false;
+
                 }
 
             }
