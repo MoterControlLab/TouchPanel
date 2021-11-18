@@ -22,6 +22,8 @@ public class TouchPanel : MonoBehaviour
     //used for the model of hand, will be invisible in default VRTK settting
     public GameObject LeftHand;
     public GameObject RightHand;
+    public GameObject HtcViveLeftControllerModel;
+    public GameObject HtcViveRightControllerModel;
     //outline color change shader
     public Material OutlineMaterial;
     //original shader of hand model
@@ -147,12 +149,16 @@ public class TouchPanel : MonoBehaviour
 
         if (!CurrentTask.RightHand)
         {
+           // HtcViveLeftControllerModel.SetActive(false);
+          //  HtcViveRightControllerModel.SetActive(false);
             LeftHand.transform.parent.gameObject.SetActive(true);
             LeftHand.SetActive(true);
         }
          
         else
         {
+         //   HtcViveLeftControllerModel.SetActive(false);
+          //  HtcViveRightControllerModel.SetActive(false);
             RightHand.transform.parent.gameObject.SetActive(true);
             RightHand.SetActive(true);
         }

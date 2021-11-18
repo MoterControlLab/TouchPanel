@@ -65,24 +65,12 @@ namespace VRTK
 
         protected virtual void OnTriggerEnter(Collider collider)
         {
-
-            //*** add a restriction to avoid the continuous trigger
-            if (!TouchPanel.Instance.IsAttachingWithHand)
-            {
-                ToggleRigidbody(collider, true);
-            }
-          
-
-          
+            ToggleRigidbody(collider, true);
         }
 
         protected virtual void OnTriggerExit(Collider collider)
         {
-            if (TouchPanel.Instance.IsAttachingWithHand)
-            {
-                ToggleRigidbody(collider, false);
-            }
-           
+            ToggleRigidbody(collider, false);
         }
 
         protected virtual void ToggleRigidbody(Collider collider, bool state)
