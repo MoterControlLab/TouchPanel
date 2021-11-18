@@ -161,6 +161,7 @@ namespace VRTK
         [Tooltip("An array of colliders on the GameObject to ignore when being touched.")]
         public Collider[] ignoredColliders;
 
+        //whether trigger startgrab function and state by approaching the object and click grab button
         public bool DonotNeedGrab;
 
         [Header("Grab Settings")]

@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Task : MonoBehaviour
 {
-    //how many operation tester need to do
+    //how many operations the tester need to do
     public int OperationNum;
     //name of subject
     public string SubjectID = "Default User";
@@ -25,26 +25,33 @@ public class Task : MonoBehaviour
     public bool RightHand;
     //whether the operation generated in a shuffle mode, advertage the number of each kind of button
     public bool Shuffle;
+    //wrong gesture sequence
     [HideInInspector]
     public string Sequence = "";
+    //the latest wrong gesture
     [HideInInspector]
     public string LastSequence = "";
+    //whether a wrong gesture occurs
     [HideInInspector]
-    public bool WrongGesture;
+    public bool WrongGestureOccur;
+    //the time of current operation order shows
     [HideInInspector]
     public string CurrentOperationShowTime;
+    //the time of finish current operation
     [HideInInspector]
     public DateTime CurrentOperationTime;
+    //the time of first touch the button
     [HideInInspector]
     public string TouchTime;
+    //the datetime of first touch the button
     [HideInInspector]
     public DateTime CurrentTouchTime;
-
+    //the target button name
     [HideInInspector]
     public string TargetButtonName;
+    //the triggered button name
     [HideInInspector]
     public string TriggeredButtonName;
-    // Start is called before the first frame update
 
 
     void Start()
@@ -60,7 +67,9 @@ public class Task : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Generate the sequnce of each operation
+    /// </summary>
     public void GenerateOperationSequence()
     {
         CurrentCodeList.Clear();

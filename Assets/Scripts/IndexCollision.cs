@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Used in Index finger collide with specific toggle
+/// </summary>
 public class IndexCollision : MonoBehaviour
 {
+    /// <summary>
+    /// used in VRTK_RotateTransformGrabAttach StartGrab Function
+    /// </summary>
     public GameObject ControllerAnchor, ControllerAlias;
 
     // Start is called before the first frame update
@@ -19,11 +25,11 @@ public class IndexCollision : MonoBehaviour
     }
      private void OnTriggerEnter(Collider collider)
     {
-     //   Debug.Log(collider.gameObject.name + "dddddd");
         if (collider.gameObject.name == "Lever" && TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
         {
             TouchPanel.Instance.TouchToggle = true;
-           TouchPanel.Instance.CurrentToggleHashCode = collider.gameObject.GetHashCode();
+            TouchPanel.Instance.CurrentToggleHashCode = collider.gameObject.GetHashCode();
+            //used in start Grab function
             TouchPanel.Instance.ControllerAnchor = ControllerAnchor;
             TouchPanel.Instance.ControllerAlias = ControllerAlias;
         }

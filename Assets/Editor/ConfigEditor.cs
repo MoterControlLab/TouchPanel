@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+
+/// <summary>
+/// The layout of configuration inspection window
+/// </summary>
 [CustomEditor(typeof(Configuration))]
 
 public class ConfigEditor : Editor

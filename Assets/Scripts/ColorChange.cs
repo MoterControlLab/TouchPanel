@@ -9,11 +9,11 @@ using VRTK.Examples;
 
 public class ColorChange : MonoBehaviour
 {
-
+    //whether change color by index finger
     public bool IndexChangeColor;
-
+    //current triggered object
     private GameObject currentTriggerObj;
-
+    //whether hand color is changed
     private bool handcolorChanged;
 
     // Start is called before the first frame update
@@ -56,7 +56,7 @@ public class ColorChange : MonoBehaviour
                     {
                     
 
-                        if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+                        if (!TouchPanel.Instance.CurrentTask.WrongGestureOccur)
                         {
                             if (TouchPanel.Instance.CurrentTask.ColorChange)
                             {
@@ -81,7 +81,7 @@ public class ColorChange : MonoBehaviour
                    CheckWrongGesture(collider.gameObject);
                    //  Debug.Log(TouchPanel.Instance.CurrentTask.WrongGesture + " Enter Cylinder!  ");
 
-                    if (!TouchPanel.Instance.CurrentTask.WrongGesture && !IndexChangeColor)
+                    if (!TouchPanel.Instance.CurrentTask.WrongGestureOccur && !IndexChangeColor)
                     {
                         if (TouchPanel.Instance.CurrentTask.ColorChange)
                         {
@@ -103,7 +103,7 @@ public class ColorChange : MonoBehaviour
                     TouchPanel.Instance.LastTriggerButtonName = "DialBase";
                     CheckWrongGesture(collider.gameObject);
 
-                    if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+                    if (!TouchPanel.Instance.CurrentTask.WrongGestureOccur)
                     {
                         if (!IndexChangeColor)
                         {
@@ -148,7 +148,10 @@ public class ColorChange : MonoBehaviour
 
         }
     }
-
+    /// <summary>
+    /// Get the realtime contact point between index finger collider and the toggle button lever collider
+    /// </summary>
+    /// <param name="collider"></param>
     private void GetCurrentContactPoint(Collider collider)
     {
 
@@ -219,7 +222,7 @@ public class ColorChange : MonoBehaviour
         if (collider.gameObject.name == "DialBase" )
        {
             TouchPanel.Instance.LastTriggerButtonName = "DialBase";
-            if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+            if (!TouchPanel.Instance.CurrentTask.WrongGestureOccur)
             {
                 if (!IndexChangeColor)
                 {
@@ -278,7 +281,7 @@ public class ColorChange : MonoBehaviour
         {
        //     Debug.Log("Stay in Level with gesture" + TouchPanel.Instance.CurrentTask.WrongGesture);
 
-            if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+            if (!TouchPanel.Instance.CurrentTask.WrongGestureOccur)
             {
                 if (IndexChangeColor)
                 {
@@ -304,7 +307,12 @@ public class ColorChange : MonoBehaviour
 
                 }
 
- 
+                if (TouchPanel.Instance.CurrentTask.Vibrate)
+                {
+                    VRTK_ControllerHaptics.TriggerHapticPulse(VRTK_ControllerReference.GetControllerReference(transform.parent.parent.parent.gameObject), 0.5f, 1f, 0.5f);
+                }
+              //  Debug.Log(transform.parent.parent.parent.gameObject.name);
+           
 
             }
 
@@ -320,7 +328,12 @@ public class ColorChange : MonoBehaviour
         }
 
     }
-
+    /// <summary>
+    /// get angle degree between two vectors
+    /// </summary>
+    /// <param name="fromDir"></param>
+    /// <param name="toDir"></param>
+    /// <returns></returns>
     private static float CalculateAngle180_v3(Vector3 fromDir, Vector3 toDir)
     {
         float angle = Quaternion.FromToRotation(fromDir, toDir).eulerAngles.y;
@@ -351,7 +364,7 @@ public class ColorChange : MonoBehaviour
 
             }
             //reset
-           TouchPanel.Instance.CurrentTask.WrongGesture = false;
+           TouchPanel.Instance.CurrentTask.WrongGestureOccur = false;
 
             if (TouchPanel.Instance.CurrentTask.RightHand)
                 TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = false;
@@ -382,9 +395,9 @@ public class ColorChange : MonoBehaviour
 
                         handcolorChanged = false;
                     }
-                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                    TouchPanel.Instance.CurrentTask.WrongGestureOccur = false;
                     Destroy(TouchPanel.Instance.CurrentIndexContactPoint);
-                    Debug.Log("Reset touchtime index leave " + currentTriggerObj.name);
+                  //  Debug.Log("Reset touchtime index leave " + currentTriggerObj.name);
                 }
             }
 
@@ -398,9 +411,9 @@ public class ColorChange : MonoBehaviour
                 }
 
                 //reset when hand leave push
-                TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                TouchPanel.Instance.CurrentTask.WrongGestureOccur = false;
 
-                Debug.Log("Reset touchtime handarea leave " + currentTriggerObj.name);
+               // Debug.Log("Reset touchtime handarea leave " + currentTriggerObj.name);
             }
 
         }
@@ -409,11 +422,14 @@ public class ColorChange : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    ///  If a wrong gesture occurs
+    /// </summary>
+    /// <param name="touchButton"></param>
     public void CheckWrongGesture(GameObject touchButton)
     {
 
-        if (!TouchPanel.Instance.CurrentTask.WrongGesture)
+        if (!TouchPanel.Instance.CurrentTask.WrongGestureOccur)
         {
             if (touchButton.name == "DialBase")
             {
@@ -429,10 +445,10 @@ public class ColorChange : MonoBehaviour
                     if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
                         UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMax + "Rotatory-Palm");
 
-
+                
                     if (TouchPanel.Instance.CurrentTask.LastSequence != "")
                     {
-                        TouchPanel.Instance.CurrentTask.WrongGesture = true;
+                        TouchPanel.Instance.CurrentTask.WrongGestureOccur = true;
 
                     }
 
@@ -456,11 +472,9 @@ public class ColorChange : MonoBehaviour
                     if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
                         UpdateSequence("|" + touchButton.GetComponent<ControllableReactor>().outputOnMax + "Push-Grip");
 
-                    // Debug.Log(TouchPanel.Instance.CurrentTask.Sequence);
-
                     if (TouchPanel.Instance.CurrentTask.LastSequence != "")
                     {
-                        TouchPanel.Instance.CurrentTask.WrongGesture = true;
+                        TouchPanel.Instance.CurrentTask.WrongGestureOccur = true;
 
                     }
 
@@ -478,11 +492,11 @@ public class ColorChange : MonoBehaviour
                 if (TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
                     UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMin + "Toggle-OK");
                 if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
-                    UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMin + "Toggle-Grip");
+                    UpdateSequence("|" + touchButton.transform.parent.GetComponent<ControllableReactor>().outputOnMin + "Toggle-Grip");         
 
                 if (TouchPanel.Instance.CurrentTask.LastSequence!= "")
                 {
-                    TouchPanel.Instance.CurrentTask.WrongGesture = true;
+                    TouchPanel.Instance.CurrentTask.WrongGestureOccur = true;
 
                 }
 
@@ -499,7 +513,7 @@ public class ColorChange : MonoBehaviour
                 //only two buttons clicked will change color
                 if (TouchPanel.Instance.TriggerButtonClicked && TouchPanel.Instance.GripButtonClicked)
                 {
-                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                    TouchPanel.Instance.CurrentTask.WrongGestureOccur = false;
 
                 }
 
@@ -512,7 +526,7 @@ public class ColorChange : MonoBehaviour
                 //for push button cannot use any button
                 if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
                 {
-                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                    TouchPanel.Instance.CurrentTask.WrongGestureOccur = false;
                 }
 
             }
@@ -522,7 +536,7 @@ public class ColorChange : MonoBehaviour
             {
                 if (TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
                 {
-                    TouchPanel.Instance.CurrentTask.WrongGesture = false;
+                    TouchPanel.Instance.CurrentTask.WrongGestureOccur = false;
 
                 }
 
@@ -531,7 +545,10 @@ public class ColorChange : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    ///  update current wrong gesture sequence
+    /// </summary>
+    /// <param name="newsequence"></param>
     public void UpdateSequence(string newsequence)
     {
         if (TouchPanel.Instance.CurrentTask.LastSequence == "")

@@ -5,6 +5,9 @@ using System.IO;
 using System.Text;
 using UnityEngine;
 
+/// <summary>
+///  Handle with Data 
+/// </summary>
 public class DataHandler : MonoBehaviour
 {
 
@@ -38,7 +41,9 @@ public class DataHandler : MonoBehaviour
         InitializeRecordFirstRow();
     }
 
-
+    /// <summary>
+    /// save the data to a csv file
+    /// </summary>
     public void SaveTaskDataToCSV()
     {
         string[][] output = new string[RecordData.Count][];
@@ -64,7 +69,9 @@ public class DataHandler : MonoBehaviour
 
     }
 
-    
+    /// <summary>
+    /// Initialize the first row data of csv
+    /// </summary>
 
     public void InitializeRecordFirstRow()
     {
@@ -86,7 +93,7 @@ public class DataHandler : MonoBehaviour
         rowDataTemp[13] = "VibrateOn";
         rowDataTemp[14] = "ColorChangeOn";
         rowDataTemp[15] = "Shuffle";
-        rowDataTemp[16] = "Sequence";
+        rowDataTemp[16] = "WrongGestureSequence";
         RecordData.Add(rowDataTemp);
     }
 
@@ -127,7 +134,10 @@ public class DataHandler : MonoBehaviour
          RecordData.Add(rowDataTemp);
     }
 
-
+    /// <summary>
+    /// csv file save path
+    /// </summary>
+    /// <returns></returns>
     private string getPath()
     {
 #if UNITY_EDITOR

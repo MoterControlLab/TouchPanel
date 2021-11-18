@@ -23,7 +23,7 @@ public class PushButton : MonoBehaviour
         if (currentHand)
         {
             distancetohand = Vector3.Distance(this.gameObject.transform.position, currentHand.transform.position);
-
+            //when the distance between hand and push button is more than 0.075, the push button begin to reset to original position
             if (!isOncollision && controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed && distancetohand > 0.075f)
             {
 

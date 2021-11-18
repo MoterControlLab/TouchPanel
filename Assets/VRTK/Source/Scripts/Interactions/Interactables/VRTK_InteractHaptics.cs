@@ -60,7 +60,7 @@ namespace VRTK
         [Tooltip("Denotes interval betweens rumble in the controller on touch.")]
         public float intervalOnTouch = minInterval;
         [Tooltip("If this is checked then the rumble will be cancelled when the controller is no longer touching.")]
-        public bool cancelOnUntouch = true;
+        public bool cancelOnUntouch = false;
 
         [Header("Haptics On Grab Settings")]
 
@@ -182,6 +182,7 @@ namespace VRTK
         /// <param name="controllerReference">The reference to the controller to activate the haptic feedback on.</param>
         public virtual void HapticsOnTouch(VRTK_ControllerReference controllerReference)
         {
+
             if (clipOnTouch != null)
             {
                 VRTK_ControllerHaptics.TriggerHapticPulse(controllerReference, clipOnTouch);
@@ -192,7 +193,7 @@ namespace VRTK
                 {
                     if (TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
                     {
-                        TriggerHapticPulse(controllerReference, strengthOnTouch, durationOnTouch, intervalOnTouch);
+                       TriggerHapticPulse(controllerReference, strengthOnTouch, durationOnTouch, intervalOnTouch);
                     }
                 }
 
@@ -232,8 +233,20 @@ namespace VRTK
                         TriggerHapticPulse(controllerReference, strengthOnGrab, durationOnGrab, intervalOnGrab);
 
                     }
+
                 }
-                else
+
+                else if (gameObject.name == "LeverControl")
+                {
+
+                    if (TouchPanel.Instance.GripButtonClicked && !TouchPanel.Instance.TriggerButtonClicked)
+                    {
+                        Debug.Log("ddddddddddddddd");
+                        TriggerHapticPulse(controllerReference, strengthOnGrab, durationOnGrab, intervalOnGrab);
+                    }
+                }
+                else 
+
                     TriggerHapticPulse(controllerReference, strengthOnGrab, durationOnGrab, intervalOnGrab);
             }
             else
@@ -383,6 +396,7 @@ namespace VRTK
         {
             if (cancelOnUntouch)
             {
+
                 CancelOn(e.interactingObject);
             }
         }

@@ -318,7 +318,7 @@ namespace VRTK.Controllables
             //*** if it is a toogle button, then only write gesture can trigger the collision and transform change
             if (isToggle)
             {
-                if (TouchPanel.Instance.CurrentTask.WrongGesture)
+                if (TouchPanel.Instance.CurrentTask.WrongGestureOccur)
                 {
                     yield break;
                 }

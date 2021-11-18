@@ -66,6 +66,7 @@ public class TouchPanel : MonoBehaviour
     //whether the hand model is attaching the button
     [HideInInspector]
     public bool IsAttachingWithHand;
+    //the contact point that index finger contacts with the lever collider
     [HideInInspector]
     public GameObject CurrentIndexContactPoint;
     //used in the case that the order hasn't been generated but hand alreay touched the button
@@ -104,8 +105,8 @@ public class TouchPanel : MonoBehaviour
     public Transform R2BottomTransform;
     public Transform R3BottomTransform;
 
-    //str used in record.csv
 
+    //str that will be used in data.csv
     private string currentConfigL1PositionStr;
     private string currentConfigL2PositionStr;
     private string currentConfigL3PositionStr;
@@ -161,11 +162,6 @@ public class TouchPanel : MonoBehaviour
         StartTestButtonClick();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartTestButtonClick()
     {
@@ -187,13 +183,15 @@ public class TouchPanel : MonoBehaviour
     }
 
 
-    
+    /// <summary>
+    /// Generate new operation order
+    /// </summary>
+    /// <returns></returns>
 
     public IEnumerator GenerateNewCommond()
     {
-
-       
-        //  yield return new WaitForSeconds(1f);
+        //wait for 0.5 seconds, just in case push button triggered immediately, a bug but not  offten show
+        yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(()=>IsResetForCurrentButton);
         BeginStoreData = true;
         if (currentOperationIndex < CurrentTask.CurrentCodeList.Count)
@@ -203,7 +201,7 @@ public class TouchPanel : MonoBehaviour
 
             CurrentTask.ShowOperationCode(CurrentTask.CurrentCodeList[currentOperationIndex]);
 
-            Debug.Log("*************************************************************************************    " + currentOperationIndex);
+          //  Debug.Log("*************************************************************************************    " + currentOperationIndex);
             currentOperationIndex++;
 
          
@@ -268,11 +266,14 @@ public class TouchPanel : MonoBehaviour
         currentConfigR2ButtonTypeStr = currentConfig.R2ButtonStr;
         currentConfigR3ButtonTypeStr = currentConfig.R3ButtonStr;
 
+
+
         if (!CurrentTask.Vibrate)
         {
-
+   
             for (int i = 0; i <HapticsList.Count; i++)
             {
+                Debug.Log(i);
                 HapticsList[i].enabled = false;
             }
         }
@@ -281,7 +282,7 @@ public class TouchPanel : MonoBehaviour
 
     public void GenerateButton(string buttonName, string index, string transform)
     {
-        GameObject newButton;
+        GameObject newButton = null;
         if (buttonName == "Toggle")
         {
 
@@ -306,9 +307,16 @@ public class TouchPanel : MonoBehaviour
             newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
            HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
         }
-         
+
+     
     }
 
+    /// <summary>
+    /// Get button position based on input 
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="transform"></param>
+    /// <returns></returns>
 
     public Transform GetTransform(string index, string transform)
     {
@@ -342,6 +350,11 @@ public class TouchPanel : MonoBehaviour
         else return null;
     }
 
+    /// <summary>
+    /// Get position string based on input
+    /// </summary>
+    /// <param name="positionStr"></param>
+    /// <returns></returns>
     public string GetButtonPosition(string positionStr)
     {
         if (positionStr == "L1")

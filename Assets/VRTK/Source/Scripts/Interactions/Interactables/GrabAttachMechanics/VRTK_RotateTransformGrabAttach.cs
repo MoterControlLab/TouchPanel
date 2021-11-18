@@ -3,7 +3,7 @@ namespace VRTK.GrabAttachMechanics
 {
     using UnityEngine;
     using System.Collections;
-    using ConvertPoint;
+
 
     /// <summary>
     /// Event Payload
@@ -113,7 +113,7 @@ namespace VRTK.GrabAttachMechanics
         [Tooltip("The threshold the normalized rotation value needs to be within to register a min or max normalized rotation value.")]
         [Range(0f, 0.99f)]
         public float minMaxNormalizedThreshold = 0.01f;
-
+        //whether call starGrab function without real grabbing, will trigger when attaching the obj
         public bool DonotNeedGrab;
         private bool InitializeTouchGrab;
         /// <summary>
@@ -280,10 +280,12 @@ namespace VRTK.GrabAttachMechanics
 
                         Vector3 newRotation = GetNewRotation();
                         // previousAttachPointPosition = controllerAttachPoint.GetComponent<NewConvertPoint>().TransferPoint.position;
+                        //if has a contact point then follow the contact point
                         if (TouchPanel.Instance.CurrentIndexContactPoint)
                             previousAttachPointPosition = TouchPanel.Instance.CurrentIndexContactPoint.transform.position;
 
                         currentRotationSpeed = newRotation;
+                        //update rotation based on contact point position
                         UpdateRotation(newRotation, true, true);
 
                     }
@@ -295,18 +297,21 @@ namespace VRTK.GrabAttachMechanics
                 }
                 else 
                 {
+                    //make sure the toggle is the toggle that just contacted
                     if (TouchPanel.Instance.CurrentToggleHashCode == transform.GetChild(0).Find("Lever").gameObject.GetHashCode())
                     {
                         InitializeStartGrabParameterByTouch();
                         Vector3 newRotation = GetNewRotation();
 
                         // previousAttachPointPosition = TouchPanel.Instance.ControllerAnchor.GetComponent<NewConvertPoint>().TransferPoint.position;
+                        //is has a contact point
                         if (TouchPanel.Instance.CurrentIndexContactPoint)
                         {
                             previousAttachPointPosition = TouchPanel.Instance.CurrentIndexContactPoint.transform.position;
                         }
   
                         currentRotationSpeed = newRotation;
+
                         UpdateRotation(newRotation, true, true);
                     }
 
@@ -385,6 +390,7 @@ namespace VRTK.GrabAttachMechanics
                 currentRotation = Vector3.zero;
                 currentRotationSpeed = Vector3.zero;
 
+                //when reset to original rotation , TouchPanel.Instance.IsResetForCurrentButton and then will show new command
                 if (TouchPanel.Instance.LastTriggerButtonName == "Lever")
                 {
                    TouchPanel.Instance.IsResetForCurrentButton = true;

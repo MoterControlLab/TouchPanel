@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+///  The Details for record
+/// </summary>
+
 public class Record 
 {
     public string SubjectID;

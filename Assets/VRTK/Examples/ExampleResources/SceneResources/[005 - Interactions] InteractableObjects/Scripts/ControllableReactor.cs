@@ -10,6 +10,7 @@
     {
         public VRTK_BaseControllable controllable;
         public Text displayText;
+        //the specific text that will show which operation this button belongs to such as L1 L2 L3 R1 R2 R3
         public string outputOnMax = "Maximum Reached";
         public string outputOnMin = "Minimum Reached";
 
