@@ -24,6 +24,7 @@ public class PushButton : MonoBehaviour
         {
             distancetohand = Vector3.Distance(this.gameObject.transform.position, currentHand.transform.position);
             //when the distance between hand and push button is more than 0.075, the push button begin to reset to original position
+
             if (!isOncollision && controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed && distancetohand > 0.075f)
             {
 
@@ -40,8 +41,10 @@ public class PushButton : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
+
+
         currentHand = other.gameObject;
         if (!TouchPanel.Instance.TriggerButtonClicked && !TouchPanel.Instance.GripButtonClicked)
         {
@@ -51,7 +54,7 @@ public class PushButton : MonoBehaviour
 
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
 
         isOncollision = false;

@@ -33,7 +33,7 @@
 
         protected virtual void MaxLimitReached(object sender, ControllableEventArgs e)
         {
-           // Debug.Log(gameObject.name + "MaxLimitReached ");
+          //  Debug.Log(gameObject.name + "MaxLimitReached ");
 
             if (TouchPanel.Instance.FinishTask || !TouchPanel.Instance.BeginStoreData)
             {
@@ -123,7 +123,7 @@
 
         protected virtual void MinLimitReached(object sender, ControllableEventArgs e)
         {
-
+          //  Debug.Log(gameObject.name + "MinLimitReached ");
             if (TouchPanel.Instance.FinishTask || !TouchPanel.Instance.BeginStoreData)
             {
                 return;

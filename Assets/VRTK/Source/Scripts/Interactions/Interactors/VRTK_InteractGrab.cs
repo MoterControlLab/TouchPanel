@@ -512,9 +512,11 @@ namespace VRTK
 
         protected virtual void AttemptGrabObject()
         {
+            Debug.Log(2222222222);
             GameObject objectToGrab = GetGrabbableObject();
             if (objectToGrab != null)
             {
+                Debug.Log(1111111111111);
                 PerformGrabAttempt(objectToGrab);
             }
             else

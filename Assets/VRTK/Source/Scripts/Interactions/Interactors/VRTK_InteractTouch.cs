@@ -354,7 +354,7 @@ namespace VRTK
 
         protected virtual void DoControllerModelAvailable(object sender, VRTKTrackedControllerEventArgs e)
         {
-            CreateTouchCollider();
+           CreateTouchCollider();
         }
 
         protected virtual GameObject GetColliderInteractableObject(Collider collider)

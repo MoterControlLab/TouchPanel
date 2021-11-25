@@ -19,6 +19,7 @@ public class TouchPanel : MonoBehaviour
     public Task CurrentTask;
     //the order index
     private int currentOperationIndex;
+    public SteamVR_ControllerManager StreamVRController;
     //used for the model of hand, will be invisible in default VRTK settting
     public GameObject LeftHand;
     public GameObject RightHand;
@@ -80,7 +81,7 @@ public class TouchPanel : MonoBehaviour
     public GameObject Rotatory;
     public GameObject Pusher;
 
-
+    public Transform TestPosition;
 
     [Header("TopPositions")]
     public Transform L3TopTransform;
@@ -145,20 +146,22 @@ public class TouchPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializeLayout();
+       StartCoroutine(  InitializeLayout() );
 
         if (!CurrentTask.RightHand)
         {
-           // HtcViveLeftControllerModel.SetActive(false);
-          //  HtcViveRightControllerModel.SetActive(false);
+            // HtcViveLeftControllerModel.SetActive(false);
+            //  HtcViveRightControllerModel.SetActive(false);
+            StreamVRController.left.transform.GetChild(0).gameObject.SetActive(false);
             LeftHand.transform.parent.gameObject.SetActive(true);
             LeftHand.SetActive(true);
         }
          
         else
         {
-         //   HtcViveLeftControllerModel.SetActive(false);
-          //  HtcViveRightControllerModel.SetActive(false);
+            //   HtcViveLeftControllerModel.SetActive(false);
+            //  HtcViveRightControllerModel.SetActive(false);
+            StreamVRController.right.transform.GetChild(0).gameObject.SetActive(false);
             RightHand.transform.parent.gameObject.SetActive(true);
             RightHand.SetActive(true);
         }
@@ -242,12 +245,20 @@ public class TouchPanel : MonoBehaviour
     /// <summary>
     /// Initialize layout of the panel based on configuration
     /// </summary>
-    public void InitializeLayout()
+    public IEnumerator InitializeLayout()
     {
+    
 
         var serialized = JsonConvert.SerializeObject(CurrentTask.Config.value);
         var currentConfig = JsonConvert.DeserializeObject<Configuration>(serialized);
         currentConfig.GetDetails();
+
+        if (CurrentTask.UseTestPosition)
+        {
+            transform.position = TestPosition.position;
+        }
+        //wait for the touchpanle model attached to tracker then generate the buttons, otherwise the button will stay at the intial position
+        yield return new WaitForSeconds(1f);
 
        GenerateButton(currentConfig.L1ButtonStr, "L1", currentConfig.L1PositionStr);
        GenerateButton(currentConfig.L2ButtonStr, "L2", currentConfig.L2PositionStr);

@@ -125,9 +125,9 @@ public class ColorChange : MonoBehaviour
 
                             if (TouchPanel.Instance.CurrentTask.RightHand)
                             {
-                                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
                                 TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
-
+                                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
+                               
                             }
 
                             else

@@ -119,6 +119,7 @@ namespace VRTK
                 yield break;
             }
 
+
             while (interactGrab.controllerAttachPoint == null)
             {
                 yield return true;
