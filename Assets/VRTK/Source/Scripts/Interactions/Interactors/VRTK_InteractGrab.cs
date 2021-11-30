@@ -78,7 +78,7 @@ namespace VRTK
         protected VRTK_ControllerEvents.ButtonAlias savedGrabButton = VRTK_ControllerEvents.ButtonAlias.Undefined;
         protected bool grabPressed;
 
-        protected GameObject grabbedObject = null;
+        public GameObject grabbedObject = null;
         protected bool influencingGrabbedObject = false;
         protected int grabEnabledState = 0;
         protected float grabPrecognitionTimer = 0f;
@@ -164,6 +164,7 @@ namespace VRTK
         /// </summary>
         public virtual void AttemptGrab()
         {
+       
             AttemptGrabObject();
         }
 
@@ -512,11 +513,12 @@ namespace VRTK
 
         protected virtual void AttemptGrabObject()
         {
-            Debug.Log(2222222222);
+
             GameObject objectToGrab = GetGrabbableObject();
             if (objectToGrab != null)
             {
                 Debug.Log(1111111111111);
+                Debug.Log(objectToGrab.name);
                 PerformGrabAttempt(objectToGrab);
             }
             else

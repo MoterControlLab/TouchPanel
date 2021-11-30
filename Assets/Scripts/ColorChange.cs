@@ -125,19 +125,28 @@ public class ColorChange : MonoBehaviour
 
                             if (TouchPanel.Instance.CurrentTask.RightHand)
                             {
-                                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
                                 TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
-                               
+                                TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+
+                                if (transform.parent.parent.parent.GetComponent<VRTK_InteractGrab>())
+                                {
+                                    transform.parent.parent.parent.GetComponentInChildren<VRTK_InteractGrab>().controllerAttachPoint = GetComponent<Rigidbody>();
+                                }
+                              
                             }
 
                             else
                             {
                                 TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
                                 TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+                                if (transform.parent.parent.parent.GetComponent<VRTK_InteractGrab>())
+                                {
+                                    transform.parent.parent.parent.GetComponentInChildren<VRTK_InteractGrab>().controllerAttachPoint = GetComponent<Rigidbody>();
+                                }
 
                             }
 
-   
+
 
                         }
                     }
@@ -243,11 +252,13 @@ public class ColorChange : MonoBehaviour
                     {
                         TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
                         TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+                   //     TouchPanel.Instance.RightHand.transform.parent.GetComponent<VRTK_InteractGrab>().grabbedObject = collider.gameObject;
                     }
                     else
                     {
                         TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().enabled = true;
                         TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_ObjectAutoGrab>().objectToGrab = collider.gameObject.transform.parent.GetComponent<VRTK_InteractableObject>();
+                    //    TouchPanel.Instance.LeftHand.transform.parent.GetComponent<VRTK_InteractGrab>().grabbedObject = collider.gameObject;
 
                     }
                     
