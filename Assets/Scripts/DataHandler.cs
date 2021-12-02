@@ -143,12 +143,20 @@ public class DataHandler : MonoBehaviour
 #if UNITY_EDITOR
 
         string handDetails;
+        string leapMotion;
         if (TouchPanel.Instance.CurrentTask.RightHand)
         {
             handDetails = "RightHand";
         } else
             handDetails = "LeftHand";
-        return Application.dataPath + "/CSV/" +  DateTime.Now.ToLongTimeString().Replace(':','_') + "_" +  DateTime.Now.ToLongDateString()+ "_" +    TouchPanel.Instance.CurrentTask.OperationNum + "_" + handDetails + "_SavedData.csv";
+
+        if (TouchPanel.Instance.CurrentTask.LeapMotion)
+        {
+            leapMotion = "_LeapMotion";
+        }
+        else
+            leapMotion = "";
+        return Application.dataPath + "/CSV/" +  DateTime.Now.ToLongTimeString().Replace(':','_') + "_" +  DateTime.Now.ToLongDateString()+ "_" +    TouchPanel.Instance.CurrentTask.OperationNum + "_" + handDetails +  leapMotion + "_SavedData.csv";
 #elif UNITY_ANDROID
         return Application.persistentDataPath+"Saved_data.csv";
 #elif UNITY_IPHONE

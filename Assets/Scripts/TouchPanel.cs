@@ -20,6 +20,7 @@ public class TouchPanel : MonoBehaviour
     //the order index
     private int currentOperationIndex;
     public SteamVR_ControllerManager StreamVRController;
+    public GameObject LeapMotionRig;
     //used for the model of hand, will be invisible in default VRTK settting
     public GameObject LeftHand;
     public GameObject RightHand;
@@ -147,6 +148,11 @@ public class TouchPanel : MonoBehaviour
     void Start()
     {
        StartCoroutine(  InitializeLayout() );
+
+        if (CurrentTask.LeapMotion)
+        {
+            LeapMotionRig.SetActive(true);
+        }
 
         if (!CurrentTask.RightHand)
         {

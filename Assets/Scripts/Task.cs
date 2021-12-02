@@ -23,6 +23,8 @@ public class Task : MonoBehaviour
     public bool Audio;
     public bool ColorChange;
     public bool RightHand;
+    public bool LeapMotion;
+
 
     public bool UseTestPosition;
     //whether the operation generated in a shuffle mode, advertage the number of each kind of button
