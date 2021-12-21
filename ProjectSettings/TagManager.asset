@@ -8,6 +8,13 @@ TagManager:
   - Hand
   - HandArea
   - Button
+  - Leg
+  - SnapCube
+  - Arm
+  - SnapCylinder
+  - Saucers
+  - Torso
+  - Head
   layers:
   - Default
   - TransparentFX
@@ -17,7 +24,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - VRTK
   - 
   - 
   - 

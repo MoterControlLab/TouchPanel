@@ -30,21 +30,55 @@ namespace Leap.Unity {
            + "targets. "
            + "Use the magenta gizmo as a reference; the circles represent where your "
            + "floor will be in a Room-scale experience.")]
-    [MinValue(0f)]
+   // [MinValue(0f)]
     private float _roomScaleHeightOffset = 1.6f; // average human height (or so)
+        [SerializeField]
+        private float _roomScaleWidthOffset = 0f; // 
+        [SerializeField]
+        private float _roomScaleDeepOffset = 0f; // 
     private float _lastKnownHeightOffset = 0f;
-    public float roomScaleHeightOffset {
+    private float _lastKnownWidthOffset = 0f;
+    private float _lastKnownDepthOffset = 0f;
+
+        public float roomScaleHeightOffset {
       get { return _roomScaleHeightOffset; }
       set {
         _roomScaleHeightOffset = value;
         this.transform.position += this.transform.up
                                    * (_roomScaleHeightOffset - _lastKnownHeightOffset);
         _lastKnownHeightOffset = value;
+
       }
     }
+   public float roomScaleDeepOffset
+   {
+       get { return _roomScaleDeepOffset; }
+       set
+       {
+                _roomScaleDeepOffset = value;
+           this.transform.position += this.transform.right
+                                      * (_roomScaleDeepOffset - _lastKnownDepthOffset);
+                _lastKnownDepthOffset = value;
 
-    #region Auto Recenter
-    [Header("Auto Recenter")]
+       }
+   }
+
+        public float roomScaleWidthOffset
+        {
+            get { return _roomScaleWidthOffset; }
+            set
+            {
+                _roomScaleWidthOffset = value;
+                this.transform.position += this.transform.forward
+                                           * (_roomScaleWidthOffset - _lastKnownWidthOffset);
+                _lastKnownWidthOffset = value;
+
+            }
+        }
+
+
+        #region Auto Recenter
+        [Header("Auto Recenter")]
     
     [FormerlySerializedAs("autoRecenterOnUserPresence")]
     [Tooltip("If the detected XR device is present and supports userPresence, "
@@ -82,6 +116,8 @@ namespace Leap.Unity {
     [Tooltip("Press this key on the keyboard to adjust the height offset down by stepSize.")]
     public KeyCode stepDownKey = KeyCode.DownArrow;
 
+
+
     [DisableIf("enableRuntimeAdjustment", isEqualTo: false)]
     public float stepSize = 0.1f;
 
@@ -109,14 +145,31 @@ namespace Leap.Unity {
         if (deviceIsPresent) {
 
           if (enableRuntimeAdjustment) {
-            if (Input.GetKeyDown(stepUpKey)) {
+            if (Input.GetKeyDown(stepUpKey) || Input.GetKeyDown(KeyCode.Q)) {
               roomScaleHeightOffset += stepSize;
             }
 
-            if (Input.GetKeyDown(stepDownKey)) {
+            if (Input.GetKeyDown(stepDownKey) || Input.GetKeyDown(KeyCode.E)) {
               roomScaleHeightOffset -= stepSize;
             }
+
+           if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.A))
+           {
+              roomScaleDeepOffset += stepSize;
+           }
+          if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.D))
+          {
+              roomScaleDeepOffset -= stepSize;
           }
+                        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.W))
+                        {
+                            roomScaleWidthOffset += stepSize;
+                        }
+                        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.S))
+                        {
+                            roomScaleWidthOffset -= stepSize;
+                        }
+                    }
 
           if (recenterOnUserPresence && !XRSupportUtil.IsLargePlayspace()) {
             var userPresence = XRSupportUtil.IsUserPresent();

@@ -99,7 +99,6 @@ namespace VRTK
         protected virtual IEnumerator AutoGrab()
         {
             yield return new WaitForEndOfFrame();
-            Debug.Log(" kkkkkkkkk");
             interactTouch = (interactTouch != null ? interactTouch : GetComponentInParent<VRTK_InteractTouch>());
             interactGrab = (interactGrab != null ? interactGrab : GetComponentInParent<VRTK_InteractGrab>());
 
@@ -134,7 +133,7 @@ namespace VRTK
             }
 
             VRTK_InteractableObject grabbableObject = objectToGrab;
-            Debug.Log(111111111111111111);
+  ;
             if (alwaysCloneOnEnable)
             {
                 ClearPreviousClone();

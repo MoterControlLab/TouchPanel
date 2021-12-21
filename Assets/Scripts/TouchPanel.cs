@@ -15,6 +15,7 @@ public class TouchPanel : MonoBehaviour
 
     //the text shows in the order board
     public TextMeshProUGUI NoticeText;
+   // public GameObject LeapMotionCamrea;
     //the Task class current test used
     public Task CurrentTask;
     //the order index
@@ -81,6 +82,10 @@ public class TouchPanel : MonoBehaviour
     public GameObject Toggle;
     public GameObject Rotatory;
     public GameObject Pusher;
+
+    public GameObject ToggleLM;
+    public GameObject RotatoryLM;
+    public GameObject PusherLM;
 
     public Transform TestPosition;
 
@@ -154,30 +159,42 @@ public class TouchPanel : MonoBehaviour
             LeapMotionRig.SetActive(true);
         }
 
-        if (!CurrentTask.RightHand)
-        {
-            // HtcViveLeftControllerModel.SetActive(false);
-            //  HtcViveRightControllerModel.SetActive(false);
-            StreamVRController.left.transform.GetChild(0).gameObject.SetActive(false);
-            LeftHand.transform.parent.gameObject.SetActive(true);
-            LeftHand.SetActive(true);
-        }
-         
-        else
-        {
-            //   HtcViveLeftControllerModel.SetActive(false);
-            //  HtcViveRightControllerModel.SetActive(false);
-            StreamVRController.right.transform.GetChild(0).gameObject.SetActive(false);
-            RightHand.transform.parent.gameObject.SetActive(true);
-            RightHand.SetActive(true);
-        }
-        
+      //  if (!CurrentTask.RightHand)
+      //  {
+      //      // HtcViveLeftControllerModel.SetActive(false);
+      //      //  HtcViveRightControllerModel.SetActive(false);
+      //      StreamVRController.left.transform.GetChild(0).gameObject.SetActive(false);
+      //      LeftHand.transform.parent.gameObject.SetActive(true);
+      //      LeftHand.SetActive(true);
+      //  }
+      //   
+      //  else
+      //  {
+      //      //   HtcViveLeftControllerModel.SetActive(false);
+      //      //  HtcViveRightControllerModel.SetActive(false);
+      //      StreamVRController.right.transform.GetChild(0).gameObject.SetActive(false);
+      //      RightHand.transform.parent.gameObject.SetActive(true);
+      //      RightHand.SetActive(true);
+      //  }
+      //  
         //initialize operation sequence
         CurrentTask.GenerateOperationSequence();
         StartTestButtonClick();
     }
 
 
+    private void Update()
+    {
+      // if (Input.GetKey(KeyCode.Space))
+      // {
+      //     if (gameObject.transform.parent!= LeapMotionCamrea.transform)
+      //     {
+      //         gameObject.transform.parent = LeapMotionCamrea.transform;
+      //
+      //     }
+      //
+      // }
+    }
     public void StartTestButtonClick()
     {
         StartCoroutine(BeginTesting());
@@ -306,29 +323,56 @@ public class TouchPanel : MonoBehaviour
     public void GenerateButton(string buttonName, string index, string transform)
     {
         GameObject newButton = null;
+
+
         if (buttonName == "Toggle")
         {
 
-            newButton = Instantiate(Toggle, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
-            newButton.GetComponentInChildren<ControllableReactor>().outputOnMin = index;
-            HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+            if (!CurrentTask.LeapMotion)
+            {
+                newButton = Instantiate(Toggle, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+                newButton.GetComponentInChildren<ControllableReactor>().outputOnMin = index;
+                HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+            }
+            else
+            {
+                newButton = Instantiate(ToggleLM, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+
+            }
+           
 
         }
 
 
         if (buttonName == "Rotatory")
         {
-            newButton = Instantiate(Rotatory, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
-            newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
-            HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+            if (!CurrentTask.LeapMotion)
+            {
+                newButton = Instantiate(Rotatory, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+                newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
+                HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+            }
+            else
+            {
+                newButton = Instantiate(RotatoryLM, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+
+            }
         }
 
 
         if (buttonName == "Pusher")
         {
-            newButton = Instantiate(Pusher, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
-            newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
-           HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+            if (!CurrentTask.LeapMotion)
+            {
+                newButton = Instantiate(Pusher, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+                newButton.GetComponentInChildren<ControllableReactor>().outputOnMax = index;
+                HapticsList.Add(newButton.GetComponentInChildren<VRTK_InteractHaptics>());
+            }
+            else
+            {
+                newButton = Instantiate(PusherLM, GetTransform(index, transform).position, GetTransform(index, transform).rotation);
+
+            }
         }
 
      
