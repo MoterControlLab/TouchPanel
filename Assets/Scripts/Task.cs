@@ -25,8 +25,6 @@ public class Task : MonoBehaviour
     public bool RightHand;
     public bool LeapMotion;
 
-
-    public bool UseTestPosition;
     //whether the operation generated in a shuffle mode, advertage the number of each kind of button
     public bool Shuffle;
     //wrong gesture sequence
@@ -57,6 +55,7 @@ public class Task : MonoBehaviour
     [HideInInspector]
     public string TriggeredButtonName;
 
+    public GameObject TouchPanelObj;
 
     void Start()
     {

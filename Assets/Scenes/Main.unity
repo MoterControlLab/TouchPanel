@@ -13969,103 +13969,6 @@ CharacterJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!1001 &503201506
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1193063156239688, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_Name
-      value: Leap Rig
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339460489974520, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4050235663507654, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114121827862505544, guid: dae2e2be31c98324eac460f702db97e9,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114121827862505544, guid: dae2e2be31c98324eac460f702db97e9,
-        type: 3}
-      propertyPath: _roomScaleHeightOffset
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114121827862505544, guid: dae2e2be31c98324eac460f702db97e9,
-        type: 3}
-      propertyPath: stepUpKey
-      value: 273
-      objectReference: {fileID: 0}
-    - target: {fileID: 114121827862505544, guid: dae2e2be31c98324eac460f702db97e9,
-        type: 3}
-      propertyPath: stepSize
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 114473456793702560, guid: dae2e2be31c98324eac460f702db97e9,
-        type: 3}
-      propertyPath: ModelPool.Array.data[0].IsLeftToBeSpawned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114473456793702560, guid: dae2e2be31c98324eac460f702db97e9,
-        type: 3}
-      propertyPath: ModelPool.Array.data[0].IsRightToBeSpawned
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dae2e2be31c98324eac460f702db97e9, type: 3}
---- !u!1 &503201507 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1193063156239688, guid: dae2e2be31c98324eac460f702db97e9,
-    type: 3}
-  m_PrefabInstance: {fileID: 503201506}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &505377495
 GameObject:
   m_ObjectHideFlags: 0
@@ -19583,7 +19486,7 @@ PrefabInstance:
         type: 3}
       propertyPath: LeapMotionRig
       value: 
-      objectReference: {fileID: 503201507}
+      objectReference: {fileID: 0}
     - target: {fileID: 5762346700745634675, guid: 77f61a01867630345abe555a0e79a451,
         type: 3}
       propertyPath: m_Name
@@ -26036,7 +25939,6 @@ MonoBehaviour:
   ColorChange: 1
   RightHand: 1
   LeapMotion: 0
-  UseTestPosition: 0
   Shuffle: 1
   Sequence: 
   LastSequence: 
@@ -26045,6 +25947,7 @@ MonoBehaviour:
   TouchTime: 
   TargetButtonName: 
   TriggeredButtonName: 
+  TouchPanelObj: {fileID: 0}
 --- !u!4 &910214920
 Transform:
   m_ObjectHideFlags: 0

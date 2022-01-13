@@ -21,6 +21,7 @@ public class TouchPanel : MonoBehaviour
     //the order index
     private int currentOperationIndex;
     public SteamVR_ControllerManager StreamVRController;
+    public GameObject LeapMotionTracker;
     public GameObject LeapMotionRig;
     //used for the model of hand, will be invisible in default VRTK settting
     public GameObject LeftHand;
@@ -86,8 +87,9 @@ public class TouchPanel : MonoBehaviour
     public GameObject ToggleLM;
     public GameObject RotatoryLM;
     public GameObject PusherLM;
+    //table tracker
+    public GameObject ParentTracker;
 
-    public Transform TestPosition;
 
     [Header("TopPositions")]
     public Transform L3TopTransform;
@@ -185,15 +187,7 @@ public class TouchPanel : MonoBehaviour
 
     private void Update()
     {
-      // if (Input.GetKey(KeyCode.Space))
-      // {
-      //     if (gameObject.transform.parent!= LeapMotionCamrea.transform)
-      //     {
-      //         gameObject.transform.parent = LeapMotionCamrea.transform;
-      //
-      //     }
-      //
-      // }
+      //  GetCurrentLeapMotionTrackerRotationOffset();
     }
     public void StartTestButtonClick()
     {
@@ -222,7 +216,7 @@ public class TouchPanel : MonoBehaviour
 
     public IEnumerator GenerateNewCommond()
     {
-        //wait for 0.5 seconds, just in case push button triggered immediately, a bug but not  offten show
+        //wait for 0.5 seconds, just in case push button triggered immediately, a bug but not  often shows
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(()=>IsResetForCurrentButton);
         BeginStoreData = true;
@@ -270,16 +264,19 @@ public class TouchPanel : MonoBehaviour
     /// </summary>
     public IEnumerator InitializeLayout()
     {
-    
 
+        yield return new WaitForSeconds(1f);
+        //wait until the parentracker is shown and stable
+        yield return new WaitUntil(()=> ParentTracker.gameObject.activeSelf);
+
+        //move the touchpanel out of the child of table tracker, which is only useful for the initial position find for the touchpanel
+        transform.parent = null;
+       
         var serialized = JsonConvert.SerializeObject(CurrentTask.Config.value);
         var currentConfig = JsonConvert.DeserializeObject<Configuration>(serialized);
         currentConfig.GetDetails();
 
-        if (CurrentTask.UseTestPosition)
-        {
-            transform.position = TestPosition.position;
-        }
+ 
         //wait for the touchpanle model attached to tracker then generate the buttons, otherwise the button will stay at the intial position
         yield return new WaitForSeconds(1f);
 
@@ -460,5 +457,47 @@ public class TouchPanel : MonoBehaviour
             return currentConfigR3ButtonTypeStr;
 
         return null;
+    }
+
+
+    public void GetCurrentLeapMotionTrackerRotationOffset()
+    {
+        //the original leapmotion tracker should be Vector3(0,0,180)
+        //the initial offset of leapmotion controller rotation compared with leapmotion tracker is Vector3(-90,180,0)
+        //based on the inital setting of Capsule Hands (Screentop).unity demo
+        //when leapmotion tracker rotate Vector3(x,y,z), the leapmotion controller  should rotate (-90-z,180-y,-y);
+
+        Vector3 CurrentLeapMotionTrackerRotation = LeapMotionRig.transform.parent.rotation.eulerAngles;
+        // Vector3 CurrentLeapMotionTrackerRotation2 = LeapMotionTracker.transform.rotation.eulerAngles;
+
+     
+
+       // LeapMotionRig.transform.parent.localRotation = Quaternion.Euler(GetAssignedRotationAngules(CurrentLeapMotionTrackerRotation));
+
+        Vector3 offset = GetAssignedRotationAngules(CurrentLeapMotionTrackerRotation) - new Vector3(0, 0, 180);
+
+        //Debug.Log(offset.x + " " + offset.y + " " + offset.z);
+
+
+        //when get eulerAngles, the value is not assigned in inspector, it has the following formular:
+        //  Vector3 offset  =  Quaternion.eulerAngles  then the assigned value is (new Vector3(180-offset.y,offset.y+-180, offset.z-180);
+        //  Vector3 offsetAdjusted = new Vector3(180 - offset.x, offset.y-180, offset.z - 180);
+
+
+        Vector3 CurrentLeapMotionControllerRotation = new Vector3(-90 - offset.x, 180 - offset.y, -offset.z);
+        Debug.Log(CurrentLeapMotionControllerRotation.x + " " + CurrentLeapMotionControllerRotation.y + " " + CurrentLeapMotionControllerRotation.z);
+
+
+        //  Debug.Log(CurrentLeapMotionControllerRotation.x + " " + CurrentLeapMotionControllerRotation.y+ " " + CurrentLeapMotionControllerRotation.z);
+        LeapMotionRig.transform.localRotation = Quaternion.Euler(CurrentLeapMotionControllerRotation);
+
+
+    }
+
+    public Vector3 GetAssignedRotationAngules(Vector3 input)
+      {
+        Vector3 adjustedVector3 = new Vector3( input.x -360, input.y , input.z );
+      //  Debug.Log(adjustedVector3.x + " " + adjustedVector3.y  + " " + adjustedVector3.z);
+        return adjustedVector3;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriangleController : MonoBehaviour
+public class TransformerController : MonoBehaviour
 {
 
     public float stepSize = 0.001f;
@@ -24,7 +24,8 @@ public class TriangleController : MonoBehaviour
             if (Position)
                 this.transform.position += this.transform.up  * stepSize;
             if (Rotation)
-                transform.rotation =  Quaternion.Euler( transform.rotation.eulerAngles + new Vector3(stepSize * 100, 0, 0));
+                transform.Rotate(Vector3.right * Time.deltaTime*10);
+          //  transform.rotation =  Quaternion.Euler( transform.rotation.eulerAngles + new Vector3(stepSize * 100, 0, 0));
             if (Scale)
                 transform.localScale = transform.localScale + new Vector3(stepSize* 1000, 0,0);
 
@@ -35,7 +36,8 @@ public class TriangleController : MonoBehaviour
             if (Position)
                 this.transform.position -= this.transform.up *  stepSize;
             if (Rotation)
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(-stepSize * 100, 0, 0));
+                transform.Rotate(-Vector3.right * Time.deltaTime * 10);
+          //  transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(-stepSize * 100, 0, 0));
             if (Scale)
                 transform.localScale = transform.localScale + new Vector3(-stepSize * 1000, 0, 0);
         }
@@ -44,7 +46,7 @@ public class TriangleController : MonoBehaviour
         {
             if (Position) this.transform.position += this.transform.right  *stepSize;
             if (Rotation)
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, stepSize * 100, 0));
+                transform.Rotate(Vector3.up * Time.deltaTime * 10);
             if (Scale)
                 transform.localScale = transform.localScale + new Vector3(0, stepSize * 1000, 0);
         }
@@ -53,7 +55,8 @@ public class TriangleController : MonoBehaviour
             if (Position)
                 this.transform.position -= this.transform.right  *  stepSize;
             if (Rotation)
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, -stepSize * 100, 0));
+                transform.Rotate(-Vector3.up * Time.deltaTime * 10);
+            // transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, -stepSize * 100, 0));
             if (Scale)
                 transform.localScale = transform.localScale + new Vector3(0, -stepSize * 1000, 0);
         }
@@ -62,7 +65,8 @@ public class TriangleController : MonoBehaviour
             if (Position)
                 this.transform.position += this.transform.forward * stepSize;
             if (Rotation)
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 0, stepSize * 1000));
+                transform.Rotate(Vector3.forward * Time.deltaTime * 10);
+            // transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 0, stepSize * 1000));
             if (Scale)
                 transform.localScale = transform.localScale + new Vector3(0, 0, stepSize * 100);
         }
@@ -71,7 +75,8 @@ public class TriangleController : MonoBehaviour
             if (Position)
                 this.transform.position-= this.transform.forward* stepSize;
             if (Rotation)
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 0, -stepSize * 1000));
+                transform.Rotate(-Vector3.forward * Time.deltaTime * 10);
+            //transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, 0, -stepSize * 1000));
             if (Scale)
                 transform.localScale = transform.localScale + new Vector3(0, 0,-stepSize * 100);
         }
