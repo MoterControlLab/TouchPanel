@@ -2952,7 +2952,6 @@ MonoBehaviour:
   controllerAttachPoint: {fileID: 0}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
-  grabbedObject: {fileID: 0}
 --- !u!114 &109582319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25498,11 +25497,14 @@ PrefabInstance:
       propertyPath: modelOverride
       value: 
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 570693330952480100, guid: 4d293c8e162f3874b982baadd71153d2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of 5060d800 ([Bug] Fix Rotatory Button AutoGrab Function in Vive Bug)
     - target: {fileID: 4115036876018500556, guid: 4d293c8e162f3874b982baadd71153d2,
         type: 3}
       propertyPath: modelOverride
@@ -25938,7 +25940,11 @@ MonoBehaviour:
   Audio: 1
   ColorChange: 1
   RightHand: 1
+<<<<<<< HEAD
   LeapMotion: 0
+=======
+  UseTestPosition: 1
+>>>>>>> parent of 5060d800 ([Bug] Fix Rotatory Button AutoGrab Function in Vive Bug)
   Shuffle: 1
   Sequence: 
   LastSequence: 
@@ -30836,7 +30842,6 @@ GameObject:
   - component: {fileID: 1068396201}
   - component: {fileID: 1068396200}
   - component: {fileID: 1068396203}
-  - component: {fileID: 1068396204}
   m_Layer: 0
   m_Name: HandArea
   m_TagString: Hand
@@ -30931,22 +30936,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IndexChangeColor: 0
---- !u!54 &1068396204
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068396198}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &1070902344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48935,7 +48924,6 @@ MonoBehaviour:
   controllerAttachPoint: {fileID: 0}
   controllerEvents: {fileID: 0}
   interactTouch: {fileID: 0}
-  grabbedObject: {fileID: 0}
 --- !u!114 &1408711856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64323,7 +64311,6 @@ GameObject:
   - component: {fileID: 1861818414}
   - component: {fileID: 1861818413}
   - component: {fileID: 1861818416}
-  - component: {fileID: 1861818417}
   m_Layer: 0
   m_Name: HandArea
   m_TagString: Hand
@@ -64418,22 +64405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IndexChangeColor: 0
---- !u!54 &1861818417
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1861818411}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1861968463
 GameObject:
   m_ObjectHideFlags: 0

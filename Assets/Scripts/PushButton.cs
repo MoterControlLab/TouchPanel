@@ -30,8 +30,7 @@ public class PushButton : MonoBehaviour
 
                 controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().stayPressed = false;
                 controllableReactor.controllable.gameObject.GetComponent<VRTK_ArtificialPusher>().SetToRestingPosition();
-                Debug.Log(currentHand.gameObject.name);
-                currentHand.transform.parent.parent.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
+                currentHand.transform.GetComponentInChildren<SkinnedMeshRenderer>().material = TouchPanel.Instance.HandInitialMaterial;
             }
 
         }

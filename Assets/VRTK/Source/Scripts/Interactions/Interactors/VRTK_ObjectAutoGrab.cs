@@ -99,6 +99,10 @@ namespace VRTK
         protected virtual IEnumerator AutoGrab()
         {
             yield return new WaitForEndOfFrame();
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 5060d800 ([Bug] Fix Rotatory Button AutoGrab Function in Vive Bug)
             interactTouch = (interactTouch != null ? interactTouch : GetComponentInParent<VRTK_InteractTouch>());
             interactGrab = (interactGrab != null ? interactGrab : GetComponentInParent<VRTK_InteractGrab>());
 
@@ -114,17 +118,16 @@ namespace VRTK
 
             if (objectToGrab == null)
             {
-               
               //  VRTK_Logger.Error(VRTK_Logger.GetCommonMessage(VRTK_Logger.CommonMessageKeys.NOT_DEFINED, "objectToGrab"));
                 yield break;
             }
 
 
-           while (interactGrab.controllerAttachPoint == null)
-           {
-              yield return true;
-           }
-          //  Debug.Log(interactGrab.controllerAttachPoint.name);
+            while (interactGrab.controllerAttachPoint == null)
+            {
+                yield return true;
+            }
+
             bool grabbableObjectDisableState = objectToGrab.disableWhenIdle;
 
             if (objectIsPrefab)
@@ -133,7 +136,10 @@ namespace VRTK
             }
 
             VRTK_InteractableObject grabbableObject = objectToGrab;
+<<<<<<< HEAD
   ;
+=======
+>>>>>>> parent of 5060d800 ([Bug] Fix Rotatory Button AutoGrab Function in Vive Bug)
             if (alwaysCloneOnEnable)
             {
                 ClearPreviousClone();
@@ -141,7 +147,6 @@ namespace VRTK
 
             if (!interactGrab.GetGrabbedObject())
             {
-
                 if (cloneGrabbedObject)
                 {
                     if (previousClonedObject == null)
@@ -161,7 +166,6 @@ namespace VRTK
                  //   grabbableObject.transform.position = transform.position;
                     interactTouch.ForceStopTouching();
                     interactTouch.ForceTouch(grabbableObject.gameObject);
-                    Debug.Log("pppppppppppppppp");
                     interactGrab.AttemptGrab();
 
                     AttemptSecondaryGrab(grabbableObject);
